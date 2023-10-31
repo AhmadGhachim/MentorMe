@@ -1,9 +1,14 @@
-import NavigationBar from "../components/NavigationBar"
 
-export default function Home() {
+
+function Home() {
   return (
-    <>
-    <NavigationBar/>
-    </>
-  )
+      <div>
+        <h1>Welcome to My Home Page</h1>
+        <p>This is the home page of your React app.</p>
+      </div>
+  );
 }
+
+export default Home;
+
+

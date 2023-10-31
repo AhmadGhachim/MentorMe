@@ -1,6 +1,5 @@
-
 import SignInSide from './pages/SignInSide'
-import Home from './pages/Home.JSX';
+import Home from './pages/Home'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
