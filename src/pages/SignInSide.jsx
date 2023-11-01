@@ -11,7 +11,8 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { useAuth } from '../AuthContext';
+import {useNavigate } from 'react-router-dom'
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -30,14 +31,23 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
+
+  const navigate = useNavigate()
+  const { login } = useAuth()
+  
+  async function handleSubmit(event) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
-  };
+
+
+    await login(data.get('email'), data.get('password')).then(navigate("/Home"))
+
+  
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>

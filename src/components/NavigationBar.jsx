@@ -16,6 +16,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import SearchBar from './SearchBar';
 //import axios from 'axios';
 import { useNavigate   } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 const pages = ["Home", "My Events", "Progress", "Messages"];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -29,10 +30,11 @@ const appBarTheme = createTheme({
 });
 
 
-function NavigationBar(props) {
+export default function NavigationBar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
+  const {logout, currentUser} = useAuth();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -49,8 +51,8 @@ function NavigationBar(props) {
     setAnchorElUser(null);
   };
 
-  const handleLogOut = () => {
-
+  async function handleLogout() {
+    await logout().then(navigate("/")).then(console.log(currentUser.email))
   }
 
   return (
@@ -173,7 +175,7 @@ function NavigationBar(props) {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting}  onClick={setting === 'Logout' ? handleLogout : handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
@@ -184,4 +186,3 @@ function NavigationBar(props) {
     </AppBar>
   );
 }
-export default NavigationBar;
