@@ -2,26 +2,28 @@ import { css } from "@emotion/css";
 
 
 const Landing = () => {
+
   return (
-    <div
-      className={css`
+      
+      <div
+          className={css`
         position: relative;
-        background-color: var(--background);
+        background-color: #f5faff;
         width: 100%;
         height: 3744px;
         overflow: hidden;
         text-align: left;
-        font-size: var(--h1-regular-size);
-        color: var(--brand-500);
-        font-family: var(--body-small);
+        font-size: 48px;
+        color: #016eea;
+        font-family:system-ui;
       `}
-    >
-      <div
-        className={css`
+      >
+        <div
+            className={css`
           position: absolute;
-          top: 1002px;
-          left: 584px;
-          font-size: var(--font-size-45xl);
+          top: calc(50% - 871px);
+          left: calc(50% - 136px);
+          font-size: 64px;
           text-align: center;
           display: flex;
           align-items: center;
@@ -29,48 +31,38 @@ const Landing = () => {
           width: 264px;
           height: 104px;
         `}
-      >
-        Features
-      </div>
-      <div
-        className={css`
-          position: absolute;
-          top: 155px;
-          left: 56px;
-          width: 1328px;
-          height: 686px;
-          font-size: var(--body-default-size);
-        `}
-      >
-        <img
-          className={css`
-            position: absolute;
-            top: 0px;
-            left: 660px;
-            width: 668px;
-            height: 686px;
-            overflow: hidden;
-          `}
-          alt=""
-          src="/mentoring-illustration.svg"
-        />
+        >
+          Features
+        </div>
         <div
-          className={css`
-            position: absolute;
-            top: 127.6px;
-            left: 0px;
+            className={css`
+          position: absolute;
+          top: calc(50% - 1717px);
+          left: calc(50% - 664px);
+          width: 1328px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 20px;
+        `}
+        >
+          <div
+              className={css`
+            position: relative;
             width: 601px;
             height: 446.1px;
             overflow: hidden;
+            flex-shrink: 0;
           `}
-        >
-          <div
-            className={css`
+          >
+            <div
+                className={css`
               position: absolute;
               top: 389.4px;
               left: 0px;
-              border-radius: var(--br-9xs);
-              background-color: var(--brand-50);
+              border-radius: 4px;
+              background-color: #e6f1ff;
               width: 153px;
               height: 56.7px;
               display: flex;
@@ -78,26 +70,26 @@ const Landing = () => {
               align-items: center;
               justify-content: center;
             `}
-          >
-            <div
-              className={css`
+            >
+              <div
+                  className={css`
                 position: relative;
                 display: inline-block;
                 width: 107px;
                 height: 24px;
                 flex-shrink: 0;
               `}
-            >
-              Learn More
+              >
+                Learn More
+              </div>
             </div>
-          </div>
-          <div
-            className={css`
+            <div
+                className={css`
               position: absolute;
               top: 389.4px;
               left: 183px;
-              border-radius: var(--br-9xs);
-              background-color: var(--brand-500);
+              border-radius: 4px;
+              background-color: #016eea;
               box-shadow: 1px 2px 4px rgba(21, 106, 206, 0.25);
               width: 182px;
               height: 56.7px;
@@ -105,11 +97,11 @@ const Landing = () => {
               flex-direction: column;
               align-items: center;
               justify-content: center;
-              color: var(--white);
+              color: #fafeff;
             `}
-          >
-            <div
-              className={css`
+            >
+              <div
+                  className={css`
                 position: relative;
                 display: inline-block;
                 width: 151px;
@@ -117,61 +109,74 @@ const Landing = () => {
                 flex-shrink: 0;
                 mix-blend-mode: normal;
               `}
-            >
-              Create Account
+              >
+                Create Account
+              </div>
             </div>
-          </div>
-          <div
-            className={css`
+            <div
+                className={css`
               position: absolute;
               top: 0px;
               left: 0px;
-              font-size: var(--font-size-45xl);
+              font-size: 64px;
               display: flex;
               align-items: center;
               width: 601px;
               height: 269.4px;
             `}
-          >{`Accessible and tailored mentorship experience `}</div>
-          <div
-            className={css`
+            >{`Accessible and tailored mentorship experience `}</div>
+            <div
+                className={css`
               position: absolute;
               top: 284.7px;
               left: 0px;
-              font-size: var(--h4-regular-size);
-              color: var(--color-black);
+              font-size: 24px;
+              color: #000;
               display: flex;
               align-items: center;
               width: 596px;
               height: 67.6px;
             `}
-          >
-            Find mentors to develop your skills and connect with like minded
-            individuals.
+            >
+              Find mentors to develop your skills and connect with like minded
+              individuals.
+            </div>
           </div>
+          <img
+              className={css`
+            position: relative;
+            width: 668px;
+            height: 686px;
+            overflow: hidden;
+            flex-shrink: 0;
+          `}
+              alt=""
+              src="/mentoring-illustration.svg"
+          />
         </div>
-      </div>
-      <div
-        className={css`
+        <div
+            className={css`
           position: absolute;
+          width: 100%;
           top: 0px;
-          left: calc(50% - 720px);
+          right: 0%;
+          left: 0%;
           box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
-          border-bottom: 1px solid var(--brand-50);
+          border-bottom: 1px solid #e6f1ff;
           box-sizing: border-box;
-          width: 1440px;
+          height: 101px;
           overflow: hidden;
           display: flex;
           flex-direction: row;
+          flex-wrap: wrap;
           align-items: center;
-          justify-content: flex-start;
+          justify-content: space-between;
           padding: 11px 64px 10px;
-          gap: 643px;
         `}
-      >
-        <div
-          className={css`
-            flex: 1;
+        >
+          <div
+              className={css`
+            width: 334.5px;
             height: 79px;
             display: flex;
             flex-direction: row;
@@ -179,19 +184,19 @@ const Landing = () => {
             justify-content: flex-start;
             gap: 3px;
           `}
-        >
-          <img
-            className={css`
+          >
+            <img
+                className={css`
               position: relative;
               width: 111.3px;
               height: 75px;
               object-fit: cover;
             `}
-            alt=""
-            src="/graduate-hat@2x.png"
-          />
-          <div
-            className={css`
+                alt=""
+                src="/graduate-hat@2x.png"
+            />
+            <div
+                className={css`
               position: relative;
               display: flex;
               align-items: center;
@@ -199,27 +204,28 @@ const Landing = () => {
               height: 75px;
               flex-shrink: 0;
             `}
-          >
-            MentorMe
+            >
+              MentorMe
+            </div>
           </div>
-        </div>
-        <div
-          className={css`
-            flex: 1;
+          <div
+              className={css`
+            width: 334.5px;
             height: 43px;
             overflow: hidden;
+            flex-shrink: 0;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: flex-start;
             gap: 24px;
-            font-size: var(--body-default-size);
+            font-size: 20px;
           `}
-        >
-          <div
-            className={css`
-              border-radius: var(--br-9xs);
-              background-color: var(--brand-50);
+          >
+            <div
+                className={css`
+              border-radius: 4px;
+              background-color: #e6f1ff;
               width: 89px;
               height: 43px;
               display: flex;
@@ -227,19 +233,19 @@ const Landing = () => {
               align-items: center;
               justify-content: center;
             `}
-          >
-            <div
-              className={css`
+            >
+              <div
+                  className={css`
                 position: relative;
               `}
-            >
-              Login
+              >
+                Login
+              </div>
             </div>
-          </div>
-          <div
-            className={css`
-              border-radius: var(--br-9xs);
-              background-color: var(--brand-500);
+            <div
+                className={css`
+              border-radius: 4px;
+              background-color: #016eea;
               box-shadow: 1px 2px 4px rgba(21, 106, 206, 0.25);
               width: 177px;
               height: 43px;
@@ -247,364 +253,378 @@ const Landing = () => {
               flex-direction: column;
               align-items: center;
               justify-content: center;
-              color: var(--white);
+              color: #fafeff;
             `}
-          >
-            <div
-              className={css`
+            >
+              <div
+                  className={css`
                 position: relative;
                 display: inline-block;
                 width: 147px;
                 mix-blend-mode: normal;
               `}
-            >
-              Create Account
+              >
+                Create Account
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        className={css`
-          position: absolute;
-          top: 2703px;
-          left: 176px;
-          width: 1088px;
-          height: 560px;
-          font-size: var(--text-14px-regular-size);
-          color: var(--font);
-        `}
-      >
         <div
-          className={css`
-            position: absolute;
-            top: 0px;
-            left: 352px;
-            font-size: var(--font-size-45xl);
-            color: var(--brand-500);
-            text-align: center;
+            className={css`
+          position: absolute;
+          top: calc(50% + 779px);
+          left: calc(50% - 589px);
+          width: 1178px;
+          height: 628px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 0px 41px;
+          box-sizing: border-box;
+          gap: 30px;
+          text-align: center;
+          font-size: 64px;
+          color: #1c1c1c;
+        `}
+        >
+          <div
+              className={css`
+            position: relative;
+            color: #016eea;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 385px;
             height: 104px;
+            flex-shrink: 0;
           `}
-        >
-          Top Mentors
-        </div>
-        <div
-          className={css`
-            position: absolute;
-            top: 208px;
-            left: 0px;
-            border-radius: var(--br-5xs);
-            background-color: var(--generic-white);
-            width: 292.5px;
-            height: 352px;
-            font-size: var(--h4-regular-size);
-          `}
-        >
-          <img
-            className={css`
-              position: absolute;
-              top: 10px;
-              left: 10px;
-              border-radius: var(--br-5xs);
-              width: 272.5px;
-              height: 252px;
-              object-fit: cover;
-            `}
-            alt=""
-            src="/avatar-image@2x.png"
-          />
-          <div
-            className={css`
-              position: absolute;
-              top: 269px;
-              left: 84px;
-              width: 125px;
-              height: 22px;
-            `}
           >
-            <div
+            Top Mentors
+          </div>
+          <div
               className={css`
-                position: absolute;
-                top: 0px;
-                left: -9px;
-              `}
-            >
-              Huzaifa Anas
-            </div>
-            <div
-              className={css`
-                position: absolute;
-                top: 26px;
-                left: 0px;
-                display: none;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-start;
-                gap: var(--gap-9xs);
-                font-size: var(--text-14px-regular-size);
-                color: var(--gray-500);
-                font-family: var(--text-14px-regular);
-              `}
-            >
-              <img
-                className={css`
-                  position: relative;
-                  width: 18px;
-                  height: 18px;
-                `}
-                alt=""
-                src="/link.svg"
-              />
-              <div
-                className={css`
-                  position: relative;
-                  letter-spacing: -0.01em;
-                  line-height: 20px;
-                `}
-              >
-                Link
-              </div>
-            </div>
-          </div>
-          <div
-            className={css`
-              position: absolute;
-              top: 305px;
-              left: 39px;
-              font-size: var(--body-small-size);
-              display: inline-block;
-              width: 215px;
-              height: 18px;
-            `}
-          >
-            Software Engineer @Google
-          </div>
-        </div>
-        <div
-          className={css`
-            position: absolute;
-            top: 208px;
-            left: 418px;
-            border-radius: var(--br-5xs);
-            background-color: var(--generic-white);
-            width: 272px;
-            height: 352px;
-          `}
-        >
-          <img
-            className={css`
-              position: absolute;
-              top: 10px;
-              left: 10px;
-              border-radius: var(--br-5xs);
-              width: 252px;
-              height: 252px;
-              object-fit: cover;
-            `}
-            alt=""
-            src="/avatar-image1@2x.png"
-          />
-          <div
-            className={css`
-              position: absolute;
-              top: 271px;
-              left: 48px;
-              width: 83px;
-              display: flex;
-              flex-direction: column;
-              align-items: flex-start;
-              justify-content: flex-start;
-              color: var(--gray-500);
-              font-family: var(--text-14px-regular);
-            `}
-          >
-            <div
-              className={css`
-                display: none;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-start;
-                gap: var(--gap-9xs);
-              `}
-            >
-              <img
-                className={css`
-                  position: relative;
-                  width: 18px;
-                  height: 18px;
-                `}
-                alt=""
-                src="/link.svg"
-              />
-              <div
-                className={css`
-                  position: relative;
-                  letter-spacing: -0.01em;
-                  line-height: 20px;
-                `}
-              >
-                Link
-              </div>
-            </div>
-          </div>
-          <div
-            className={css`
-              position: absolute;
-              top: 269px;
-              left: 78px;
-              font-size: var(--h4-regular-size);
-            `}
-          >
-            Jolene Orr
-          </div>
-          <div
-            className={css`
-              position: absolute;
-              top: 305px;
-              left: 27px;
-              font-size: var(--body-small-size);
-              display: inline-block;
-              width: 219px;
-              height: 30px;
-            `}
-          >
-            Project manager @Facebook
-          </div>
-        </div>
-        <div
-          className={css`
-            position: absolute;
-            top: 208px;
-            left: 816px;
-            border-radius: var(--br-5xs);
-            background-color: var(--generic-white);
-            width: 272px;
-            height: 352px;
-          `}
-        >
-          <img
-            className={css`
-              position: absolute;
-              top: 10px;
-              left: 10px;
-              border-radius: var(--br-5xs);
-              width: 252px;
-              height: 252px;
-              object-fit: cover;
-            `}
-            alt=""
-            src="/avatar-image2@2x.png"
-          />
-          <div
-            className={css`
-              position: absolute;
-              top: 270px;
-              left: 10px;
-              width: 65px;
-              display: flex;
-              flex-direction: column;
-              align-items: flex-start;
-              justify-content: flex-start;
-              color: var(--gray-500);
-              font-family: var(--text-14px-regular);
-            `}
-          >
-            <div
-              className={css`
-                display: none;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-start;
-                gap: var(--gap-9xs);
-              `}
-            >
-              <img
-                className={css`
-                  position: relative;
-                  width: 18px;
-                  height: 18px;
-                `}
-                alt=""
-                src="/link.svg"
-              />
-              <div
-                className={css`
-                  position: relative;
-                  letter-spacing: -0.01em;
-                  line-height: 20px;
-                `}
-              >
-                Link
-              </div>
-            </div>
-          </div>
-          <div
-            className={css`
-              position: absolute;
-              top: 269px;
-              left: 106px;
-              font-size: var(--h4-regular-size);
-            `}
-          >
-            Henry
-          </div>
-          <div
-            className={css`
-              position: absolute;
-              top: 305px;
-              left: 44px;
-              font-size: var(--body-small-size);
-              display: inline-block;
-              width: 190px;
-              height: 28px;
-            `}
-          >
-            Acquisitions @BlackRock
-          </div>
-        </div>
-        <div
-          className={css`
-            position: absolute;
-            top: 104px;
-            left: 158px;
-            font-size: var(--body-small-size);
-            text-align: center;
-            display: inline-block;
+            position: relative;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 773px;
           `}
-        >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec maximus
-          neque interdum mollis venenatis. Nulla vel ornare turpis. Fusce magna
-          turpis, eleifend eu leo sed, varius vehicula odio.
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec maximus
+            neque interdum mollis venenatis. Nulla vel ornare turpis. Fusce magna
+            turpis, eleifend eu leo sed, varius vehicula odio.
+          </div>
+          <div
+              className={css`
+            position: relative;
+            width: 1086.5px;
+            height: 352px;
+            text-align: left;
+            font-size: 14px;
+          `}
+          >
+            <div
+                className={css`
+              position: absolute;
+              top: 0px;
+              left: 0px;
+              border-radius: 8px;
+              background-color: #fff;
+              width: 292.5px;
+              height: 352px;
+              font-size: 24px;
+            `}
+            >
+              <img
+                  className={css`
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                border-radius: 8px;
+                width: 272.5px;
+                height: 252px;
+                object-fit: cover;
+              `}
+                  alt=""
+                  src="/avatar-image@2x.png"
+              />
+              <div
+                  className={css`
+                position: absolute;
+                top: 269px;
+                left: 84px;
+                width: 125px;
+                height: 22px;
+              `}
+              >
+                <div
+                    className={css`
+                  position: absolute;
+                  top: 0px;
+                  left: -9px;
+                `}
+                >
+                  Anas Hafiza
+                </div>
+                <div
+                    className={css`
+                  position: absolute;
+                  top: 26px;
+                  left: 0px;
+                  display: none;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: flex-start;
+                  gap: 4px;
+                  font-size: 14px;
+                  color: #64748b;
+                  font-family: Inter;
+                `}
+                >
+                  <img
+                      className={css`
+                    position: relative;
+                    width: 18px;
+                    height: 18px;
+                  `}
+                      alt=""
+                      src="/link.svg"
+                  />
+                  <div
+                      className={css`
+                    position: relative;
+                    letter-spacing: -0.01em;
+                    line-height: 20px;
+                  `}
+                  >
+                    Link
+                  </div>
+                </div>
+              </div>
+              <div
+                  className={css`
+                position: absolute;
+                top: 305px;
+                left: 39px;
+                font-size: 16px;
+                display: inline-block;
+                width: 215px;
+                height: 18px;
+              `}
+              >
+                Software Engineer @Google
+              </div>
+            </div>
+            <div
+                className={css`
+              position: absolute;
+              top: 0px;
+              left: 417.5px;
+              border-radius: 8px;
+              background-color: #fff;
+              width: 272px;
+              height: 352px;
+            `}
+            >
+              <img
+                  className={css`
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                border-radius: 8px;
+                width: 252px;
+                height: 252px;
+                object-fit: cover;
+              `}
+                  alt=""
+                  src="/avatar-image1@2x.png"
+              />
+              <div
+                  className={css`
+                position: absolute;
+                top: 271px;
+                left: 48px;
+                width: 83px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                color: #64748b;
+                font-family: Inter;
+              `}
+              >
+                <div
+                    className={css`
+                  display: none;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: flex-start;
+                  gap: 4px;
+                `}
+                >
+                  <img
+                      className={css`
+                    position: relative;
+                    width: 18px;
+                    height: 18px;
+                  `}
+                      alt=""
+                      src="/link.svg"
+                  />
+                  <div
+                      className={css`
+                    position: relative;
+                    letter-spacing: -0.01em;
+                    line-height: 20px;
+                  `}
+                  >
+                    Link
+                  </div>
+                </div>
+              </div>
+              <div
+                  className={css`
+                position: absolute;
+                top: 269px;
+                left: 78px;
+                font-size: 24px;
+              `}
+              >
+                Jolene Orr
+              </div>
+              <div
+                  className={css`
+                position: absolute;
+                top: 305px;
+                left: 27px;
+                font-size: 16px;
+                display: inline-block;
+                width: 219px;
+                height: 30px;
+              `}
+              >
+                Project manager @Facebook
+              </div>
+            </div>
+            <div
+                className={css`
+              position: absolute;
+              top: 0px;
+              left: 814.5px;
+              border-radius: 8px;
+              background-color: #fff;
+              width: 272px;
+              height: 352px;
+            `}
+            >
+              <img
+                  className={css`
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                border-radius: 8px;
+                width: 252px;
+                height: 252px;
+                object-fit: cover;
+              `}
+                  alt=""
+                  src="/avatar-image2@2x.png"
+              />
+              <div
+                  className={css`
+                position: absolute;
+                top: 270px;
+                left: 10px;
+                width: 65px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                color: #64748b;
+                font-family: Inter;
+              `}
+              >
+                <div
+                    className={css`
+                  display: none;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: flex-start;
+                  gap: 4px;
+                `}
+                >
+                  <img
+                      className={css`
+                    position: relative;
+                    width: 18px;
+                    height: 18px;
+                  `}
+                      alt=""
+                      src="/link.svg"
+                  />
+                  <div
+                      className={css`
+                    position: relative;
+                    letter-spacing: -0.01em;
+                    line-height: 20px;
+                  `}
+                  >
+                    Link
+                  </div>
+                </div>
+              </div>
+              <div
+                  className={css`
+                position: absolute;
+                top: 269px;
+                left: 106px;
+                font-size: 24px;
+              `}
+              >
+                Henry
+              </div>
+              <div
+                  className={css`
+                position: absolute;
+                top: 305px;
+                left: 44px;
+                font-size: 16px;
+                display: inline-block;
+                width: 190px;
+                height: 28px;
+              `}
+              >
+                Acquisitions @BlackRock
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div
-        className={css`
+        <div
+            className={css`
           position: absolute;
-          top: 1179px;
-          left: 90px;
+          top: calc(50% - 703px);
+          left: calc(50% - 630px);
           width: 1253px;
           height: 859px;
           overflow: hidden;
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
-          justify-content: flex-start;
-          color: var(--font);
+          align-items: center;
+          justify-content: space-between;
+          color: #1c1c1c;
         `}
-      >
-        <div
-          className={css`
+        >
+          <div
+              className={css`
             position: relative;
             width: 1253px;
             height: 381px;
           `}
-        >
-          <div
-            className={css`
+          >
+            <div
+                className={css`
               position: absolute;
               top: 40px;
               left: 625px;
@@ -615,9 +635,9 @@ const Landing = () => {
               align-items: flex-start;
               justify-content: flex-start;
             `}
-          >
-            <div
-              className={css`
+            >
+              <div
+                  className={css`
                 position: relative;
                 display: flex;
                 align-items: center;
@@ -625,26 +645,26 @@ const Landing = () => {
                 height: 208px;
                 flex-shrink: 0;
               `}
-            >
-              Meet and connect with industry professionals
-            </div>
-            <div
-              className={css`
+              >
+                Meet and connect with industry professionals
+              </div>
+              <div
+                  className={css`
                 position: relative;
-                font-size: var(--h4-regular-size);
-                color: var(--color-black);
+                font-size: 24px;
+                color: #000;
                 display: flex;
                 align-items: center;
                 width: 545.5px;
                 margin-top: -32px;
               `}
-            >
-              Have a one-on-one meetings with leading professionals from wide
-              range of industries.
+              >
+                Have a one-on-one meetings with leading professionals from wide
+                range of industries.
+              </div>
             </div>
-          </div>
-          <img
-            className={css`
+            <img
+                className={css`
               position: absolute;
               top: 0px;
               left: 0px;
@@ -652,20 +672,19 @@ const Landing = () => {
               height: 381px;
               overflow: hidden;
             `}
-            alt=""
-            src="/connect.svg"
-          />
-        </div>
-        <div
-          className={css`
+                alt=""
+                src="/connect.svg"
+            />
+          </div>
+          <div
+              className={css`
             position: relative;
             width: 1223px;
             height: 518px;
-            margin-top: -40px;
           `}
-        >
-          <div
-            className={css`
+          >
+            <div
+                className={css`
               position: absolute;
               top: 178px;
               left: 0px;
@@ -675,9 +694,9 @@ const Landing = () => {
               align-items: flex-start;
               justify-content: flex-start;
             `}
-          >
-            <div
-              className={css`
+            >
+              <div
+                  className={css`
                 position: relative;
                 display: flex;
                 align-items: center;
@@ -685,26 +704,26 @@ const Landing = () => {
                 height: 208px;
                 flex-shrink: 0;
               `}
-            >
-              Join discussion groups
-            </div>
-            <div
-              className={css`
+              >
+                Join discussion groups
+              </div>
+              <div
+                  className={css`
                 position: relative;
-                font-size: var(--h4-regular-size);
-                color: var(--color-black);
+                font-size: 24px;
+                color: #000;
                 display: flex;
                 align-items: center;
                 width: 522px;
                 margin-top: -72px;
               `}
-            >
-              Share and participate within your community to learn about the
-              latest trends in your industry.
+              >
+                Share and participate within your community to learn about the
+                latest trends in your industry.
+              </div>
             </div>
-          </div>
-          <img
-            className={css`
+            <img
+                className={css`
               position: absolute;
               top: 0px;
               left: 639px;
@@ -712,159 +731,112 @@ const Landing = () => {
               height: 518px;
               overflow: hidden;
             `}
-            alt=""
-            src="/groups.svg"
-          />
+                alt=""
+                src="/groups.svg"
+            />
+          </div>
         </div>
-      </div>
-      <div
-        className={css`
-          position: absolute;
-          top: 2092px;
-          left: 115px;
-          width: 1233px;
-          height: 528.1px;
-          overflow: hidden;
-          color: var(--font);
-        `}
-      >
         <div
-          className={css`
-            position: absolute;
-            top: 45px;
-            left: 605px;
+            className={css`
+          position: absolute;
+          top: calc(50% + 220px);
+          left: calc(50% - 650px);
+          width: 1233px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          color: #1c1c1c;
+        `}
+        >
+          <img
+              className={css`
+            position: relative;
+            width: 507px;
+            height: 528.1px;
+            z-index: 0;
+          `}
+              alt=""
+              src="/success-social-media---achievement-woman-trophy-award-reward-win-competition.svg"
+          />
+          <div
+              className={css`
+            position: relative;
             display: flex;
             align-items: center;
             width: 628px;
             height: 437px;
+            flex-shrink: 0;
+            z-index: 1;
           `}
-        >
-          Attend mentor session and participate in discussions to gain
-          achievements
-        </div>
-        <div
-          className={css`
+          >
+            Attend mentor session and participate in discussions to gain
+            achievements
+          </div>
+          <div
+              className={css`
             position: absolute;
+            margin: 0 !important;
             top: 360.3px;
             left: 605.4px;
-            font-size: var(--h4-regular-size);
-            color: var(--color-black);
+            font-size: 24px;
+            color: #000;
             display: flex;
             align-items: center;
             width: 613.9px;
             height: 107.7px;
+            flex-shrink: 0;
+            z-index: 2;
           `}
-        >
-          Participating in discussions and attending sessions will gain you
-          certificates and badges on your profile.
-        </div>
-        <img
-          className={css`
-            position: absolute;
-            height: 100%;
-            width: 41.12%;
-            top: 0%;
-            right: 58.88%;
-            bottom: 0%;
-            left: 0%;
-            max-width: 100%;
-            overflow: hidden;
-            max-height: 100%;
-          `}
-          alt=""
-          src="/success-social-media---achievement-woman-trophy-award-reward-win-competition.svg"
-        />
-      </div>
-      <div
-        className={css`
-          position: absolute;
-          top: 3382px;
-          left: 0px;
-          background-color: var(--brand-500);
-          width: 1440px;
-          height: 362px;
-          overflow: hidden;
-          font-size: var(--body-small-size);
-          color: var(--background);
-        `}
-      >
-        <div
-          className={css`
-            position: absolute;
-            top: 255px;
-            left: 502px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-          `}
-        >
-          <div
-            className={css`
-              display: flex;
-              flex-direction: row;
-              align-items: flex-start;
-              justify-content: flex-start;
-              gap: 32px;
-            `}
           >
-            <div
-              className={css`
-                position: relative;
-              `}
-            >
-              Privacy Policy
-            </div>
-            <div
-              className={css`
-                position: relative;
-              `}
-            >
-              Terms and conditions
-            </div>
-            <div
-              className={css`
-                position: relative;
-              `}
-            >
-              sitemap
-            </div>
-            <div
-              className={css`
-                position: relative;
-              `}
-            >
-              Legal
-            </div>
+            Participating in discussions and attending sessions will gain you
+            certificates and badges on your profile.
           </div>
         </div>
         <div
-          className={css`
-            position: absolute;
-            top: 66px;
-            left: 378px;
+            className={css`
+          position: absolute;
+          width: 100%;
+          top: calc(50% + 1520px);
+          right: 0%;
+          left: 0%;
+          background-color: #016eea;
+          height: 352px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 66px 378px;
+          box-sizing: border-box;
+          font-size: 96px;
+          color: #f5faff;
+        `}
+        >
+          <div
+              className={css`
             width: 684.3px;
             height: 189px;
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             gap: 13px;
-            font-size: 96px;
           `}
-        >
-          <img
-            className={css`
+          >
+            <img
+                className={css`
               position: relative;
               width: 186.3px;
               height: 120px;
               object-fit: cover;
             `}
-            alt=""
-            src="/graduate-hat1@2x.png"
-          />
-          <b
-            className={css`
+                alt=""
+                src="/graduate-hat1@2x.png"
+            />
+            <b
+                className={css`
               position: relative;
               display: flex;
               align-items: center;
@@ -872,12 +844,60 @@ const Landing = () => {
               height: 189px;
               flex-shrink: 0;
             `}
+            >
+              MentorMe
+            </b>
+          </div>
+          <div
+              className={css`
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+          `}
           >
-            MentorMe
-          </b>
+            <div
+                className={css`
+              display: flex;
+              flex-direction: row;
+              align-items: flex-start;
+              justify-content: flex-start;
+              gap: 32px;
+            `}
+            >
+              <div
+                  className={css`
+                position: relative;
+              `}
+              >
+                Privacy Policy
+              </div>
+              <div
+                  className={css`
+                position: relative;
+              `}
+              >
+                Terms and conditions
+              </div>
+              <div
+                  className={css`
+                position: relative;
+              `}
+              >
+                sitemap
+              </div>
+              <div
+                  className={css`
+                position: relative;
+              `}
+              >
+                Legal
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 
