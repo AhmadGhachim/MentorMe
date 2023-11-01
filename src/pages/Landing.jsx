@@ -366,7 +366,7 @@ const Landing = () => {
                   left: -9px;
                 `}
                 >
-                  Huzaifa Anas
+                  Anas Hafiza
                 </div>
                 <div
                     className={css`
