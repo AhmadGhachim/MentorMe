@@ -13,18 +13,24 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useAuth } from '../AuthContext';
 import {useNavigate } from 'react-router-dom'
-import SignInImage from '../assets/sign-in-side.jpg'
-
+import SignUpImage from '../assets/sign-up-side.jpg'
+import {useState} from 'react'
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
-export default function SignInSide() {
+export default function Signup() {
 
   const navigate = useNavigate()
   const { login } = useAuth()
+
+  const [selected, setSelected] = useState(null);
+
+  const handleBoxClick = (boxName) => {
+    setSelected(boxName === selected ? null : boxName);
+  };
   
   async function handleSubmit(event) {
     event.preventDefault();
@@ -48,9 +54,9 @@ export default function SignInSide() {
           item
           xs={false}
           sm={4}  //control no. of columns on a small sized screen
-          md={6}  //control the number of columns on a medium sized screen
+          md={2}  //control the number of columns on a medium sized screen
           sx={{
-            backgroundImage: `url(${SignInImage})`,
+            backgroundImage: `url(${SignUpImage})`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -58,7 +64,7 @@ export default function SignInSide() {
             backgroundPosition: 'center',
           }}
         />
-        <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
+        <Grid item xs={12} sm={8} md={10} component={Paper} elevation={6} square>
           <Box
             sx={{
               my: 25,
@@ -68,57 +74,44 @@ export default function SignInSide() {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5" style={{ fontFamily: 'system-ui' }}>
-              Sign in
+            <Typography component="h5" variant="h2" style={{ fontFamily: 'system-ui', color:'#016EEA',  fontWeight: 'bold' }}>
+              Create Account
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
+              <div>
+                <Box
+                  display="inline-block"
+                  width="45%"
+                  padding={2}
+                  border={selected === 'Mentee' ? '2px solid #2196F3' : '2px solid #000'}
+                  borderRadius={4}
+                  textAlign="center"
+                  onClick={() => handleBoxClick('Mentee')}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <Typography variant="h6">Mentee</Typography>
+                </Box>
+                <Box
+                  display="inline-block"
+                  width="45%"
+                  padding={2}
+                  border={selected === 'Mentor' ? '2px solid #2196F3' : '2px solid #000'}
+                  borderRadius={4}
+                  textAlign="center"
+                  onClick={() => handleBoxClick('Mentor')}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <Typography variant="h6">Mentor</Typography>
+                </Box>
+              </div>
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Continue
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
             </Box>
           </Box>
         </Grid>
