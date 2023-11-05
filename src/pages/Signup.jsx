@@ -43,7 +43,6 @@ export default function Signup() {
 
     await login(data.get('email'), data.get('password')).then(navigate("/Home"))
 
-  
   }
 
   return (
@@ -81,21 +80,21 @@ export default function Signup() {
               <div>
                 <Box
                   display="inline-block"
-                  width="45%"
-                  padding={2}
-                  border={selected === 'Mentee' ? '2px solid #2196F3' : '2px solid #000'}
+                  width="50%"
+                  padding={4}
+                  border={selected === 'Mentee' ? '3px solid #2196F3' : '3px solid #000'}
                   borderRadius={4}
                   textAlign="center"
                   onClick={() => handleBoxClick('Mentee')}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: 'pointer'}}
                 >
                   <Typography variant="h6">Mentee</Typography>
                 </Box>
                 <Box
                   display="inline-block"
-                  width="45%"
-                  padding={2}
-                  border={selected === 'Mentor' ? '2px solid #2196F3' : '2px solid #000'}
+                  width="50%"
+                  padding={4}
+                  border={selected === 'Mentor' ? '3px solid #2196F3' : '3px solid #000'}
                   borderRadius={4}
                   textAlign="center"
                   onClick={() => handleBoxClick('Mentor')}
