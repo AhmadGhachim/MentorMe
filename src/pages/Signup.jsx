@@ -76,38 +76,43 @@ export default function Signup() {
             <Typography component="h5" variant="h2" style={{ fontFamily: 'system-ui', color:'#016EEA',  fontWeight: 'bold' }}>
               Create Account
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Typography component="h2" variant="h4" sx={{ mt: 4 }} style={{ fontFamily: 'system-ui' }}>
+              Creating an account as a mentor or mentee?
+            </Typography>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 8 }}>
               <div>
                 <Box
                   display="inline-block"
-                  width="50%"
-                  padding={4}
+                  width="calc(50% - 12px)" // Adjust the width and margin as needed
+                  margin="0 6px" // Add space between the two boxes by setting margin
+                  padding={6}
                   border={selected === 'Mentee' ? '3px solid #2196F3' : '3px solid #000'}
                   borderRadius={4}
                   textAlign="center"
                   onClick={() => handleBoxClick('Mentee')}
-                  style={{ cursor: 'pointer'}}
+                  style={{ cursor: 'pointer', backgroundColor:'#E6F1FF' }}
                 >
                   <Typography variant="h6">Mentee</Typography>
                 </Box>
                 <Box
                   display="inline-block"
-                  width="50%"
-                  padding={4}
+                  width="calc(50% - 12px)" // Adjust the width and margin as needed
+                  margin="0 6px" // Add space between the two boxes by setting margin
+                  padding={6}
                   border={selected === 'Mentor' ? '3px solid #2196F3' : '3px solid #000'}
                   borderRadius={4}
                   textAlign="center"
                   onClick={() => handleBoxClick('Mentor')}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: 'pointer', backgroundColor:'#E6F1FF' }}
                 >
                   <Typography variant="h6">Mentor</Typography>
                 </Box>
-              </div>
+            </div>
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 30, mb: 2 }}
               >
                 Continue
               </Button>
