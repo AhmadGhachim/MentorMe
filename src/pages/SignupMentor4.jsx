@@ -1,14 +1,9 @@
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useAuth } from '../AuthContext';
@@ -21,24 +16,18 @@ import {useState} from 'react'
 
 const defaultTheme = createTheme();
 
-export default function Signup() {
+export default function SignupMentor4() {
 
   const navigate = useNavigate()
+  const [experience, setExperience] = useState();
 
-  const [selected, setSelected] = useState(null);
+  const handleExperience = (event) => {
+    setExperience(event.target.value);
+  }
 
-  const handleBoxClick = (boxName) => {
-    setSelected(boxName === selected ? null : boxName);
-  };
-  
    function handleSubmit() {
-    if(selected === 'Mentee'){
-      navigate("/SignupMentee1")
-    }
-    
-    if(selected === 'Mentor'){
-      navigate("/SignupMentor")
-    }
+    console.log(experience)
+    navigate("/Home")
   }
 
   return (
@@ -73,37 +62,15 @@ export default function Signup() {
               Create Account
             </Typography>
             <Typography component="h2" variant="h4" sx={{ mt: 4 }} style={{ fontFamily: 'system-ui' }}>
-              Creating an account as a mentor or mentee?
+              How many years of experience do you in mentoring?
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 8 }}>
-              <div>
-                <Box
-                  display="inline-block"
-                  width="calc(50% - 12px)" // Adjust the width and margin as needed
-                  margin="0 6px" // Add space between the two boxes by setting margin
-                  padding={6}
-                  border={selected === 'Mentee' ? '3px solid #2196F3' : '3px solid #000'}
-                  borderRadius={4}
-                  textAlign="center"
-                  onClick={() => handleBoxClick('Mentee')}
-                  style={{ cursor: 'pointer', backgroundColor:'#E6F1FF' }}
-                >
-                  <Typography variant="h6">Mentee</Typography>
-                </Box>
-                <Box
-                  display="inline-block"
-                  width="calc(50% - 12px)" // Adjust the width and margin as needed
-                  margin="0 6px" // Add space between the two boxes by setting margin
-                  padding={6}
-                  border={selected === 'Mentor' ? '3px solid #2196F3' : '3px solid #000'}
-                  borderRadius={4}
-                  textAlign="center"
-                  onClick={() => handleBoxClick('Mentor')}
-                  style={{ cursor: 'pointer', backgroundColor:'#E6F1FF' }}
-                >
-                  <Typography variant="h6">Mentor</Typography>
-                </Box>
-            </div>
+             <TextField
+                label="Years of Experience Mentoring"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                onChange={handleExperience}/>
               <Button
                 type="submit"
                 fullWidth
