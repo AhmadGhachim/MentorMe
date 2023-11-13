@@ -110,7 +110,10 @@ const Landing = () => {
                 mix-blend-mode: normal;
               `}
               >
-                Create Account
+                <a href="/Signup" className={css`
+                text-decoration: none;
+                color:#FFFFFF
+              `}>Create Account</a>
               </div>
             </div>
             <div
