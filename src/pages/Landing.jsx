@@ -239,7 +239,10 @@ const Landing = () => {
                 position: relative;
               `}
               >
-                Login
+               <a href="/Signin" className={css`
+                text-decoration: none;
+                color:#016eea
+              `}>Login</a>
               </div>
             </div>
             <div
@@ -264,7 +267,10 @@ const Landing = () => {
                 mix-blend-mode: normal;
               `}
               >
-                Create Account
+                <a href="/Signup" className={css`
+                text-decoration: none;
+                color:#FFFFFF
+              `}>Create Account</a>
               </div>
             </div>
           </div>
