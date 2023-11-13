@@ -9,6 +9,7 @@ import Landing from './pages/Landing'
 import Signup from './pages/Signup';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./AuthContext"
+import ProfilePage from './pages/ProfilePage'
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
         <Route path="/SignupMentee2" element={<SignupMentee2 />}/>
         <Route path="/SignupMentee1" element={<SignupMentee1 />}/>
         <Route path="/SignupMentor" element={<SignupMentor />}/>
+        <Route path="/profile" element={<ProfilePage />}/>
       </Routes>
       </AuthProvider>
     </BrowserRouter>
