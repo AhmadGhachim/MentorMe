@@ -33,9 +33,9 @@ export default function SignupMentor3() {
     const handleIndustry = (event) => {
         setIndustry(event.target.value)
     }
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         console.log([employer, position, experience, industry])
-
+        navigate("/SignupMentor4")
       };
 
     return (

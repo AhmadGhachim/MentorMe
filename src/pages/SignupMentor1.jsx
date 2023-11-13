@@ -41,6 +41,8 @@ export default function SignupMentor() {
     
         try {
           await signup(email, password);
+          
+          navigate("/SignupMentor2")
           console.log('User registered successfully!');
         } catch (error) {
           console.error('Error during registration:', error.message);

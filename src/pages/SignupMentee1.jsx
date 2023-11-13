@@ -10,16 +10,55 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import SignUpImage from '../assets/sign-up-side.jpg'
-
+import { useAuth } from '../AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
 export default function SignupForm() {
+
+    
+    const navigate = useNavigate()
+    const { signup } = useAuth()
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleFirstName = (event) => {
+        setFirstName(event.target.value)
+    }
+
+    const handleLastName = (event) => {
+        setLastName(event.target.value)
+    }
+    const handleEmail = (event) => {
+        setEmail(event.target.value)
+    }
+    const handlePassword = (event) => {
+        setPassword(event.target.value)
+    }
+
     const [currentStatus, setCurrentStatus] = useState([]);
 
     const handleStatusChange = (event, newStatus) => {
         setCurrentStatus(newStatus);
     };
+
+    const handleSignUp = async (e) => {
+        e.preventDefault();
+    
+        try {
+          await signup(email, password);
+          console.log('User registered successfully!');
+          navigate("/SignuppMentee2")
+        } catch (error) {
+          console.error('Error during registration:', error.message);
+        }
+
+
+      };
+
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -57,6 +96,7 @@ export default function SignupForm() {
                                 label="First Name"
                                 variant="outlined"
                                 fullWidth
+                                onChange={handleFirstName}
                                 margin="normal"
                                 required
                             />
@@ -64,6 +104,7 @@ export default function SignupForm() {
                                 label="Last Name"
                                 variant="outlined"
                                 fullWidth
+                                onChange={handleLastName}
                                 margin="normal"
                                 required
                             />
@@ -71,6 +112,7 @@ export default function SignupForm() {
                                 label="Email"
                                 variant="outlined"
                                 fullWidth
+                                onChange={handleEmail}
                                 margin="normal"
                                 required
                             />
@@ -79,6 +121,7 @@ export default function SignupForm() {
                                 type="password"
                                 variant="outlined"
                                 fullWidth
+                                onChange={handlePassword}
                                 margin="normal"
                                 required
                             />
@@ -88,6 +131,7 @@ export default function SignupForm() {
                             <ToggleButtonGroup
                                 value={currentStatus}
                                 onChange={handleStatusChange}
+                                fullWidth
                                 exclusive
                             >
                                 <ToggleButton value="High School">

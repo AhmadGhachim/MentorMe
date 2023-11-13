@@ -14,13 +14,14 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
-
+import { useNavigate } from 'react-router-dom';
 
 
 const defaultTheme = createTheme();
 
 
 export default function IndustryExperience() {
+    const navigate = useNavigate();
     const [selectedIndustry, setSelectedIndustry] = useState('');
     const [hasWorkExperience, setHasWorkExperience] = useState(false);
     const [companyName, setCompanyName] = useState('');
@@ -33,6 +34,11 @@ export default function IndustryExperience() {
     const handleExperienceChange = (event) => {
         setHasWorkExperience(event.target.checked);
     };
+
+    const handleSubmit = (event) => {
+        navigate("/Home")
+    }
+
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -77,7 +83,16 @@ export default function IndustryExperience() {
                                     }}
                                 >
                                     <MenuItem value="Finance">Finance</MenuItem>
-                                    <MenuItem value="Technology">Technology</MenuItem>
+                                    <MenuItem value="Consulting">Buisness Consulting</MenuItem>
+                                    <MenuItem value="Sales">Sales</MenuItem>
+                                    <MenuItem value="Marketing">Marketing</MenuItem>
+                                    <MenuItem value="Analytics">Data Analytics & Science</MenuItem>
+                                    <MenuItem value="Software">Software Engineering</MenuItem>
+                                    <MenuItem value="Design">Product Design</MenuItem>
+                                    <MenuItem value="Management">Buisness Management</MenuItem>
+                                    <MenuItem value="Operations">Operations</MenuItem>
+                                    <MenuItem value="Logistics">Logistics</MenuItem>
+                                    <MenuItem value="Technology">Systems Admininstration</MenuItem>
                                     <MenuItem value="Healthcare">Healthcare</MenuItem>
                                     {/* Add more industry options here */}
                                 </Select>
@@ -124,15 +139,7 @@ export default function IndustryExperience() {
                                 color="primary"
                                 fullWidth
                                 sx={{ marginTop: 2 }}
-                                onClick={() => {
-                                    // Handle the selected industry and work experience here
-                                    console.log('Selected Industry:', selectedIndustry);
-                                    console.log('Has Work Experience:', hasWorkExperience);
-                                    if (hasWorkExperience) {
-                                        console.log('Company Name:', companyName);
-                                        console.log('Role Worked:', roleWorked);
-                                    }
-                                }}
+                                onClick={handleSubmit}
                             >
                                 Create Account
                             </Button>

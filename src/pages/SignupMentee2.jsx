@@ -10,12 +10,13 @@ import SignUpImage from '../assets/sign-up-side.jpg'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-
+import { useNavigate } from 'react-router-dom';
 
 
 const defaultTheme = createTheme();
 
 export default function SignupForm() {
+    const navigate = useNavigate();
     const [educationLevel, setEducationLevel] = useState('');
 
 
@@ -23,6 +24,10 @@ export default function SignupForm() {
     const handleEducationLevelChange = (event) => {
         setEducationLevel(event.target.value);
     };
+
+    const handleSubmit = (event) => {
+        navigate("/SignupMentee3")
+    } 
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -55,7 +60,7 @@ export default function SignupForm() {
                         <Typography component="h5" variant="h2" style={{ fontFamily: 'system-ui', color: '#016EEA', fontWeight: 'bold' }}>
                             Create Account
                         </Typography>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <Typography variant="h6" gutterBottom>
                                 What is your current level of study or your highest completed level of study?
                             </Typography>

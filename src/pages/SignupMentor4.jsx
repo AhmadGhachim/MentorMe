@@ -19,7 +19,7 @@ const defaultTheme = createTheme();
 export default function SignupMentor4() {
 
   const navigate = useNavigate()
-  const [experience, setExperience] = useState();
+  const [experience, setExperience] = useState('');
 
   const handleExperience = (event) => {
     setExperience(event.target.value);

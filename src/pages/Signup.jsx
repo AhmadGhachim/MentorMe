@@ -37,7 +37,7 @@ export default function Signup() {
     }
     
     if(selected === 'Mentor'){
-      navigate("/SignupMentor")
+      navigate("/SignupMentor1")
     }
   }
 
