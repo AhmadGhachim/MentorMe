@@ -13,6 +13,8 @@ import Signup from './pages/Signup';
 import FindMentor from "./pages/FindMentor.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./AuthContext"
+import Profile from './pages/ProfilePage'
+
 function App() {
   return (
     <>
@@ -31,8 +33,8 @@ function App() {
         <Route path="/SignupMentor2" element={<SignupMentor2 />}/>
         <Route path="/SignupMentor3" element={<SignupMentor3 />}/>
         <Route path="/SignupMentor4" element={<SignupMentor4 />}/>
-
         <Route path="/FindMentor" element={<FindMentor />}/>
+        <Route path="/profile" element={<Profile />}/>
       </Routes>
       </AuthProvider>
     </BrowserRouter>
