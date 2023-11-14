@@ -27,6 +27,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import SearchBar from './NavBarSearch';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Icon } from '@mui/material';
 
 const appBarTheme = createTheme({
   palette: {
@@ -243,7 +245,9 @@ function DrawerAppBar(props) {
               <MenuItem key={"Account Settings"} onClick={handleCloseUserMenu} component={Link}  to="/profile">
                 <Typography textAlign="center">{"Account Settings"}</Typography>
               </MenuItem>
+              <Divider sx={{ margin: 'auto', my: 2, width: '85%'}}/>
               <MenuItem key={"Sign Out"} onClick={handleCloseUserMenu} component={Link}  to="/">
+                <LogoutIcon sx={{ color: '#f50057', mr: '3px', pr: '2px'}} />
                 <Typography sx={{ color: '#f50057' }} textAlign="center">{"Sign Out"}</Typography>
               </MenuItem>
               {/* {settings.map((setting) => (
