@@ -12,7 +12,6 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import SignUpImage from '../assets/sign-up-side.jpg'
 import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
-
 const defaultTheme = createTheme();
 
 export default function SignupForm() {
@@ -47,17 +46,12 @@ export default function SignupForm() {
 
     const handleSignUp = async (e) => {
         e.preventDefault();
-    
-        try {
-          await signup(email, password);
-          console.log('User registered successfully!');
-          navigate("/SignuppMentee2")
-        } catch (error) {
-          console.error('Error during registration:', error.message);
-        }
-
-
+        await signup(email, password, firstName+' '+lastName, currentStatus);
+        // Navigate to the next page
+        navigate('/SignupMentee2')
       };
+      
+      
 
 
     return (
@@ -91,7 +85,7 @@ export default function SignupForm() {
                         <Typography component="h5" variant="h2" style={{ fontFamily: 'system-ui', color: '#016EEA', fontWeight: 'bold' }}>
                             Create Account
                         </Typography>
-                        <form>
+                        <form onSubmit={handleSignUp}>
                             <TextField
                                 label="First Name"
                                 variant="outlined"

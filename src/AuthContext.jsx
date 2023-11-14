@@ -6,7 +6,8 @@ import { signInWithEmailAndPassword,
   sendPasswordResetEmail,
   updateEmail,
   updatePassword,
-  onAuthStateChanged
+  onAuthStateChanged,
+  updateProfile
  } 
  from "firebase/auth"
 
@@ -22,9 +23,12 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
-
-  function signup(email, password) {
-    return createUserWithEmailAndPassword(auth,email, password)
+  const [userName, setUserName] = useState('')
+  const [status, setStatus] = useState('')
+  function signup(email, password, name, userStatus) {
+    setUserName(name)
+    setStatus(userStatus)
+    return createUserWithEmailAndPassword(auth,email, password);
   }
 
   function login(email, password) {
@@ -32,6 +36,7 @@ export function AuthProvider({ children }) {
   }
 
   function logout() {
+    setUserName('')
     return signOut(auth)
   }
 
