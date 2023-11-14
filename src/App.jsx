@@ -7,6 +7,7 @@ import SignupMentor from './pages/SignUpMentor'
 import Home from './pages/Home'
 import Landing from './pages/Landing'
 import Signup from './pages/Signup';
+import FindMentor from "./pages/FindMentor.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./AuthContext"
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/SignupMentee2" element={<SignupMentee2 />}/>
         <Route path="/SignupMentee1" element={<SignupMentee1 />}/>
         <Route path="/SignupMentor" element={<SignupMentor />}/>
+        <Route path="/FindMentor" element={<FindMentor />}/>
       </Routes>
       </AuthProvider>
     </BrowserRouter>
