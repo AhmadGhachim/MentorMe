@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -12,13 +12,13 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import SignUpImage from '../assets/sign-up-side.jpg'
 import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
+import db from '../../backend/Firebase'
+import { doc, setDoc } from "firebase/firestore"; 
 const defaultTheme = createTheme();
 
-export default function SignupForm() {
-
-    
+export default function SignupMentor() {
     const navigate = useNavigate()
-    const { signup } = useAuth()
+    const { signup, currentUser } = useAuth()
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -37,22 +37,27 @@ export default function SignupForm() {
     const handlePassword = (event) => {
         setPassword(event.target.value)
     }
-
-    const [currentStatus, setCurrentStatus] = useState([]);
-
-    const handleStatusChange = (event, newStatus) => {
-        setCurrentStatus(newStatus);
-    };
-
     const handleSignUp = async (e) => {
         e.preventDefault();
-        await signup(email, password, firstName+' '+lastName, currentStatus);
-        // Navigate to the next page
-        navigate('/SignupMentee2')
+    
+        try {
+          await signup(email, password);
+          const userData = {
+            FirstName: firstName,
+            LastName: lastName,
+            email: email,
+            uid: currentUser.uid,
+          };
+      
+          // Add user data to Firestore
+          await setDoc(doc(db, "users", currentUser.uid), userData);
+      
+          navigate("/SignupMentor2")
+          console.log('User registered successfully!');
+        } catch (error) {
+          console.error('Error during registration:', error.message);
+        }
       };
-      
-      
-
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -90,24 +95,24 @@ export default function SignupForm() {
                                 label="First Name"
                                 variant="outlined"
                                 fullWidth
-                                onChange={handleFirstName}
                                 margin="normal"
+                                onChange={handleFirstName}
                                 required
                             />
                             <TextField
                                 label="Last Name"
                                 variant="outlined"
                                 fullWidth
-                                onChange={handleLastName}
                                 margin="normal"
+                                onChange={handleLastName}
                                 required
                             />
                             <TextField
                                 label="Email"
                                 variant="outlined"
                                 fullWidth
-                                onChange={handleEmail}
                                 margin="normal"
+                                onChange={handleEmail}
                                 required
                             />
                             <TextField
@@ -115,29 +120,10 @@ export default function SignupForm() {
                                 type="password"
                                 variant="outlined"
                                 fullWidth
-                                onChange={handlePassword}
                                 margin="normal"
+                                onChange={handlePassword}
                                 required
-                            />
-                            <Typography variant="h6" gutterBottom>
-                                What describes you best currently?*
-                            </Typography>
-                            <ToggleButtonGroup
-                                value={currentStatus}
-                                onChange={handleStatusChange}
-                                fullWidth
-                                exclusive
-                            >
-                                <ToggleButton value="High School">
-                                    High School
-                                </ToggleButton>
-                                <ToggleButton value="University/College">
-                                    University/College
-                                </ToggleButton>
-                                <ToggleButton value="In Career">
-                                    In Career
-                                </ToggleButton>
-                            </ToggleButtonGroup>
+                            />        
                             <Button
                                 variant="contained"
                                 color="primary"

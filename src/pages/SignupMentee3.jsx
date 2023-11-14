@@ -10,7 +10,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import SignUpImage from "../assets/sign-up-side.jpg";
 import RadioGroup from "@mui/material/RadioGroup";
 import Radio from "@mui/material/Radio";
-
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -19,12 +19,16 @@ const defaultTheme = createTheme();
 
 export default function SignupForm() {
     const [educationLevel, setEducationLevel] = useState('');
-
+    const navigate = useNavigate();
 
 
     const handleEducationLevelChange = (event) => {
         setEducationLevel(event.target.value);
     };
+
+    const handleSubmit = (event) => {
+        navigate("/SignupMentee4");
+    }
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -57,7 +61,7 @@ export default function SignupForm() {
                         <Typography component="h5" variant="h2" style={{ fontFamily: 'system-ui', color: '#016EEA', fontWeight: 'bold' }}>
                             Create Account
                         </Typography>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <Typography variant="h6" gutterBottom>
                                 What is your major?
                             </Typography>

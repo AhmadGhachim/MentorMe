@@ -1,25 +1,42 @@
 import { useState } from 'react';
-import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SignUpImage from '../assets/sign-up-side.jpg'
-
+import { useAuth } from '../AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
-export default function SignupMentor() {
-    const [educationLevel, setEducationLevel] = useState('');
+export default function SignupMentor3() {
+    const navigate = useNavigate()
+    const [employer, setEmployer] = useState('');
+    const [position, setPosition] = useState('');
+    const [experience, setExperience] = useState('');
+    const [industry, setIndustry] = useState('');
 
+    const handleEmployer = (event) => {
+        setEmployer(event.target.value)
+    }
 
-
-    const handleEducationLevelChange = (event) => {
-        setEducationLevel(event.target.value);
-    };
+    const handlePosition = (event) => {
+        setPosition(event.target.value)
+    }
+    const handleExperience = (event) => {
+        setExperience(event.target.value)
+    }
+    const handleIndustry = (event) => {
+        setIndustry(event.target.value)
+    }
+    const handleSubmit = (e) => {
+        console.log([employer, position, experience, industry])
+        navigate("/SignupMentor4")
+      };
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -52,43 +69,42 @@ export default function SignupMentor() {
                         <Typography component="h5" variant="h2" style={{ fontFamily: 'system-ui', color: '#016EEA', fontWeight: 'bold' }}>
                             Create Account
                         </Typography>
-                        <form>
+                        <form onSubmit={handleSubmit}>
+                            <TextField
+                                label="Current Employer"
+                                variant="outlined"
+                                fullWidth
+                                margin="normal"
+                                onChange={handleEmployer}
+                                
+                            />
+                            <TextField
+                                label="Position"
+                                variant="outlined"
+                                fullWidth
+                                margin="normal"
+                                onChange={handlePosition}
+                                
+                            />
+                
+                            <TextField
+                                label="Industry"
+                                variant="outlined"
+                                fullWidth
+                                margin="normal"
+                                onChange={handleIndustry}
+                            />        
 
                             <TextField
-        label="First Name"
-        variant="outlined"
-        fullWidth
-        margin="normal"
-        value={''}
-        onChange={(e) => setFirstName(e.target.value)}
-      />
-      <TextField
-        label="Last Name"
-        variant="outlined"
-        fullWidth
-        margin="normal"
-        value={''}
-        onChange={(e) => setLastName(e.target.value)}
-      />
-      <TextField
-        label="Email"
-        type="email"
-        variant="outlined"
-        fullWidth
-        margin="normal"
-        value={''}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <TextField
-        label="Password"
-        type="password"
-        variant="outlined"
-        fullWidth
-        margin="normal"
-        value={''}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+                                label="Years of Experience in Industry"
+                                variant="outlined"
+                                fullWidth
+                                margin="normal"
+                                onChange={handleExperience}
+                            />
+                            
                             <Button
+                            
                                 variant="contained"
                                 color="primary"
                                 fullWidth
@@ -103,7 +119,7 @@ export default function SignupMentor() {
                                 align="center"
                                 sx={{ marginTop: 1 }}
                             >
-                                <a href="#skip">Skip</a>
+                            <a href="#skip">Skip</a>
                             </Typography>
                         </form>
                     </Box>

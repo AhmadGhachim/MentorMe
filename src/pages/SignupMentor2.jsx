@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
@@ -10,36 +10,21 @@ import SignUpImage from '../assets/sign-up-side.jpg'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { db } from "../../backend/Firebase"
-import { doc, setDoc } from "firebase/firestore"; 
-import { useAuth } from '../AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 const defaultTheme = createTheme();
 
-export default function SignupForm() {
-    const {currentUser, userName, Status} = useAuth()
-    const navigate = useNavigate();
+export default function SignupMentor2() {
     const [educationLevel, setEducationLevel] = useState('');
-
-
+    const navigate = useNavigate();
 
     const handleEducationLevelChange = (event) => {
         setEducationLevel(event.target.value);
     };
-
-    const handleSubmit = async () => {
-        const userData = {
-            Name: userName,
-            Email: currentUser.email,
-            CareerStatus: Status,
-            EducationLevel: educationLevel
-          };
-        await setDoc(doc(db, "users", currentUser.uid), userData);
-        navigate("/SignupMentee3")
-    } 
-
+    const handleSubmit = (event) => {
+        navigate("/SignupMentor3")
+    }
     return (
         <ThemeProvider theme={defaultTheme}>
             <Grid container component="main" sx={{ height: '100vh' }}>
