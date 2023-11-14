@@ -1,5 +1,5 @@
 import NavigationBar from "../components/NavigationBar"
-import NavBar from "../components/NavBar"
+import NavBar from "../components/NavBarProfileMentor"
 import NavBarLanding from "../components/NavBarLanding"
 import { Box, Button, Divider, IconButton, Tooltip, Typography } from "@mui/material";
 import CssBaseline from '@mui/material/CssBaseline';
@@ -22,10 +22,14 @@ const mainTheme = createTheme({
         },
       },
       typography: {
-        bold_font: {
+        name_font: {
           fontSize: '1.25rem',
           fontWeight: 700,
         },
+        bold_font: {
+            //fontSize: '1.1rem',
+            fontWeight: 700,
+          },
       },
   });
 
@@ -59,10 +63,10 @@ function ProfilePage() {
         <ThemeProvider theme={mainTheme}>
         <Box sx={{display: 'flex', mt: '100px', px: isMobile ? '10px': '175px'}}>
             <CssBaseline />
-            <Box sx={{width: isMobile ? '0': '30%', pr:'10px', '& > *:not(:last-child)': { marginBottom: 2 } }}>
+            <Box sx={{width: isMobile ? '0': '30%', pr:'20px', '& > *:not(:last-child)': { marginBottom: 2 } }}>
             {/* , '& > *:not(:last-child)': { marginBottom: 3 } */}
                 <Avatar sx={{width: '120px', height: '120px'}}/>
-                <Typography style={{ display: 'flex', alignItems: 'center'}}  variant= "bold_font">
+                <Typography style={{ display: 'flex', alignItems: 'center'}}  variant= "name_font">
                     Sina Khademolhosseini
                     <Tooltip title="Mentor">
                         <SchoolIcon sx={{color: '#016eea', mx: '5px'}} />
@@ -109,19 +113,39 @@ function ProfilePage() {
                 {/* <Button>Twitter Icon</Button> */}
                 {/* <Button>GitHub Icon</Button> */}
                 <Divider />
+                <Typography>
+                    {"English"}
+                    <br />
+                    {"Farsi (Persian)"}
+                </Typography>
+                <Divider />
                 <Button key={"Edit"} variant="contained" sx={{ backgroundColor: '#016eea', color: '#fff', textTransform: 'none' }}>
                     <Typography textAlign="center">{"Edit Profile"}</Typography>
                 </Button>
             </Box>
-            <Box sx={{flexGrow: 1, '& > *:not(:last-child)': { marginBottom: 2 }}}>
+            <Box sx={{pl: '20px', flexGrow: 1, '& > *:not(:last-child)': { marginBottom: 2 }}}>
                 {/* TODO: create a component with grid with cards for each necessary profile page component:  */}
                 {/* - My Events (sort by upcoming events) - private */}
                 {/* - My Posts (sort by latest) - public */}
                 {/* - My Groups (sort by name/most members) - public */}
                 <Typography variant="bold_font">{"My Profile"}</Typography><Typography></Typography>
                 <Typography>{"TODO: NEW USER TUTORIAL (REPLACE WITH BADGE AFTER TUTORIAL IS DONE)"}</Typography>
-                <Typography>{"TODO: UNIVERSAL FOOTER COMPONENT"}</Typography>
+                <Typography>{"TODO: Mentor only: show number of sessions theyve given + num mentees alongside badge after tutorial"}</Typography>
+
                 <Divider  sx={{ width: '100%'}}/>
+                <Typography variant="bold_font">{"Events"}</Typography><Typography></Typography>
+                <Typography>{"(card component)"}</Typography>
+                <Divider  sx={{ width: '100%'}}/>
+                <Typography variant="bold_font">{"My Posts"}</Typography><Typography></Typography>
+                <Typography>{"(card component?)"}</Typography>
+                <Divider  sx={{ width: '100%'}}/>
+                <Typography variant="bold_font">{"My Groups"}</Typography><Typography></Typography>
+                <Typography>{"(card component?)"}</Typography>
+                <Divider  sx={{ width: '100%'}}/>
+
+                <Typography>{"TODO: Public + private page"}</Typography>
+                <Typography>{"TODO: mentor and mentee page differences"}</Typography>
+                <Typography>{"TODO: UNIVERSAL FOOTER COMPONENT"}</Typography>
             </Box>
         </Box>
         </ThemeProvider>
