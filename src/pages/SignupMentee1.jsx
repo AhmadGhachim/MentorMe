@@ -12,6 +12,8 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import SignUpImage from '../assets/sign-up-side.jpg'
 import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { auth, db } from "../../backend/Firebase"
+import { doc, setDoc } from "firebase/firestore"; 
 const defaultTheme = createTheme();
 
 export default function SignupForm() {
@@ -46,9 +48,26 @@ export default function SignupForm() {
 
     const handleSignUp = async (e) => {
         e.preventDefault();
-        await signup(email, password, firstName+' '+lastName, currentStatus);
-        // Navigate to the next page
-        navigate('/SignupMentee2')
+
+        
+        await signup(email, password)
+        
+        .then((userCredential) => {
+            const userData = {
+                firstName,
+                lastName,
+                email,
+                currentStatus,
+                user_type: "Mentee",
+                uid: userCredential.user.uid,
+              };
+          
+              // Add user data to Firestore
+            setDoc(doc(db, "users", userCredential.user.uid), userData);
+        }).
+        
+        then(navigate('/SignupMentee2'));
+        
       };
       
       

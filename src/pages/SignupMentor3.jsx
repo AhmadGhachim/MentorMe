@@ -10,10 +10,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SignUpImage from '../assets/sign-up-side.jpg'
 import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
+import {auth, db} from '../../backend/Firebase'
+import { doc, updateDoc } from "firebase/firestore"; 
 
 const defaultTheme = createTheme();
 
 export default function SignupMentor3() {
+    const {currentUser} = useAuth();
     const navigate = useNavigate()
     const [employer, setEmployer] = useState('');
     const [position, setPosition] = useState('');
@@ -28,12 +31,23 @@ export default function SignupMentor3() {
         setPosition(event.target.value)
     }
     const handleExperience = (event) => {
-        setExperience(event.target.value)
-    }
+        // Use parseInt to convert the string to a number
+        setExperience(parseInt(event.target.value, 10));
+      }
     const handleIndustry = (event) => {
         setIndustry(event.target.value)
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const userData = {
+            employer,
+            position,
+            experience,
+            industry
+        }
+
+        // Add user data to Firestore
+        await updateDoc(doc(db, "users", currentUser.uid), userData);
         console.log([employer, position, experience, industry])
         navigate("/SignupMentor4")
       };

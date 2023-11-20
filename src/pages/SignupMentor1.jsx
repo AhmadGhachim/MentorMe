@@ -39,24 +39,25 @@ export default function SignupMentor() {
     }
     const handleSignUp = async (e) => {
         e.preventDefault();
-    
-        try {
-          await signup(email, password);
-          const userData = {
-            FirstName: firstName,
-            LastName: lastName,
-            email: email,
-            uid: currentUser.uid,
-          };
-      
-          // Add user data to Firestore
-          await setDoc(doc(db, "users", currentUser.uid), userData);
-      
-          navigate("/SignupMentor2")
-          console.log('User registered successfully!');
-        } catch (error) {
-          console.error('Error during registration:', error.message);
-        }
+
+        
+        await signup(email, password)
+        
+        .then((userCredential) => {
+            const userData = {
+                firstName,
+                lastName,
+                email,
+                user_type: "Mentor",
+                uid: userCredential.user.uid,
+              };
+          
+              // Add user data to Firestore
+            setDoc(doc(db, "users", userCredential.user.uid), userData);
+        }).
+        
+        then(navigate('/SignupMentee2'));
+        
       };
 
     return (

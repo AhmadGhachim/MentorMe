@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
@@ -11,6 +11,9 @@ import SignUpImage from "../assets/sign-up-side.jpg";
 import RadioGroup from "@mui/material/RadioGroup";
 import Radio from "@mui/material/Radio";
 import { useNavigate } from 'react-router-dom';
+import { auth, db } from "../../backend/Firebase"
+import { doc, updateDoc } from "firebase/firestore"; 
+import { useAuth } from '../AuthContext';
 
 
 
@@ -18,6 +21,7 @@ import { useNavigate } from 'react-router-dom';
 const defaultTheme = createTheme();
 
 export default function SignupForm() {
+    const {currentUser} = useAuth();
     const [educationLevel, setEducationLevel] = useState('');
     const navigate = useNavigate();
 
@@ -26,7 +30,13 @@ export default function SignupForm() {
         setEducationLevel(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const userData = {
+            Major: educationLevel
+          };
+
+        await updateDoc(doc(db, "users", currentUser.uid), userData);
         navigate("/SignupMentee4");
     }
 

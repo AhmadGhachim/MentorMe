@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useAuth } from "../AuthContext"
 import { auth, db } from "../../backend/Firebase"
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, updateDoc } from "firebase/firestore"; 
 import { onAuthStateChanged } from "firebase/auth"
 import NavigationBar from "../components/NavigationBar"
 import { useNavigate } from "react-router-dom"
@@ -13,14 +13,11 @@ function Home() {
 
   const  handleSubmit = async () => {
     const userData = {
-      FirstName: "test",
-      LastName: "test2",
-      email: "something@something.com",
-      uid: currentUser.uid,
+      education: "no formal education"
     };
 
     // Add user data to Firestore
-    await setDoc(doc(db, "users", currentUser.uid), userData);
+    await updateDoc(doc(db, "users", currentUser.uid), userData);
   }
   useEffect(() => {
     if(currentUser === null){

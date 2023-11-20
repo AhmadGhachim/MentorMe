@@ -15,12 +15,16 @@ import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import { useNavigate } from 'react-router-dom';
+import { auth, db } from "../../backend/Firebase"
+import { doc, updateDoc } from "firebase/firestore"; 
+import { useAuth } from '../AuthContext';
 
 
 const defaultTheme = createTheme();
 
 
 export default function IndustryExperience() {
+    const {currentUser} = useAuth();
     const navigate = useNavigate();
     const [selectedIndustry, setSelectedIndustry] = useState('');
     const [hasWorkExperience, setHasWorkExperience] = useState(false);
@@ -35,7 +39,27 @@ export default function IndustryExperience() {
         setHasWorkExperience(event.target.checked);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        let userData = {};
+
+        if(hasWorkExperience){
+            userData = {
+                Industry: selectedIndustry,
+                hasWorkExperience,
+                companyName,
+                roleWorked
+            };
+        }
+        else{
+            userData = {
+                Industry: selectedIndustry
+            }
+        }
+
+        await updateDoc(doc(db, "users", currentUser.uid), userData);
+
         navigate("/Home")
     }
 

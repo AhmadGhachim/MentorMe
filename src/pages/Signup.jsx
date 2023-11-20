@@ -16,12 +16,13 @@ import {useNavigate } from 'react-router-dom'
 import SignUpImage from '../assets/sign-up-side.jpg'
 import {useState} from 'react'
 
-
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
 export default function Signup() {
+
+  const {logout} = useAuth();
 
   const navigate = useNavigate()
 
@@ -33,10 +34,12 @@ export default function Signup() {
   
    function handleSubmit() {
     if(selected === 'Mentee'){
+      logout();
       navigate("/SignupMentee1")
     }
     
     if(selected === 'Mentor'){
+      logout();
       navigate("/SignupMentor1")
     }
   }

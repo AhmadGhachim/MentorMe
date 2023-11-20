@@ -10,23 +10,32 @@ import { useAuth } from '../AuthContext';
 import {useNavigate } from 'react-router-dom'
 import SignUpImage from '../assets/sign-up-side.jpg'
 import {useState} from 'react'
-
+import {auth, db} from '../../backend/Firebase'
+import { doc, updateDoc } from "firebase/firestore"; 
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
 export default function SignupMentor4() {
-
+  
+  const {currentUser} = useAuth();
   const navigate = useNavigate()
-  const [experience, setExperience] = useState('');
+  const [experience, setExperience] = useState();
 
-  const handleExperience = (event) => {
-    setExperience(event.target.value);
-  }
+const handleExperience = (event) => {
+  // Use parseInt to convert the string to a number
+  setExperience(parseInt(event.target.value, 10));
+}
 
-   function handleSubmit() {
-    console.log(experience)
+   const handleSubmit = async (e) => {
+    e.preventDefault();
+        const userData = {
+          years_mentored: experience
+        }
+
+        // Add user data to Firestore
+    await updateDoc(doc(db, "users", currentUser.uid), userData);
     navigate("/Home")
   }
 

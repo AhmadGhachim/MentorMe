@@ -10,16 +10,16 @@ import SignUpImage from '../assets/sign-up-side.jpg'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { db } from "../../backend/Firebase"
-import { doc, setDoc } from "firebase/firestore"; 
+import { useNavigate } from 'react-router-dom';
+import { auth, db } from "../../backend/Firebase"
+import { doc, updateDoc } from "firebase/firestore"; 
 import { useAuth } from '../AuthContext';
 
 
 const defaultTheme = createTheme();
 
 export default function SignupForm() {
-    const {currentUser, userName, Status} = useAuth()
+    const {currentUser} = useAuth()
     const navigate = useNavigate();
     const [educationLevel, setEducationLevel] = useState('');
 
@@ -29,14 +29,13 @@ export default function SignupForm() {
         setEducationLevel(event.target.value);
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         const userData = {
-            Name: userName,
-            Email: currentUser.email,
-            CareerStatus: Status,
-            EducationLevel: educationLevel
+            educationLevel
           };
-        await setDoc(doc(db, "users", currentUser.uid), userData);
+
+        await updateDoc(doc(db, "users", currentUser.uid), userData);
         navigate("/SignupMentee3")
     } 
 

@@ -10,19 +10,29 @@ import SignUpImage from '../assets/sign-up-side.jpg'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
-
+import {auth, db} from '../../backend/Firebase'
+import { doc, updateDoc } from "firebase/firestore"; 
 
 const defaultTheme = createTheme();
 
 export default function SignupMentor2() {
     const [educationLevel, setEducationLevel] = useState('');
+    const {currentUser } = useAuth()
     const navigate = useNavigate();
 
     const handleEducationLevelChange = (event) => {
         setEducationLevel(event.target.value);
     };
-    const handleSubmit = (event) => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const userData = {
+            educationLevel
+        }
+
+        // Add user data to Firestore
+        await updateDoc(doc(db, "users", currentUser.uid), userData);
         navigate("/SignupMentor3")
     }
     return (
