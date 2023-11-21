@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Lottie from 'lottie-react';
-import animationData from '../assets/FindingMentorAnimations.json';
+import animationData from '../assets/FindingMentorAnimationV2.json';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -29,7 +29,7 @@ const MentorPage = () => {
     useEffect(() => {
         const timeout = setTimeout(() => {
             setLoading(false);
-        }, 5000);
+        }, 7000);
 
         return () => clearTimeout(timeout);
     }, []);
