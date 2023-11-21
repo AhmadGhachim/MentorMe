@@ -17,6 +17,7 @@ import Profile from './pages/ProfilePage'
 import EventPage from './pages/EventsPage.jsx'
 import ViewEventPage from "./pages/ViewEventPage.jsx";
 
+
 function App() {
   return (
     <>

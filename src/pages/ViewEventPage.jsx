@@ -16,6 +16,11 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
+import  CreateEventPopUp from  '../components/CreateEventPopUp.jsx'
+
+
+
+
 const EventPage = () => {
     // Replace the following data with actual event details
     const eventDetails = {
@@ -164,6 +169,7 @@ const EventPage = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
+            <CreateEventPopUp />
             <Footer />
         </ThemeProvider>
     );
