@@ -18,7 +18,8 @@ import { useNavigate } from 'react-router-dom';
 import MentorJaneSmith from '../assets/MentorJaneSmith.jpg'
 import MentorJohnDoe from '../assets/MentorJohnDoe.jpg'
 import MentorBobJohnson from '../assets/MentorBobJohnson.jpg'
-
+import Footer from '../components/Footer.jsx'
+import NavBarProfileMentee from '../components/NavBarProfileMentee.jsx'
 
 const MentorPage = () => {
     const [loading, setLoading] = useState(true);
@@ -89,6 +90,7 @@ const MentorPage = () => {
             >
                 {!loading && (
                     <>
+                        <NavBarProfileMentee />
                         <Typography variant="h4" gutterBottom style={{ color: '#016EEA', marginBottom: '50px' }}>
                             Choose to contact one of the following mentors
                         </Typography>
@@ -152,6 +154,7 @@ const MentorPage = () => {
                     </Box>
                 )}
             </Container>
+            <Footer />
         </ThemeProvider>
     );
 };
