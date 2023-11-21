@@ -78,6 +78,7 @@ const MentorPage = () => {
 
     return (
         <ThemeProvider theme={theme}>
+            <NavBarProfileMentee />
             <Container
                 style={{
                     height: '90vh',
@@ -90,7 +91,6 @@ const MentorPage = () => {
             >
                 {!loading && (
                     <>
-                        <NavBarProfileMentee />
                         <Typography variant="h4" gutterBottom style={{ color: '#016EEA', marginBottom: '50px' }}>
                             Choose to contact one of the following mentors
                         </Typography>
