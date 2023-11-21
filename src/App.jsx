@@ -14,6 +14,9 @@ import FindMentor from "./pages/FindMentor.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./AuthContext"
 import Profile from './pages/ProfilePage'
+import EventPage from './pages/EventsPage.jsx'
+import ViewEventPage from "./pages/ViewEventPage.jsx";
+
 
 function App() {
   return (
@@ -35,6 +38,8 @@ function App() {
         <Route path="/SignupMentor4" element={<SignupMentor4 />}/>
         <Route path="/FindMentor" element={<FindMentor />}/>
         <Route path="/profile" element={<Profile />}/>
+        <Route path="/EventPage" element={<EventPage />}/>
+        <Route path="ViewEventPage" element={<ViewEventPage />}/>
       </Routes>
       </AuthProvider>
     </BrowserRouter>

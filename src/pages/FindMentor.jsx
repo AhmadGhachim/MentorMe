@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Lottie from 'lottie-react';
-import animationData from '../assets/FindingMentorAnimations.json';
+import animationData from '../assets/FindingMentorAnimationV2.json';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -18,7 +18,8 @@ import { useNavigate } from 'react-router-dom';
 import MentorJaneSmith from '../assets/MentorJaneSmith.jpg'
 import MentorJohnDoe from '../assets/MentorJohnDoe.jpg'
 import MentorBobJohnson from '../assets/MentorBobJohnson.jpg'
-
+import Footer from '../components/Footer.jsx'
+import NavBarProfileMentee from '../components/NavBarProfileMentee.jsx'
 
 const MentorPage = () => {
     const [loading, setLoading] = useState(true);
@@ -28,7 +29,7 @@ const MentorPage = () => {
     useEffect(() => {
         const timeout = setTimeout(() => {
             setLoading(false);
-        }, 5000);
+        }, 7000);
 
         return () => clearTimeout(timeout);
     }, []);
@@ -77,6 +78,7 @@ const MentorPage = () => {
 
     return (
         <ThemeProvider theme={theme}>
+            <NavBarProfileMentee />
             <Container
                 style={{
                     height: '90vh',
@@ -152,6 +154,7 @@ const MentorPage = () => {
                     </Box>
                 )}
             </Container>
+            <Footer />
         </ThemeProvider>
     );
 };
