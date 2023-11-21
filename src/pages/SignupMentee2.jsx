@@ -145,7 +145,7 @@ export default function SignupForm() {
                                 align="center"
                                 sx={{ marginTop: 1 }}
                             >
-                                <a href="#skip">Skip</a>
+                                <a href="/SignupMentee3">Skip</a>
                             </Typography>
                         </form>
                     </Box>

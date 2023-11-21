@@ -133,7 +133,7 @@ export default function SignupMentor3() {
                                 align="center"
                                 sx={{ marginTop: 1 }}
                             >
-                            <a href="#skip">Skip</a>
+                            <a href="/SignupMentor4">Skip</a>
                             </Typography>
                         </form>
                     </Box>

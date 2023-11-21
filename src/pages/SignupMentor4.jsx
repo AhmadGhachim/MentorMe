@@ -84,10 +84,11 @@ const handleExperience = (event) => {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 30, mb: 2 }}
+                sx={{ mt: 10, mb: 2 }}
               >
-                Continue
+                Finish
               </Button>
+              
             </Box>
           </Box>
         </Grid>

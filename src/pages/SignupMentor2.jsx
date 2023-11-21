@@ -25,6 +25,7 @@ export default function SignupMentor2() {
     const handleEducationLevelChange = (event) => {
         setEducationLevel(event.target.value);
     };
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         const userData = {
@@ -141,7 +142,7 @@ export default function SignupMentor2() {
                                 align="center"
                                 sx={{ marginTop: 1 }}
                             >
-                                <a href="#skip">Skip</a>
+                                <a href="/SignupMentor3">Skip</a>
                             </Typography>
                         </form>
                     </Box>

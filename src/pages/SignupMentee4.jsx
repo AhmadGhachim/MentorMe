@@ -173,7 +173,7 @@ export default function IndustryExperience() {
                                 align="center"
                                 sx={{ marginTop: 1 }}
                             >
-                                <a href="#skip">Skip</a>
+                                <a href="/Home">Skip</a>
                             </Typography>
                         </form>
                     </Box>
