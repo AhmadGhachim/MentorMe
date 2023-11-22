@@ -16,6 +16,7 @@ import { AuthProvider } from "./AuthContext"
 import Profile from './pages/ProfilePage'
 import EventPage from './pages/EventsPage.jsx'
 import ViewEventPage from "./pages/ViewEventPage.jsx";
+import LandingMUI from './pages/LandingMUI'
 
 
 function App() {
@@ -24,7 +25,8 @@ function App() {
     <BrowserRouter>
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<Landing />}/>
+        <Route path="/" element={<LandingMUI />}/>
+        {/* <Route path="/landing" element={<Landing />}/> */}
         <Route path="/Signin" element={<SignInSide />}/>
         <Route path="/Home" element={<Home />}/>
         <Route path="/Signup" element={<Signup />}/>
@@ -40,6 +42,7 @@ function App() {
         <Route path="/profile" element={<Profile />}/>
         <Route path="/EventPage" element={<EventPage />}/>
         <Route path="ViewEventPage" element={<ViewEventPage />}/>
+
       </Routes>
       </AuthProvider>
     </BrowserRouter>
