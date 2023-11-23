@@ -12,13 +12,13 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import SignUpImage from '../assets/sign-up-side.jpg'
 import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
-import db from '../../backend/Firebase'
+import {auth, db} from '../../backend/Firebase'
 import { doc, setDoc } from "firebase/firestore"; 
 const defaultTheme = createTheme();
 
 export default function SignupMentor() {
     const navigate = useNavigate()
-    const { signup, currentUser } = useAuth()
+    const { signup } = useAuth()
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -54,9 +54,7 @@ export default function SignupMentor() {
           
               // Add user data to Firestore
             setDoc(doc(db, "users", userCredential.user.uid), userData);
-        }).
-        
-        then(navigate('/SignupMentee2'));
+        }).then(navigate('/SignupMentor2'));
         
       };
 
