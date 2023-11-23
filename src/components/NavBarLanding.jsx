@@ -121,7 +121,7 @@ function DrawerAppBar(props) {
             <Button key={"Login"} sx={{ backgroundColor: '#e6f1ff', color: '#016eea', textTransform: 'none', mr: 2 }} component={Link}  to="/signin">
                 <Typography textAlign="center">{"Login"}</Typography>
             </Button>
-            <Button key={"Create Account"} variant="contained" sx={{ backgroundColor: '#016eea', color: '#fff', textTransform: 'none' }} component={Link}  to="/singup">
+            <Button key={"Create Account"} variant="contained" sx={{ backgroundColor: '#016eea', color: '#fff', textTransform: 'none' }} component={Link}  to="/signup">
                 <Typography textAlign="center">{"Create Account"}</Typography>
             </Button>
             {/* {navItems.map((item) => (
