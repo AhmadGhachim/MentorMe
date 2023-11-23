@@ -35,7 +35,22 @@ export default function SignInSide() {
     });
 
 
-    await login(data.get('email'), data.get('password')).then(navigate("/Home"))
+    let userCredential = await login(data.get('email'), data.get('password')).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      if (errorCode === 'auth/wrong-password') {
+        alert('Wrong password.');
+      } else {
+        alert(errorMessage);
+      }
+      console.log(error);
+    });
+
+    if(userCredential != null){
+      navigate('/Home')
+    }
+  
 
   
   }
@@ -114,7 +129,7 @@ export default function SignInSide() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="/Signup" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
