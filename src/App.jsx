@@ -43,7 +43,7 @@ function App() {
         <Route path="/profile" element={<Profile />}/>
         <Route path="/EventPage" element={<EventPage />}/>
         <Route path="ViewEventPage" element={<ViewEventPage />}/>
-        {/* <Route path='/profile/:id' element={<Profile/>} /> */}
+        <Route path='/profile/:id' element={<Profile/>} />
         <Route path='*' element={<ErrorPage />}/>
       </Routes>
       </AuthProvider>

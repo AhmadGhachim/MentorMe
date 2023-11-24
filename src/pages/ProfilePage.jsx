@@ -9,7 +9,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import VerifiedIcon from '@mui/icons-material/Verified'; // only for mentor
 import SchoolIcon from '@mui/icons-material/School'; // only for mentor
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -28,6 +28,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { useAuth } from "../AuthContext"
 
 
 const mainTheme = createTheme({
@@ -51,19 +52,24 @@ const mainTheme = createTheme({
 
 
 function ProfilePage() {
+    const {id} = useParams();    
+
+    const { currentUser } = useAuth()
+
     const [progress, setProgress] = React.useState(0);
 
     const handleProgress = () => {
         setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
     };
 
+
     const [tasks, setTasks] = useState([
-        { id: 1, text: 'Create Account', completed: true },
-        { id: 2, text: 'Verify Email', completed: true },
-        { id: 3, text: 'Add Occupation and Place of Work to Your Profile', completed: false },
-        { id: 4, text: 'Add a Bio', completed: false },
-        { id: 5, text: 'Bind Social Accounts/Read the <MentorWiki> guide for Mentors', completed: false },
-        { id: 6, text: 'Reach Out to a Mentor/Create Your First Event', completed: false },
+        // { id: 1, text: 'Create Account', completed: true },
+        { id: 1, text: 'Verify Email', completed: true },
+        { id: 2, text: 'Add Occupation and Place of Work to Your Profile', completed: false },
+        { id: 3, text: 'Add a Bio', completed: false },
+        { id: 4, text: 'Bind Social Accounts/Read the <MentorWiki> guide for Mentors', completed: false },
+        { id: 5, text: 'Reach Out to a Mentor/Create Your First Event', completed: false },
     ]);
 
     const handleToggle = (id) => {
@@ -73,6 +79,32 @@ function ProfilePage() {
           )
         );
     };
+
+    // after one second, update the tutorial CircularProgress progress value
+    // React.useEffect(() => {
+    //     const timeoutId = setTimeout(() => {
+    //         setProgress((prevProgress) =>
+    //             setTasks((tasks) =>
+    //                 tasks.map((task) =>
+    //                     task.completed ? prevProgress+=20
+    //                 )
+    //             );
+    //         );
+    //     }, 1000);
+    //     return () => clearTimeout(timeoutId);
+    // }, []);
+
+    React.useEffect(() => {
+        const intervalId = setInterval(() => {
+          const completedCount = tasks.reduce((count, task) => {
+            return count + (task.completed ? 1 : 0);
+          }, 0);
+          const newProgress = completedCount * 20;
+          setProgress(newProgress);
+        }, 1000);
+    
+        return () => clearInterval(intervalId);
+      }, [tasks]);
     
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
 
@@ -235,7 +267,7 @@ function ProfilePage() {
                 <Typography>{"TODO: REPLACE TUTORIAL WITH BADGE AFTER TUTORIAL IS COMPLETED"}</Typography>
                 <Typography>{"TODO: Mentee only: show number of events attended"}</Typography>
                 <Typography>{"TODO: Mentor only: show number of sessions theyve given + num mentees alongside badge after tutorial"}</Typography>
-
+                <Typography>{id}</Typography>
 
                 <Divider  sx={{ width: '100%'}}/>
                 
