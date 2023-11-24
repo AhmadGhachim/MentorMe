@@ -16,7 +16,8 @@ import { AuthProvider } from "./AuthContext"
 import Profile from './pages/ProfilePage'
 import EventPage from './pages/EventsPage.jsx'
 import ViewEventPage from "./pages/ViewEventPage.jsx";
-import LandingMUI from './pages/LandingMUI'
+import LandingMUI from './pages/LandingMUI';
+import ErrorPage from './pages/Error';
 
 
 function App() {
@@ -42,7 +43,8 @@ function App() {
         <Route path="/profile" element={<Profile />}/>
         <Route path="/EventPage" element={<EventPage />}/>
         <Route path="ViewEventPage" element={<ViewEventPage />}/>
-
+        {/* <Route path='/profile/:id' element={<Profile/>} /> */}
+        <Route path='*' element={<ErrorPage />}/>
       </Routes>
       </AuthProvider>
     </BrowserRouter>
