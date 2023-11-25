@@ -1,5 +1,9 @@
 import React from 'react';
 import Posts from '../components/Post.jsx'
+import NavBar from '../components/NavBarProfileMentee.jsx'
+import Footer from '../components/Footer.jsx'
+import Container from "@mui/material/Container";
+import {createTheme, ThemeProvider} from "@mui/material/styles";
 const WebDevelopment = () => {
 
     const webDevelopmentPosts = [
@@ -166,12 +170,26 @@ const WebDevelopment = () => {
         },
         // Add more posts as needed
     ];
+    const theme = createTheme({
+        palette: {
+            background: {
+                default: '#f5faff', // Set your desired background color here
+            },
+        },
+    });
 
 
     return (
-        <div>
-            <Posts posts={webDevelopmentPosts} />;
-        </div>
+
+        <ThemeProvider theme={theme}>
+            <NavBar />
+            <Container style={{ paddingTop: '100px' }}>
+                <div>
+                    <Posts posts={webDevelopmentPosts} />;
+                </div>
+            </Container>
+            <Footer />
+        </ThemeProvider>
     );
 };
 
