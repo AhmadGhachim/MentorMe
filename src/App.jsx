@@ -18,6 +18,7 @@ import EventPage from './pages/EventsPage.jsx'
 import ViewEventPage from "./pages/ViewEventPage.jsx";
 import LandingMUI from './pages/LandingMUI';
 import ErrorPage from './pages/Error';
+import SettingsPage from './pages/AccountSettings.jsx';
 
 
 function App() {
@@ -44,6 +45,8 @@ function App() {
         <Route path="/EventPage" element={<EventPage />}/>
         <Route path="ViewEventPage" element={<ViewEventPage />}/>
         <Route path='/profile/:id' element={<Profile/>} />
+        <Route path='/settings/account' element={<SettingsPage />} />
+        {/* <Route path='/settings' element={<SettingsPage />} /> */}
         <Route path='*' element={<ErrorPage />}/>
       </Routes>
       </AuthProvider>
