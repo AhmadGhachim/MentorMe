@@ -15,6 +15,7 @@ import NavBarProfileMentee from '../components/NavBarProfileMentee.jsx'
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import image from '../assets/sign-in-side.jpg'
 
+
 const EventsPage = () => {
     const events = [
         {
