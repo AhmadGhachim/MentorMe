@@ -26,6 +26,7 @@ import { collection, getDocs, getDoc, doc } from "firebase/firestore";
 const EventsPage = () => {
     const {currentUser} = useAuth(); // null if user is not logged in
     const [events, setEvents] = useState([]);
+    const [filteredEvents, setFilteredEvents] = useState([]);
     const [userType, setUserType] = useState();
     const navigate = useNavigate();
     useEffect(() => {
@@ -68,6 +69,12 @@ useEffect(() => {
 }, []);
 
 
+    const handleSearch = (query) => {
+        console.log(query)
+        const filteredData = events.filter(item => item.eventName.toLowerCase().includes(query.toLowerCase()) || item.hostedBy.toLowerCase().includes(query.toLowerCase()) || item.about.toLowerCase().includes(query.toLowerCase()));
+        console.log(filteredData)
+        setFilteredEvents(filteredData);
+    }
 
     const [registrationDialogOpen, setRegistrationDialogOpen] = React.useState(false);
 
@@ -84,7 +91,7 @@ useEffect(() => {
     return (
         <ThemeProvider theme={theme}>
             {userType === 'Mentor' ? (
-            <NavbarProfileMentor />
+            <NavbarProfileMentor onSearch={handleSearch}/>
             ) : (
             <NavBarProfileMentee />
             )}
@@ -94,7 +101,7 @@ useEffect(() => {
                     Current Events
                 </Typography>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    {events.map((event) => (
+                    {filteredEvents.map((event) => (
                         <Card key={event.id} style={{ display: 'flex', width: '800px', margin: '20px' }}>
                             <CardMedia
                                 component="img"

@@ -32,10 +32,6 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import { useAuth } from '../AuthContext';
-import {auth, db} from '../../backend/Firebase'
-import { doc, getDoc } from "firebase/firestore";
-
 const mainTheme = createTheme({
     palette: {
         background: {

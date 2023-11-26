@@ -20,7 +20,7 @@ import  CreateEventPopUp from  '../components/CreateEventPopUp.jsx'
 import { useParams } from 'react-router-dom';
 import {useAuth} from '../AuthContext.jsx'
 import {auth, db} from '../../backend/Firebase.js'
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import {getDoc, doc } from "firebase/firestore";
 
 const EventPage = () => {
     const {currentUser} = useAuth();

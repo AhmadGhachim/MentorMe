@@ -6,9 +6,11 @@ import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import {auth, db} from '../../backend/Firebase'
-import { addDoc, collection } from "firebase/firestore"; 
+import { useAuth } from '../AuthContext';
+import { addDoc, doc, updateDoc, collection } from "firebase/firestore"; 
 
-const EventForm = () => {
+const EventForm = () => {   
+    const {currentUser} = useAuth();
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
@@ -21,9 +23,17 @@ const EventForm = () => {
 
     const handleCreateEvent = async () => {
         try {
+
             const docRef = await addDoc(collection(db, "events"), eventFormData);
-          
             console.log("Document written with ID: ", docRef.id);
+
+            const parentDocumentRef = doc(db, 'users', currentUser.uid);
+
+            // Reference to the subcollection
+            const subcollectionRef = collection(parentDocumentRef, 'events');
+
+            const addedDocRef = await addDoc(subcollectionRef, eventFormData);
+
           } catch (e) {
             console.error("Error adding document: ", e);
             alert("Failed to create event \nerror: " + e)
@@ -41,6 +51,7 @@ const EventForm = () => {
         address: '',
         about: '',
         hostedBy: '',
+        user_id : currentUser.uid,
     });
 
     const handleChange = (field) => (event) => {

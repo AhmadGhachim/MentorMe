@@ -42,7 +42,7 @@ function App() {
         <Route path="/FindMentor" element={<FindMentor />}/>
         <Route path="/profile" element={<Profile />}/>
         <Route path="/EventPage" element={<EventPage />}/>
-        <Route path="ViewEventPage" element={<ViewEventPage />}/>
+        <Route path="ViewEventPage/:id" element={<ViewEventPage />}/>
         <Route path='/profile/:id' element={<Profile/>} />
         <Route path='*' element={<ErrorPage />}/>
       </Routes>
