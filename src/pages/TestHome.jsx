@@ -9,7 +9,8 @@ import Posts from '../components/Post.jsx'
 import image from '../assets/sign-in-side.jpg'
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-
+import CreatePost from '../components/CreatePost.jsx'
+import popularTopics from "../components/PopularTopics.jsx";
 
 const featuredEvents = [
     {
@@ -223,12 +224,15 @@ const featuredPosts = [
     },
     // Add more posts as needed
 ];
+
+
 const HomePage = () => {
     return (
         <>
             <FeaturedEvents />
             <PopularTopics />
             <Posts posts={featuredPosts} />;
+            <CreatePost/>
         </>
     );
 };
