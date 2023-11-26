@@ -3,9 +3,10 @@ import { useAuth } from "../AuthContext"
 import { auth, db } from "../../backend/Firebase"
 import { doc, updateDoc } from "firebase/firestore"; 
 import { onAuthStateChanged } from "firebase/auth"
-import NavigationBar from "../components/NavigationBar"
+import Navbar from "../components/NavBarHomeMentor"
 import { useNavigate } from "react-router-dom"
 import Button from "@mui/material/Button"
+import CreateEventPopup from '../components/CreateEventPopUp'
 function Home() {
   const { currentUser } = useAuth()
   const navigate = useNavigate()
@@ -28,7 +29,7 @@ function Home() {
 
   return (
 <>
-      <NavigationBar />
+      <Navbar />
       <div>
         {currentUser ? (
           <div>

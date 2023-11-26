@@ -5,6 +5,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import {auth, db} from '../../backend/Firebase'
+import { addDoc, collection } from "firebase/firestore"; 
 
 const EventForm = () => {
     const [open, setOpen] = useState(false);
@@ -17,9 +19,16 @@ const EventForm = () => {
         setOpen(false);
     };
 
-    const handleCreateEvent = () => {
-        // Implement the logic to create the event here
-        // You can use the form values collected from the state
+    const handleCreateEvent = async () => {
+        try {
+            const docRef = await addDoc(collection(db, "events"), eventFormData);
+          
+            console.log("Document written with ID: ", docRef.id);
+          } catch (e) {
+            console.error("Error adding document: ", e);
+            alert("Failed to create event \nerror: " + e)
+          }
+          
         handleClose();
     };
 
@@ -30,8 +39,8 @@ const EventForm = () => {
         location: '',
         isRemote: false,
         address: '',
-        description: '',
-        speakers: '',
+        about: '',
+        hostedBy: '',
     });
 
     const handleChange = (field) => (event) => {
@@ -110,7 +119,7 @@ const EventForm = () => {
                         fullWidth
                         margin="normal"
                         value={eventFormData.description}
-                        onChange={handleChange('description')}
+                        onChange={handleChange('about')}
                     />
 
                     {/* Speakers */}
@@ -119,7 +128,7 @@ const EventForm = () => {
                         fullWidth
                         margin="normal"
                         value={eventFormData.speakers}
-                        onChange={handleChange('speakers')}
+                        onChange={handleChange('hostedBy')}
                     />
                 </DialogContent>
                 <DialogActions>

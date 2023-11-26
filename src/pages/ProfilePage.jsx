@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NavigationBar from "../components/NavigationBar"
 import NavBar from "../components/NavBarProfileMentor"
 import NavBarLanding from "../components/NavBarLanding"
@@ -28,7 +28,9 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-
+import { useAuth } from '../AuthContext';
+import {auth, db} from '../../backend/Firebase'
+import { doc, getDoc } from "firebase/firestore";
 
 const mainTheme = createTheme({
     palette: {
@@ -50,7 +52,31 @@ const mainTheme = createTheme({
 
 
 
+
 function ProfilePage() {
+    const {currentUser} = useAuth();
+    const {userData, setUserData} = useState();
+    
+    useEffect(() => {
+        async function fetchUserData() {
+            const docRef = doc(db, "users", currentUser.uid);
+            const docSnap = await getDoc(docRef);
+            
+            if (docSnap.exists()) {
+              console.log("Document data:", docSnap.data());
+              setUserData(docSnap)
+            } else {
+              // docSnap.data() will be undefined in this case
+              console.log("No such document!");
+            }
+
+            
+        }
+    
+        fetchUserData()
+      }, [])
+    
+
     const [progress, setProgress] = React.useState(0);
 
     const handleProgress = () => {

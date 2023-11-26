@@ -1,5 +1,5 @@
 // EventsPage.jsx
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -11,38 +11,63 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContentText from '@mui/material/DialogContentText';
 import Footer from '../components/Footer.jsx'
-import NavBarProfileMentee from '../components/NavBarProfileMentee.jsx'
+import NavBarProfileMentee from '../components/NavBarHomeMentee.jsx'
+import NavbarProfileMentor from '../components/NavBarHomeMentor.jsx'
 import {createTheme, ThemeProvider} from "@mui/material/styles";
+import { useNavigate } from 'react-router-dom';
 import image from '../assets/sign-in-side.jpg'
+import {useAuth} from '../AuthContext.jsx'
+import {auth, db} from '../../backend/Firebase.js'
+import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+
+
+
 
 const EventsPage = () => {
-    const events = [
-        {
-            id: 1,
-            eventName: 'Intro to Software En',
-            hostedBy: 'Ahmad, Soft Eng @Google',
-            about: 'Lorem Ipsum',
-            location: 'In Person, Saskatoon',
-            image: image,
-        },
-        // Add more events as needed
-        {
-            id: 2,
-            eventName: 'Web Development Workshop',
-            hostedBy: 'Jane Doe, Frontend Developer',
-            about: 'Lorem Ipsum',
-            location: 'Online',
-            image: image,
-        },
-        {
-            id: 3,
-            eventName: 'Data Science Seminar',
-            hostedBy: 'John Smith, Data Scientist @IBM',
-            about: 'Lorem Ipsum',
-            location: 'In Person, New York',
-            image: image,
-        },
-    ];
+    const {currentUser} = useAuth(); // null if user is not logged in
+    const [events, setEvents] = useState([]);
+    const [userType, setUserType] = useState();
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!currentUser) {
+            // Redirect to the landing page if no one is logged in
+            navigate('/');
+            return;
+        }
+        async function fetchUserData() {
+            const docRef = doc(db, "users", currentUser.uid);
+            const docSnap = await getDoc(docRef);
+            
+            if (docSnap.exists()) {
+                setUserType(docSnap.data().user_type);
+            } else {
+                // docSnap.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }
+        fetchUserData()
+    }, []);
+
+   // ...
+
+useEffect(() => {
+    async function fetchEvents() {
+        const querySnapshot = await getDocs(collection(db, "events"));
+        const eventsData = [];
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            eventsData.push(doc.data());
+        });
+
+        // Set the events state after fetching the data
+        setEvents(eventsData);
+        console.log(eventsData); // Log inside the fetchEvents function
+    }
+
+    fetchEvents();
+}, []);
+
+
 
     const [registrationDialogOpen, setRegistrationDialogOpen] = React.useState(false);
 
@@ -58,7 +83,12 @@ const EventsPage = () => {
 
     return (
         <ThemeProvider theme={theme}>
+            {userType === 'Mentor' ? (
+            <NavbarProfileMentor />
+            ) : (
             <NavBarProfileMentee />
+            )}
+
             <Container>
                 <Typography variant="h4" gutterBottom style={{ color: '#016EEA', marginTop: '100px' }}>
                     Current Events
@@ -70,7 +100,7 @@ const EventsPage = () => {
                                 component="img"
                                 alt={event.eventName}
                                 height="100%"
-                                image={event.image}
+                                image={image}
                                 style={{ width: '300px' }}
                             />
                             <CardContent style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '20px', width: '100%' }}>

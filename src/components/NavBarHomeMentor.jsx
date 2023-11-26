@@ -29,7 +29,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Icon } from '@mui/material';
-
+import CreateEventPopup from '../components/CreateEventPopUp'
 const appBarTheme = createTheme({
   palette: {
     primary: {
@@ -111,7 +111,7 @@ function DrawerAppBar(props) {
           </ListItemButton>
         </ListItem>
         <ListItem key={"Events"} disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }} href='/'>
+          <ListItemButton sx={{ textAlign: 'center' }} href='/EventPage'>
             <ListItemText primary={"Events"} />
           </ListItemButton>
         </ListItem>
@@ -204,9 +204,7 @@ function DrawerAppBar(props) {
             <Button key={"Profile"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/profile">
                 <Typography textAlign="center">{"Profile"}</Typography>
             </Button>
-            <Button key={"Create Event"} variant="contained" sx={{ backgroundColor: '#016eea', color: '#fff', textTransform: 'none' }} component={Link}  to="/">
-                <Typography textAlign="center">{"Create Event"}</Typography>
-            </Button>
+            <CreateEventPopup/>
             {/* {navItems.map((item) => (
               <Button key={item} sx={{ color: '#fff' }}>
                 {item}
