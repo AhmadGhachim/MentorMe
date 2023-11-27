@@ -302,8 +302,13 @@ function ProfilePage() {
                     updatedTasks[1] = { ...updatedTasks[1], completed: true };
                 if (docSnap.data().bio)
                     updatedTasks[2] = { ...updatedTasks[2], completed: true };
-                if (docSnap.data().social_github || docSnap.data().social_linkedin || docSnap.data().social_twitter)
+                if (docSnap.data().user_type == "Mentee") {
+                    if (docSnap.data().social_github || docSnap.data().social_linkedin || docSnap.data().social_twitter)
+                        updatedTasks[3] = { ...updatedTasks[3], completed: true };
+                } else {
                     updatedTasks[3] = { ...updatedTasks[3], completed: true };
+                }
+                
                 if (docSnap.data().connection_ids && docSnap.data().connection_ids.length > 0 )
                     updatedTasks[4] = { ...updatedTasks[4], completed: true };
 
