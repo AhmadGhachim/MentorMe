@@ -4,7 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import {auth, db} from '../../backend/Firebase'
 import { useAuth } from '../AuthContext';
 import { addDoc, doc, setDoc, getDoc, collection } from "firebase/firestore"; 
-
+import { useNavigate } from 'react-router-dom';
 const topics = [
     {
         id: 1,
@@ -33,6 +33,7 @@ const topics = [
 ];
 
 const CreatePostButton = () => {
+    const navigate = useNavigate();
     const {currentUser} = useAuth();
     const [open, setOpen] = useState(false);
     const [postDetails, setPostDetails] = useState({
@@ -84,7 +85,30 @@ const CreatePostButton = () => {
 
         const userAddedDocRef = await addDoc(userSubcollectionRef, postDetails);
        
-
+        switch (postDetails.topic) {
+            case 'Web Development':
+            navigate('/WebDevelopment');
+            break;
+            case 'Data Science':
+            navigate('/DataScience');
+            break;
+            case 'Fintech':
+            navigate('/FinTech');
+            break;
+            case 'Machine Learning':
+            navigate('/MachineLearning');
+            break;
+            case 'UIUX Design':
+            navigate('/UXDesign');
+            break;
+            case 'Artificial Intelligence':
+            navigate('/AI');
+            break;
+            default:
+            // Handle the case where the topic doesn't match any known route
+            break;
+        }
+        
         // Reset post details and close the dialog
         setPostDetails({
             title: '',
@@ -96,6 +120,8 @@ const CreatePostButton = () => {
             
         });
         setOpen(false);
+
+
     };
 
     return (
