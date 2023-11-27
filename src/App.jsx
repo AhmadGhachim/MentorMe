@@ -26,6 +26,7 @@ import UXDesign from './pages/UXDesign.jsx';
 import AI from './pages/AI.jsx';
 import ErrorPage from './pages/Error';
 import SettingsPage from './pages/AccountSettings.jsx';
+import ViewEvent from './pages/ViewEvent.jsx'
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
         <Route path="/profile" element={<Profile />}/>
         <Route path="/EventPage" element={<EventPage />}/>
         <Route path="ViewEventPage" element={<ViewEventPage />}/>
+        <Route path="ViewEvent/:id" element={<ViewEvent />}/>
         <Route path='/profile/:id' element={<Profile/>} />
         <Route path='/settings/account' element={<SettingsPage />} />
         {/*<Route path='*' element={<ErrorPage />}/>*/}
