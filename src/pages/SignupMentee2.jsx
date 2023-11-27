@@ -16,12 +16,10 @@ import { doc, updateDoc } from "firebase/firestore";
 import { useAuth } from '../AuthContext';
 
 
-
 export default function SignupForm() {
     const {currentUser} = useAuth()
     const navigate = useNavigate();
     const [educationLevel, setEducationLevel] = useState('');
-
 
 
     const handleEducationLevelChange = (event) => {

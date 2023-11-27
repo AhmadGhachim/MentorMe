@@ -106,12 +106,12 @@ function DrawerAppBar(props) {
       <Divider />
       <List>
         <ListItem key={"Home"} disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }} href='/'>
+          <ListItemButton sx={{ textAlign: 'center' }} href='/Home'>
             <ListItemText primary={"Home"} />
           </ListItemButton>
         </ListItem>
         <ListItem key={"Events"} disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }} href='/'>
+          <ListItemButton sx={{ textAlign: 'center' }} href='/EventsPage'>
             <ListItemText primary={"Events"} />
           </ListItemButton>
         </ListItem>
@@ -121,7 +121,7 @@ function DrawerAppBar(props) {
           </ListItemButton>
         </ListItem>
         <ListItem key={"Find a Mentor"} disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }} href='/'>
+          <ListItemButton sx={{ textAlign: 'center' }} href='/findmentor'>
             <ListItemText primary={"Find a Mentor"} />
           </ListItemButton>
         </ListItem>
@@ -195,16 +195,16 @@ function DrawerAppBar(props) {
           <Box sx={{ flexGrow: 1 }} />
 
           <Box sx={{ display: { xs: 'none', sm: 'block' }, mr: 2}}>
-            <Button key={"Home"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }}  component={Link}  to="/">
+            <Button key={"Home"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }}  component={Link}  to="/home">
                 <Typography textAlign="center">{"Home"}</Typography>
             </Button>
-            <Button key={"Events"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/">
+            <Button key={"Events"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/EventsPage">
               <Typography textAlign="center">{"Events"}</Typography>
             </Button>
             <Button key={"Profile"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/profile">
                 <Typography textAlign="center">{"Profile"}</Typography>
             </Button>
-            <Button key={"Find a Mentor"} variant="contained" sx={{ backgroundColor: '#016eea', color: '#fff', textTransform: 'none' }} component={Link}  to="/">
+            <Button key={"Find a Mentor"} variant="contained" sx={{ backgroundColor: '#016eea', color: '#fff', textTransform: 'none' }} component={Link}  to="/findmentor">
                 <Typography textAlign="center">{"Find a Mentor"}</Typography>
             </Button>
             {/* {navItems.map((item) => (
