@@ -87,26 +87,27 @@ const CreatePostButton = () => {
        
         switch (postDetails.topic) {
             case 'Web Development':
-            navigate('/WebDevelopment');
-            break;
+                console.log(true)
+                navigate('/WebDevelopment');
+                break;
             case 'Data Science':
-            navigate('/DataScience');
-            break;
+                navigate('/DataScience');
+                break;
             case 'Fintech':
-            navigate('/FinTech');
-            break;
+                navigate('/FinTech');
+                break;
             case 'Machine Learning':
-            navigate('/MachineLearning');
-            break;
+                navigate('/MachineLearning');
+                break;
             case 'UIUX Design':
-            navigate('/UXDesign');
-            break;
+                navigate('/UXDesign');
+                break;
             case 'Artificial Intelligence':
-            navigate('/AI');
-            break;
+                navigate('/AI');
+                break;
             default:
-            // Handle the case where the topic doesn't match any known route
-            break;
+                // Handle the case where the topic doesn't match any known route
+                break;
         }
         
         // Reset post details and close the dialog
