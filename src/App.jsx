@@ -38,7 +38,7 @@ function App() {
         <Route path="/" element={<LandingMUI />}/>
         {/* <Route path="/landing" element={<Landing />}/> */}
         <Route path="/Signin" element={<SignInSide />}/>
-        <Route path="/Home" element={<Home />}/>
+        <Route path="/Home" element={<TestHome />}/>
         <Route path="/Signup" element={<Signup />}/>
         <Route path="/SignupMentee4" element={<SignupMentee4 />}/>
         <Route path="/SignupMentee3" element={<SignupMentee3 />}/>
@@ -57,7 +57,6 @@ function App() {
         <Route path='/settings/account' element={<SettingsPage />} />
         {/*<Route path='*' element={<ErrorPage />}/>*/}
         <Route path="/ViewEventPage" element={<ViewEventPage />}/>
-        <Route path="/TestHome" element={<TestHome />}/>
         <Route path="/WebDevelopment" element={<WebDevelopment />}/>
         <Route path="/DataScience" element={<DataScience />}/>
         <Route path="/Fintech" element={<Fintech />}/>
