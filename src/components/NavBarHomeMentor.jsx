@@ -106,12 +106,12 @@ function DrawerAppBar(props) {
       <Divider />
       <List>
         <ListItem key={"Home"} disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }} href='/'>
+          <ListItemButton sx={{ textAlign: 'center' }} href='/home'>
             <ListItemText primary={"Home"} />
           </ListItemButton>
         </ListItem>
         <ListItem key={"Events"} disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }} href='/'>
+          <ListItemButton sx={{ textAlign: 'center' }} href='/eventspage'>
             <ListItemText primary={"Events"} />
           </ListItemButton>
         </ListItem>
@@ -195,10 +195,10 @@ function DrawerAppBar(props) {
           <Box sx={{ flexGrow: 1 }} />
 
           <Box sx={{ display: { xs: 'none', sm: 'block' }, mr: 2}}>
-            <Button key={"Home"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }}  component={Link}  to="/">
+            <Button key={"Home"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }}  component={Link}  to="/home">
                 <Typography textAlign="center">{"Home"}</Typography>
             </Button>
-            <Button key={"Events"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/">
+            <Button key={"Events"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/eventspage">
               <Typography textAlign="center">{"Events"}</Typography>
             </Button>
             <Button key={"Profile"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/profile">
