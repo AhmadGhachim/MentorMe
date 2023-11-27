@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import {auth, db} from '../../backend/Firebase'
 import { useAuth } from '../AuthContext';
-import { addDoc, doc, updateDoc, collection } from "firebase/firestore"; 
+import { addDoc, doc, setDoc, collection } from "firebase/firestore"; 
 
 const EventForm = () => {   
     const {currentUser} = useAuth();
@@ -26,6 +26,10 @@ const EventForm = () => {
 
             const docRef = await addDoc(collection(db, "events"), eventFormData);
             console.log("Document written with ID: ", docRef.id);
+            eventFormData.event_id = docRef.id;
+            await setDoc(docRef, eventFormData, { merge: true });
+            console.log("Document written with ID: ", docRef.id);
+
 
             const parentDocumentRef = doc(db, 'users', currentUser.uid);
 
@@ -52,6 +56,7 @@ const EventForm = () => {
         about: '',
         hostedBy: '',
         user_id : currentUser.uid,
+        event_id: ''
     });
 
     const handleChange = (field) => (event) => {

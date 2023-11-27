@@ -15,7 +15,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./AuthContext"
 import Profile from './pages/ProfilePage'
 import EventPage from './pages/EventsPage.jsx'
-import ViewEventPage from "./pages/ViewEventPage.jsx";
+import ViewEvent from "./pages/ViewEvent.jsx";
 import LandingMUI from './pages/LandingMUI';
 import ErrorPage from './pages/Error';
 
@@ -42,7 +42,7 @@ function App() {
         <Route path="/FindMentor" element={<FindMentor />}/>
         <Route path="/profile" element={<Profile />}/>
         <Route path="/EventPage" element={<EventPage />}/>
-        <Route path="ViewEventPage/:id" element={<ViewEventPage />}/>
+        <Route path="ViewEvent/:id" element={<ViewEvent />}/>
         <Route path='/profile/:id' element={<Profile/>} />
         <Route path='*' element={<ErrorPage />}/>
       </Routes>

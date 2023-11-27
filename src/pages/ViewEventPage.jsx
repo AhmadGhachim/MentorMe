@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import MentorJaneSmith from '../assets/MentorJaneSmith.jpg'
 import MentorBobJohnson from '../assets/MentorBobJohnson.jpg'
+import DefaultImage from '../assets/sign-in-side.jpg'
 import Banner from '../assets/sign-in-side.jpg'
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import Footer from "../components/Footer.jsx";
@@ -24,7 +25,7 @@ import { collection, getDocs, getDoc, doc } from "firebase/firestore";
 
 const EventPage = () => {
     const {currentUser} = useAuth();
-    
+
     const {id} = useParams();
     // Replace the following data with actual event details
     const eventDetails = {

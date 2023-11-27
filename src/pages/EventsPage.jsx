@@ -18,7 +18,7 @@ import { useNavigate } from 'react-router-dom';
 import image from '../assets/sign-in-side.jpg'
 import {useAuth} from '../AuthContext.jsx'
 import {auth, db} from '../../backend/Firebase.js'
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc, addDoc } from "firebase/firestore";
 
 
 
@@ -62,6 +62,7 @@ useEffect(() => {
 
         // Set the events state after fetching the data
         setEvents(eventsData);
+        setFilteredEvents(eventsData)
         console.log(eventsData); // Log inside the fetchEvents function
     }
 
@@ -78,7 +79,14 @@ useEffect(() => {
 
     const [registrationDialogOpen, setRegistrationDialogOpen] = React.useState(false);
 
-    const handleRegisterClick = () => {
+    const handleRegisterClick = async (selectedEvent) => {
+
+        const parentDocumentRef = doc(db, 'users', currentUser.uid);
+
+            // Reference to the subcollection
+            const subcollectionRef = collection(parentDocumentRef, 'events');
+
+            const addedDocRef = await addDoc(subcollectionRef, selectedEvent);
         setRegistrationDialogOpen(true);
     };
 
@@ -93,7 +101,7 @@ useEffect(() => {
             {userType === 'Mentor' ? (
             <NavbarProfileMentor onSearch={handleSearch}/>
             ) : (
-            <NavBarProfileMentee />
+            <NavBarProfileMentee onSearch={handleSearch}/>
             )}
 
             <Container>
@@ -102,7 +110,7 @@ useEffect(() => {
                 </Typography>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     {filteredEvents.map((event) => (
-                        <Card key={event.id} style={{ display: 'flex', width: '800px', margin: '20px' }}>
+                        <Card key={event.event_id} style={{ display: 'flex', width: '800px', margin: '20px' }}>
                             <CardMedia
                                 component="img"
                                 alt={event.eventName}
@@ -126,10 +134,10 @@ useEffect(() => {
                                     </Typography>
                                 </div>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <Button variant="contained" color="primary" onClick={handleRegisterClick} style={{ width: '49%' }}>
+                                    <Button variant="contained" color="primary" onClick={() => handleRegisterClick(event)} style={{ width: '49%' }}>
                                         Register
                                     </Button>
-                                    <Button variant="outlined" color="secondary" style={{ width: '49%' }}>
+                                    <Button variant="outlined" color="secondary" style={{ width: '49%' }} onClick={() => navigate("/ViewEvent/"+event.event_id)}>
                                         View Event
                                     </Button>
                                 </div>
