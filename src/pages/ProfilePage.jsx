@@ -302,17 +302,7 @@ function ProfilePage() {
                     updatedTasks[1] = { ...updatedTasks[1], completed: true };
                 if (docSnap.data().bio)
                     updatedTasks[2] = { ...updatedTasks[2], completed: true };
-                if (docSnap.data().user_type == "Mentee") {
-                    if (docSnap.data().social_github || docSnap.data().social_linkedin || docSnap.data().social_twitter)
-                        updatedTasks[3] = { ...updatedTasks[3], completed: true };
-                } else {
-                    updatedTasks[3] = { ...updatedTasks[3], completed: true };
-                }
-                
-                if (docSnap.data().connection_ids && docSnap.data().connection_ids.length > 0 )
-                    updatedTasks[4] = { ...updatedTasks[4], completed: true };
 
-                setTasks(updatedTasks);
 
                 // get and set the subcollections
                 const eventsSubcollectionRef = collection(docRef, 'events');
@@ -323,6 +313,20 @@ function ProfilePage() {
 
                 setEvents(eventsQuerySnapshot.docs);
                 setPosts(postsQuerySnapshot.docs);
+
+                if (docSnap.data().user_type == "Mentee") {
+                    if (docSnap.data().social_github || docSnap.data().social_linkedin || docSnap.data().social_twitter)
+                        updatedTasks[3] = { ...updatedTasks[3], completed: true };
+                    if (docSnap.data().connection_ids && docSnap.data().connection_ids.length > 0 )
+                        updatedTasks[4] = { ...updatedTasks[4], completed: true };
+                } else {
+                    updatedTasks[3] = { ...updatedTasks[3], completed: true };
+                    // console.log(eventsQuerySnapshot.docs[0].data());
+                    if (eventsQuerySnapshot.docs.filter(doc => doc.data().user_id === currentUser.uid).length > 0) 
+                       updatedTasks[4] = { ...updatedTasks[4], completed: true };
+                    //updatedTasks[4] = { ...updatedTasks[4], completed: true };
+                }
+                setTasks(updatedTasks);
 
                 // console.log(eventsQuerySnapshot.docs);
 
@@ -874,11 +878,11 @@ function ProfilePage() {
                                         <ListItemText primary={`Number of Studented Mentored: ${profileData.connection_ids ? profileData.connection_ids.length : 0} / ${(profileData.badge_tier*profileData.badge_tier) * 5}`} />
                                     </ListItem>
                                     <ListItem disablePadding>
-                                        <ListItemText primary={`Number of Events Hosted: ${userEvents ? userEvents.filter(doc => doc.user_id === currentUser.uid).length : 0} / ${(profileData.badge_tier*profileData.badge_tier) * 5}`} />
+                                        <ListItemText primary={`Number of Events Hosted: ${userEvents ? userEvents.filter(doc => doc.data().user_id === currentUser.uid).length : 0} / ${(profileData.badge_tier*profileData.badge_tier) * 5}`} />
                                         {/* TODO: NOT TESTED */}
                                     </ListItem>
                                     <ListItem disablePadding>
-                                        <ListItemText primary={`Number of Posts: ${userPosts ? userPosts.filter(doc => doc.user_id === currentUser.uid).length : 0} / ${(profileData.badge_tier*profileData.badge_tier) * 5}`} />
+                                        <ListItemText primary={`Number of Posts: ${userPosts ? userPosts.filter(doc => doc.data().user_id === currentUser.uid).length : 0} / ${(profileData.badge_tier*profileData.badge_tier) * 5}`} />
                                         {/* TODO: NOT TESTED */}
                                     </ListItem>
                                 </List>
@@ -890,8 +894,49 @@ function ProfilePage() {
                 ) : (
                     <>
                     <Typography variant="bold_font">{profileData.firstName}'s Profile</Typography><Typography></Typography>
-                    <Typography>{"- Mentee only: show number of events attended (public)"}</Typography>
-                    <Typography>{"- Mentor only: show number of sessions theyve given + num mentees alongside badge after tutorial (public)"}</Typography>
+                    {/* <Typography>{"- Mentee only: show number of events attended (public)"}</Typography> */}
+                    {/* <Typography>{"- Mentor only: show number of sessions theyve given + num mentees alongside badge after tutorial (public)"}</Typography> */}
+                    <Box sx={{display:"flex", alignItems:"center"}}>
+                            {/* Left side - Badge Image */}
+                            <Tooltip title="Your badge is not just a shiny accessory - it's your digital crown, showcasing your status and achievements for the world to admire and applaud.">
+                                {profileData.badge_tier === 1 ? ( // bronze
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/mentorme-ef368.appspot.com/o/assets%2Fbronze-medal.png?alt=media&token=33e5dda6-c6e0-44d9-abbe-3a07ff90c912" alt="Bronze Badge" style={{ maxWidth: '200px'}} />
+                                ) : profileData.badge_tier === 2 ? ( // silver
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/mentorme-ef368.appspot.com/o/assets%2Fsilver-medal.png?alt=media&token=4d895431-9fd9-44b0-8e42-3a81c8cee542" alt="Silver Badge" style={{ maxWidth: '200px'}} />
+                                ) : ( // gold
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/mentorme-ef368.appspot.com/o/assets%2Fgold-medal.png?alt=media&token=ecd74f51-3b0d-4caa-a959-ae8b06fd54e4" alt="Gold Badge" style={{ maxWidth: '200px'}} />
+                                )}
+                            </Tooltip>
+                            { /* If mentee, show mentee stats */}
+                            {profileType === 4 ? (
+                                <List>
+                                    <ListItem disablePadding sx={{display: 'flex', flexDirection: 'column', alignItems: 'start'}}>
+                                        <ListItemText primary={`Number of Mentors Connected With: ${profileData.connection_ids ? profileData.connection_ids.length : 0} / ${(profileData.badge_tier*profileData.badge_tier) + 2}`} /><br/>
+                                        {/* <LinearProgress variant="determinate" value={80} sx={{ width: '80%', height: '20px', borderRadius: '10px', mb: 1}} /> */}
+                                    </ListItem>
+                                    <ListItem disablePadding>
+                                        <ListItemText primary={`Number of Events Registered/Attended: ${userEvents ? userEvents.length : 0} / ${(profileData.badge_tier*profileData.badge_tier) * 5}`} />
+                                    </ListItem>
+                                    <ListItem disablePadding>
+                                        <ListItemText primary={`Number of Posts: ${userPosts ? userPosts.length : 0} / ${(profileData.badge_tier*profileData.badge_tier) * 5}`} />
+                                    </ListItem>
+                                </List>
+                            ) : ( // else show mentor stats
+                                <List>
+                                    <ListItem disablePadding>
+                                        <ListItemText primary={`Number of Studented Mentored: ${profileData.connection_ids ? profileData.connection_ids.length : 0} / ${(profileData.badge_tier*profileData.badge_tier) * 5}`} />
+                                    </ListItem>
+                                    <ListItem disablePadding>
+                                        <ListItemText primary={`Number of Events Hosted: ${userEvents ? userEvents.filter(doc => doc.data().user_id === currentUser.uid).length : 0} / ${(profileData.badge_tier*profileData.badge_tier) * 5}`} />
+                                        {/* TODO: NOT TESTED */}
+                                    </ListItem>
+                                    <ListItem disablePadding>
+                                        <ListItemText primary={`Number of Posts: ${userPosts ? userPosts.filter(doc => doc.data().user_id === currentUser.uid).length : 0} / ${(profileData.badge_tier*profileData.badge_tier) * 5}`} />
+                                        {/* TODO: NOT TESTED */}
+                                    </ListItem>
+                                </List>
+                            )}
+                        </Box>
                     </>
                 )}
                 
