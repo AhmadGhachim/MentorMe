@@ -105,7 +105,8 @@ const handleExperience = (event) => {
                 variant="outlined"
                 fullWidth
                 margin="normal"
-                onChange={handleExperience}/>
+                onChange={handleExperience}
+                required/>
               <Button
                 type="submit"
                 fullWidth
@@ -114,7 +115,6 @@ const handleExperience = (event) => {
               >
                 Create Account
               </Button>
-              
             </Box>
           </Box>
         </Grid>

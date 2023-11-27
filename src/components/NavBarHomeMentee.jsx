@@ -106,12 +106,12 @@ function DrawerAppBar(props) {
       <Divider />
       <List>
         <ListItem key={"Home"} disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }} href='/Home'>
+          <ListItemButton sx={{ textAlign: 'center' }} href='/home'>
             <ListItemText primary={"Home"} />
           </ListItemButton>
         </ListItem>
         <ListItem key={"Events"} disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }} href='/EventPage'>
+          <ListItemButton sx={{ textAlign: 'center' }} href='/eventpage'>
             <ListItemText primary={"Events"} />
           </ListItemButton>
         </ListItem>
@@ -198,7 +198,7 @@ function DrawerAppBar(props) {
             <Button key={"Home"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }}  component={Link}  to="/home">
                 <Typography textAlign="center">{"Home"}</Typography>
             </Button>
-            <Button key={"Events"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/EventPage">
+            <Button key={"Events"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/eventpage">
               <Typography textAlign="center">{"Events"}</Typography>
             </Button>
             <Button key={"Profile"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/profile">
@@ -239,9 +239,9 @@ function DrawerAppBar(props) {
               <MenuItem key={"Profile"} onClick={handleCloseUserMenu} component={Link}  to="/profile">
                 <Typography textAlign="center">{"Profile"}</Typography>
               </MenuItem>
-              <MenuItem key={"Edit Profile"} onClick={handleCloseUserMenu} component={Link}  to="/profile">
+              {/* <MenuItem key={"Edit Profile"} onClick={handleCloseUserMenu} component={Link}  to="/profile">
                 <Typography textAlign="center">{"Edit Profile"}</Typography>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem key={"Account Settings"} onClick={handleCloseUserMenu} component={Link}  to="/settings/account">
                 <Typography textAlign="center">{"Account Settings"}</Typography>
               </MenuItem>

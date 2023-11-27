@@ -40,6 +40,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
+import EventCard from '../components/EventCard';
+import Stack from '@mui/material/Stack';
+import Posts from '../components/ProfilePagePost'
 
 const mainTheme = createTheme({
     palette: {
@@ -75,6 +78,9 @@ function ProfilePage() {
     const [followingCount, setFollowingCount] = useState(0);
     const [userEvents, setEvents] = useState();
     const [userPosts, setPosts] = useState();
+    const [connections, setConnectionData] = useState([]); // only used for my profile page of mentors and mentees
+    const [showPastEvents, setShowPastEvents] = useState(false);
+    const [filteredEvents, setFilteredEvents] = useState();
 
     // const handleProgress = () => {
     //     setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
@@ -306,13 +312,17 @@ function ProfilePage() {
 
                 // get and set the subcollections
                 const eventsSubcollectionRef = collection(docRef, 'events');
-                const postsSubcollectionRef = collection(docRef, 'posts');
-
                 const eventsQuerySnapshot = await getDocs(eventsSubcollectionRef);
-                const postsQuerySnapshot = await getDocs(postsSubcollectionRef);
-
                 setEvents(eventsQuerySnapshot.docs);
-                setPosts(postsQuerySnapshot.docs);
+
+                const postsSubcollectionRef = collection(docRef, 'posts');
+                const postsQuerySnapshot = await getDocs(postsSubcollectionRef);
+                if (postsQuerySnapshot) {
+                    const userPostsData = postsQuerySnapshot.docs.map((doc) => doc.data());
+                    setPosts(userPostsData);
+                    //console.log(postsQuerySnapshot.docs.map(doc => doc.data()));
+                }
+                
 
                 if (docSnap.data().user_type == "Mentee") {
                     if (docSnap.data().social_github || docSnap.data().social_linkedin || docSnap.data().social_twitter)
@@ -335,6 +345,29 @@ function ProfilePage() {
                 //   });
 
                 //console.log(userData);
+
+                // get connections
+                try {
+                    const userPromises = docSnap.data().connection_ids.map(async (userId) => {
+                        const userDocRef = doc(db, "users", userId);
+                        const docSnapshot = await getDoc(userDocRef);
+
+                        if (docSnapshot.exists) {
+                            return { id: userId, data: docSnapshot.data() };
+                        } else {
+                            console.log(`User document for ID ${userId} does not exist`);
+                            return null;
+                        }
+                    });
+            
+                    const connectionsData = await Promise.all(userPromises);
+                    setConnectionData(connectionsData.filter((user) => user !== null));
+                  } catch (error) {
+                    console.error('Error fetching user data:', error);
+                }
+
+
+
             } else {
                 // docSnap.data() will be undefined in this case
                 console.log("No such document!");
@@ -394,6 +427,69 @@ function ProfilePage() {
         }
     };
 
+    // useEffect(() => {
+    //     // Filter events based on the showPastEvents state
+    //     const docRef = doc(db, "users", userId);
+    //     const eventsSubcollectionRef = collection(docRef, 'events');
+    //     const eventsQuerySnapshot = await getDocs(eventsSubcollectionRef);
+        
+    //     const filtered = eventsQuerySnapshot.docs.filter((event) => {
+    //       const eventDate = new Date(event.date);
+    //       const today = new Date();
+    
+    //       return showPastEvents ? eventDate <= today : eventDate > today;
+    //     });
+    
+    //     setFilteredEvents(filtered);
+    //   }, [showPastEvents]);
+
+
+      useEffect(() => {
+        const fetchData = async () => {
+            let userId = id; // Use id from the URL parameter by default
+
+            // If id is undefined (no parameter passed), use currentUser.uid
+            if (!id) {
+                userId = currentUser.uid;
+            }
+
+          // Filter events based on the showPastEvents state
+          const docRef = doc(db, "users", userId);
+          const eventsSubcollectionRef = collection(docRef, 'events');
+          const eventsQuerySnapshot = await getDocs(eventsSubcollectionRef);
+      
+          //console.log("aaaaaaa"+eventsQuerySnapshot.docs[0].data().date);
+        //   eventsQuerySnapshot.forEach((doc) => {
+        //         console.log(doc.id, ' => ', doc.data());
+        //     });
+        //   const filtered = eventsQuerySnapshot.forEach((doc) => doc.data()).filter((event) => {
+        //     const eventDate = new Date(event.date);
+        //     const today = new Date();
+      
+        //     return showPastEvents ? eventDate <= today : eventDate > today;
+        //   });
+        // let filtered_list = [];
+        // // eventsQuerySnapshot.forEach((doc) => {
+        // //     console.log(doc.id, ' => ', doc.data());
+        // //     if (doc.data().)
+        // // });
+        const filtered = eventsQuerySnapshot.docs.map((doc) => doc.data()).filter((event) => {
+            // Ensure that the date field is defined before using it
+            if (event.dateTime) {
+              const eventDate = new Date(event.dateTime);
+              const today = new Date();
+              return showPastEvents ? eventDate <= today : eventDate > today;
+            }
+            return false; // or true, depending on how you want to handle events without a date
+          });
+      
+          setFilteredEvents(filtered);
+          console.log("sakhdkjashdlkjashsd" + filtered);
+        };
+      
+        fetchData();
+      }, [showPastEvents]);
+
     
     // determines whether the screensize is phone or not
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
@@ -417,8 +513,10 @@ function ProfilePage() {
         window.open(url, '_blank');
     };
 
+
+
     // replace with blank (loading) screen until userData is set
-    if (!profileData || !userType) {
+    if (!profileData || !userType || !userPosts || !userEvents || !filteredEvents) {
         // Render a loading state
         return (
             <>
@@ -470,7 +568,7 @@ function ProfilePage() {
         <Box sx={{display: 'flex', mt: '100px', mb: '100px', px: isMobile ? '10px': '175px'}}>
             <CssBaseline />
             {/* SIDEBAR BOX */}
-            <Box sx={{width: isMobile ? '0': '30%', pr:'20px', '& > *:not(:last-child)': { marginBottom: 2 } }}>
+            <Box sx={{width: isMobile ? '0': '30%', pr:'20px', '& > *:not(:last-child)': { marginBottom: 2 }, flexShrink: 0 }}>
                 
                 {/* Profile Picture */}
                 {/* TODO: profile pic from firestore (low priority) */}
@@ -754,7 +852,7 @@ function ProfilePage() {
             {/* sina-kh */}
             
             {/* MAIN CONTENT BOX */}
-            <Box sx={{pl: '20px', flexGrow: 1, '& > *:not(:last-child)': { marginBottom: 2 }}}>
+            <Box sx={{pl: '20px', flexGrow: 1, '& > *:not(:last-child)': { marginBottom: 2 }, overflowX: 'hidden'}}>
                 {/* Profile Heading depends on wether user is viewing their own profile or not */}
                 {profileType === 1 || profileType === 2 ? (
                     // tutorial is incomplete - show tutorial
@@ -946,8 +1044,38 @@ function ProfilePage() {
                 {profileType === 1 ? (
                     <> 
                     <Typography variant="bold_font">{"My Mentees"}</Typography><Typography></Typography>
-                    {/* TODO: horizontal scrolling list of icons and first names of mentees, clicking leads to their profile*/}
-                    <Typography>{"PLACEHOLDER: horizontal scrolling list of icons and first names of mentees, clicking leads to their profile"}</Typography>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'start',
+                            direction: 'flex',
+                            overflowX: 'auto',
+                            whiteSpace: 'normal',
+                            scrollbarWidth: 'thin',
+                            scrollbarColor: '#888 #f5f5f5',
+                            WebkitOverflowScrolling: 'touch',
+                        }}
+                    >
+                        {connections.length > 0 ? (
+                            connections.map((connection) => (
+                                <> 
+                                <a href={`/profile/${connection.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Box sx={{ marginRight: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                        <Avatar alt={`${connection.data.firstName} ${connection.data.lastName}`} src={connection.data.pfp_url} sx={{ width: 64, height: 64 }} />
+                                        <Typography variant="body2" sx={{ marginTop: 1 }}>
+                                            {connection.data.firstName}
+                                        </Typography>
+                                        <Typography variant="body2">{connection.data.lastName}</Typography>
+                                    </Box>
+                                </a>
+                                </>
+                            ))
+                        ) : (
+                            <Typography>You Have Not Connected With nor Accepted Requests to Connect With Mentees!</Typography>
+                        )}
+                
+                        
+                    </Box>
                     <Divider  sx={{ width: '100%'}}/>
                     </>
                 ) : (<></>)}
@@ -956,11 +1084,41 @@ function ProfilePage() {
                 {profileType === 2 ? (
                     <>
                         <Typography variant="bold_font">{"My Mentors"}</Typography><Typography></Typography>
-                        {/* TODO: horizontal scrolling list of icons and first names of mentors, clicking leads to their profile*/}
-                        <Typography>{"PLACEHOLDER: horizontal scrolling list of icons and first names of mentors, clicking leads to their profile"}</Typography>
+                        <Box flexGrow={0}
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'start',
+                            direction: 'flex',
+                            overflowX: 'auto',
+                            whiteSpace: 'normal',
+                            scrollbarWidth: 'thin',
+                            scrollbarColor: '#888 #f5f5f5',
+                            WebkitOverflowScrolling: 'touch',
+                        }}
+                        >
+
+                        {connections.length > 0 ? (
+                            connections.map((connection) => (
+                                <> 
+                                <a href={`/profile/${connection.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Box sx={{ marginRight: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                        <Avatar alt={`${connection.data.firstName} ${connection.data.lastName}`} src={connection.data.pfp_url} sx={{ width: 64, height: 64 }} />
+                                        <Typography variant="body2" sx={{ marginTop: 1 }}>
+                                            {connection.data.firstName}
+                                        </Typography>
+                                        <Typography variant="body2">{connection.data.lastName}</Typography>
+                                    </Box>
+                                </a>
+                                </>
+                            ))
+                        ) : (
+                            <Typography>You Have Not Connected With nor Accepted Requests to Connect With Mentees!</Typography>
+                        )}
+                        </Box>
                     <Divider  sx={{ width: '100%'}}/>
                     </>
                 ) : (<></>)}
+
 
                 {/* Events Section */}
                 <Box sx={{display: 'flex', justifyContent:'space-between'}}>  
@@ -972,14 +1130,39 @@ function ProfilePage() {
                     {/* TODO: Past and Present events */}
                     <FormControlLabel
                         value="start"
-                        control={<Switch color="primary" />}
+                        control={<Switch color="primary" checked={showPastEvents} onChange={() => {
+                            setShowPastEvents(!showPastEvents);
+                        }} />}
                         label="Past Events"
                         labelPlacement="start"
+                        sx={{mr: '1px'}}
                     />
                 </Box>
 
-                {/* TODO: Show Events */}
-                <Typography>{"PLACEHOLDER: EVENTS HORIZONTAL SCROLLER"}</Typography>
+                <Box sx={{flexGrow: 0}}>
+                    <Stack direction="row" spacing={3} justifyContent="start" alignItems="center"
+                        sx={{
+                            // backgroundColor: '#999',
+                            direction: 'flex',
+                            overflowX: 'auto',
+                            whiteSpace: 'normal',
+                            scrollbarWidth: 'thin',
+                            scrollbarColor: '#888 #f5f5f5',
+                            WebkitOverflowScrolling: 'touch',
+                        }}
+                    >
+                        {/* userEvents, filteredEvents */}
+                        {filteredEvents.length > 0 ? (
+                            filteredEvents.map((event) => (
+                                <EventCard event={event}/>
+                            ))
+                        ) : (
+                            <Typography>No Events to Show!</Typography>
+                        )}
+                        
+                        {/* <EventCard/> */}
+                    </Stack>
+                </Box>
 
                 <Divider  sx={{ width: '100%'}}/>
 
@@ -993,8 +1176,13 @@ function ProfilePage() {
                     <Typography variant="bold_font">{profileData.firstName}'s Posts</Typography><Typography></Typography>
                     </>
                 )}
-                {/* TODO: Show Posts */}
-                <Typography>{"PLACEHOLDER: POSTS"}</Typography>
+                {/* TODO: Show buttons???? */}
+                {userPosts.length > 0 ? (
+                    <Posts posts={userPosts} />
+                ) : (
+                    <Typography>No Posts to Show!</Typography>
+                )}
+                
             </Box>
         </Box>
         <Footer />

@@ -120,11 +120,11 @@ function DrawerAppBar(props) {
             <ListItemText primary={"Profile"} />
           </ListItemButton>
         </ListItem>
-        <ListItem key={"Create Event"} disablePadding>
+        {/* <ListItem key={"Create Event"} disablePadding>
           <ListItemButton sx={{ textAlign: 'center' }} href='/'>
             <ListItemText primary={"Create Event"} />
           </ListItemButton>
-        </ListItem>
+        </ListItem> */}<CreateEventPopUp/>
         {/* {navItems.map((item) => (
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
@@ -237,9 +237,9 @@ function DrawerAppBar(props) {
               <MenuItem key={"Profile"} onClick={handleCloseUserMenu} component={Link}  to="/profile">
                 <Typography textAlign="center">{"Profile"}</Typography>
               </MenuItem>
-              <MenuItem key={"Edit Profile"} onClick={handleCloseUserMenu} component={Link}  to="/profile">
+              {/* <MenuItem key={"Edit Profile"} onClick={handleCloseUserMenu} component={Link}  to="/profile">
                 <Typography textAlign="center">{"Edit Profile"}</Typography>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem key={"Account Settings"} onClick={handleCloseUserMenu} component={Link}  to="/settings/account">
                 <Typography textAlign="center">{"Account Settings"}</Typography>
               </MenuItem>
