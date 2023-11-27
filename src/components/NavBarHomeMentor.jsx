@@ -240,7 +240,7 @@ function DrawerAppBar(props) {
               <MenuItem key={"Edit Profile"} onClick={handleCloseUserMenu} component={Link}  to="/profile">
                 <Typography textAlign="center">{"Edit Profile"}</Typography>
               </MenuItem>
-              <MenuItem key={"Account Settings"} onClick={handleCloseUserMenu} component={Link}  to="/profile">
+              <MenuItem key={"Account Settings"} onClick={handleCloseUserMenu} component={Link}  to="/settings/account">
                 <Typography textAlign="center">{"Account Settings"}</Typography>
               </MenuItem>
               <Divider sx={{ margin: 'auto', my: 2, width: '85%'}}/>
