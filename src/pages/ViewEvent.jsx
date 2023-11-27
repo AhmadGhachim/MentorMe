@@ -149,7 +149,7 @@ const EventPage = () => {
             <NavBarProfileMentee/>
             )}
 
-            <Container style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Container  style={{ width: '1200px', flexDirection: 'column', alignItems: 'center' }}>
                 {/* Banner */}
                 <Card>
                     <CardMedia
