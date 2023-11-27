@@ -195,10 +195,10 @@ function DrawerAppBar(props) {
           <Box sx={{ flexGrow: 1 }} />
 
           <Box sx={{ display: { xs: 'none', sm: 'block' }, mr: 2}}>
-            <Button key={"Home"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }}  component={Link}  to="/">
+            <Button key={"Home"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }}  component={Link}  to="/Home">
                 <Typography textAlign="center">{"Home"}</Typography>
             </Button>
-            <Button key={"Events"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/">
+            <Button key={"Events"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/EventPage">
               <Typography textAlign="center">{"Events"}</Typography>
             </Button>
             <Button key={"Profile"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/profile">

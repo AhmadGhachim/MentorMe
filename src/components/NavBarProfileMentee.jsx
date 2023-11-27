@@ -111,7 +111,7 @@ function DrawerAppBar(props) {
           </ListItemButton>
         </ListItem>
         <ListItem key={"Events"} disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }} href='/'>
+          <ListItemButton sx={{ textAlign: 'center' }} href='/EventPage'>
             <ListItemText primary={"Events"} />
           </ListItemButton>
         </ListItem>
@@ -198,7 +198,7 @@ function DrawerAppBar(props) {
             <Button key={"Home"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }}  component={Link}  to="/Home">
                 <Typography textAlign="center">{"Home"}</Typography>
             </Button>
-            <Button key={"Events"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/EventPagen  ">
+            <Button key={"Events"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/EventPage ">
               <Typography textAlign="center">{"Events"}</Typography>
             </Button>
             <Button key={"Profile"} sx={{ color: '#016eea', textTransform: 'none', mr: 1 }} component={Link}  to="/profile">
