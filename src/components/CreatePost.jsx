@@ -20,7 +20,7 @@ const topics = [
     },
     {
         id: 4,
-        topic: 'UI UX Design',
+        topic: 'UIUX Design',
     },
     {
         id: 5,

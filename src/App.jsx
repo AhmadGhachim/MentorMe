@@ -18,11 +18,11 @@ import EventPage from './pages/EventsPage.jsx'
 import ViewEvent from "./pages/ViewEvent.jsx";
 import TestHome from "./pages/TestHome.jsx";
 import WebDevelopment from './pages/WebDevelopment.jsx';
-import DataScience from './pages/TopicPages/DataScience.jsx';
-import FinTech from './pages/TopicPages/FinTech.jsx';
-import MachineLearning from './pages/TopicPages/MachineLearning.jsx';
-import UXDesign from './pages/TopicPages/UXDesign.jsx';
-import AI from './pages/TopicPages/AI.jsx';
+import DataScience from './pages/DataScience.jsx';
+import FinTech from './pages/FinTech.jsx';
+import MachineLearning from './pages/MachineLearning.jsx';
+import UXDesign from './pages/UXDesign.jsx';
+import AI from './pages/AI.jsx';
 import ErrorPage from './pages/Error.jsx' 
 
 
