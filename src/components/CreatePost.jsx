@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TextField, MenuItem } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import {auth, db} from '../../backend/Firebase'
+import { useAuth } from '../AuthContext';
+import { addDoc, doc, setDoc, getDoc, collection } from "firebase/firestore"; 
 
 const topics = [
     {
@@ -17,11 +20,11 @@ const topics = [
     },
     {
         id: 4,
-        topic: 'UI/UX Design',
+        topic: 'UI UX Design',
     },
     {
         id: 5,
-        topic: 'FinTech',
+        topic: 'Fintech',
     },
     {
         id: 6,
@@ -30,11 +33,15 @@ const topics = [
 ];
 
 const CreatePostButton = () => {
+    const {currentUser} = useAuth();
     const [open, setOpen] = useState(false);
     const [postDetails, setPostDetails] = useState({
         title: '',
         content: '',
         topic: '',
+        parent_id: '',
+        user_id : '',
+        replies: []
     });
 
     const handleClickOpen = () => {
@@ -53,14 +60,40 @@ const CreatePostButton = () => {
         }));
     };
 
-    const handleCreatePost = () => {
+    const handleCreatePost = async () => {
         // Handle post creation logic here
+        const userData = await getDoc(doc(db, 'users', currentUser.uid));
+        postDetails.username = userData.data().firstName + ' ' + userData.data().lastName 
+        postDetails.user_id = currentUser.uid;
         console.log('Creating post with details:', postDetails);
+
+        const parentDocumentRef = doc(db, 'posts', postDetails.topic);
+
+        // Reference to the subcollection
+        const subcollectionRef = collection(parentDocumentRef, 'user_posts');
+
+        const addedDocRef = await addDoc(subcollectionRef, postDetails);
+
+        postDetails.id = addedDocRef.id;
+        await setDoc(addedDocRef, postDetails, { merge: true });
+
+        const userParentDocumentRef = doc(db, 'users', currentUser.uid);
+
+        // Reference to the subcollection
+        const userSubcollectionRef = collection(userParentDocumentRef, 'posts');
+
+        const userAddedDocRef = await addDoc(userSubcollectionRef, postDetails);
+       
+
         // Reset post details and close the dialog
         setPostDetails({
             title: '',
             content: '',
             topic: '',
+            parent_id: '',
+            user_id : '',
+            replies: []
+            
         });
         setOpen(false);
     };
@@ -73,8 +106,8 @@ const CreatePostButton = () => {
                 aria-label="add"
                 sx={{
                     position: 'fixed',
-                    bottom: 200, // Adjust the value to move it vertically
-                    right: 200,
+                    bottom: 50, // Adjust the value to move it vertically
+                    right: 120,
                     backgroundColor: 'white',
                     padding: '12px',
                     borderRadius: '50%',

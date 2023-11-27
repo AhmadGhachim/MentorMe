@@ -8,14 +8,14 @@ import SignupMentor2 from './pages/SignupMentor2'
 import SignupMentor3 from './pages/SignupMentor3'
 import SignupMentor4 from './pages/SignupMentor4'
 import Home from './pages/Home'
-import Landing from './pages/Landing'
+import LandingMUI from './pages/LandingMUI'
 import Signup from './pages/Signup';
 import FindMentor from "./pages/FindMentor.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./AuthContext"
 import Profile from './pages/ProfilePage'
 import EventPage from './pages/EventsPage.jsx'
-import ViewEventPage from "./pages/ViewEventPage.jsx";
+import ViewEvent from "./pages/ViewEvent.jsx";
 import TestHome from "./pages/TestHome.jsx";
 import WebDevelopment from './pages/WebDevelopment.jsx';
 import DataScience from './pages/TopicPages/DataScience.jsx';
@@ -23,6 +23,7 @@ import FinTech from './pages/TopicPages/FinTech.jsx';
 import MachineLearning from './pages/TopicPages/MachineLearning.jsx';
 import UXDesign from './pages/TopicPages/UXDesign.jsx';
 import AI from './pages/TopicPages/AI.jsx';
+import ErrorPage from './pages/Error.jsx' 
 
 
 function App() {
@@ -50,7 +51,6 @@ function App() {
         <Route path="ViewEvent/:id" element={<ViewEvent />}/>
         <Route path='/profile/:id' element={<Profile/>} />
         <Route path='*' element={<ErrorPage />}/>
-        <Route path="/ViewEventPage" element={<ViewEventPage />}/>
         <Route path="/TestHome" element={<TestHome />}/>
         <Route path="/WebDevelopment" element={<WebDevelopment />}/>
         <Route path="/DataScience" element={<DataScience />}/>

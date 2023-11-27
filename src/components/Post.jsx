@@ -50,6 +50,9 @@ const FeaturedPosts = ({ posts }) => {
     // State to manage the expanded state of each post
     const [expanded, setExpanded] = useState(null);
 
+    const handleReply = (post) => {
+        console.log(post)
+    }
     const handleExpandClick = (postId) => {
         setExpanded((prev) => (prev === postId ? null : postId));
     };
@@ -100,6 +103,7 @@ const FeaturedPosts = ({ posts }) => {
                                 <Button
                                     variant="contained"
                                     color="primary"
+                                    onClick={handleReply(post)}
                                 >
                                     Reply
                                 </Button>
