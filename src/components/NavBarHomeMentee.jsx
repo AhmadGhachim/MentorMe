@@ -111,7 +111,7 @@ function DrawerAppBar(props) {
           </ListItemButton>
         </ListItem>
         <ListItem key={"Events"} disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }} href='/EventsPage'>
+          <ListItemButton sx={{ textAlign: 'center' }} href='/EventPage'>
             <ListItemText primary={"Events"} />
           </ListItemButton>
         </ListItem>

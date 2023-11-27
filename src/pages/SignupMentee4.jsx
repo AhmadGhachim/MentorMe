@@ -48,12 +48,12 @@ export default function IndustryExperience() {
                 Industry: selectedIndustry,
                 hasWorkExperience,
                 companyName,
-                roleWorked
+                roleWorked,
             };
         }
         else{
             userData = {
-                Industry: selectedIndustry
+                Industry: selectedIndustry,
             }
         }
 
@@ -199,7 +199,21 @@ export default function IndustryExperience() {
                                 align="center"
                                 sx={{ marginTop: 1 }}
                             >
-                                <a href="/Home">Skip</a>
+                                {/* <a href="/Home">Skip</a> */}
+                                <Button 
+                                    sx={{
+                                    color: 'blue', // Set the color you want for the hyperlink
+                                    textDecoration: 'underline', // Underline to resemble a hyperlink
+                                    textAlign: 'left', // Align text to the left
+                                    padding: 0, // Remove default button padding
+                                    textTransform: 'none',
+                                    '&:hover': {
+                                    backgroundColor: 'transparent', // Remove background on hover
+                                    textTransform: 'none'
+                                    },
+                                    }}
+                                    onClick={handleSubmit}
+                                >Skip</Button>
                             </Typography>
                         </form>
                     </Box>
