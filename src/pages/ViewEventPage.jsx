@@ -86,8 +86,13 @@ const EventPage = () => {
         setRegistrationDialogOpen(false);
     };
 
-
-    const theme = createTheme();
+    const theme = createTheme({
+        palette: {
+            background: {
+                default: '#f5faff',
+            },
+        },
+    });
 
     return (
         <ThemeProvider theme={theme}>
@@ -174,7 +179,6 @@ const EventPage = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
-            <CreateEventPopUp />
             <Footer />
         </ThemeProvider>
     );
