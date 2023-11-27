@@ -17,7 +17,6 @@ import { useAuth } from '../AuthContext';
 
 
 
-
 const defaultTheme = createTheme();
 
 export default function SignupForm() {
@@ -41,8 +40,120 @@ export default function SignupForm() {
     }
 
     return (
+        // <ThemeProvider theme={defaultTheme}>
+        //     <Grid container component="main" sx={{ height: '100vh' }}>
+        //         <CssBaseline />
+        //         <Grid
+        //             item
+        //             xs={false}
+        //             sm={4}
+        //             md={2}
+        //             sx={{
+        //                 backgroundImage: `url(${SignUpImage})`,
+        //                 backgroundRepeat: 'no-repeat',
+        //                 backgroundColor: (t) =>
+        //                     t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+        //                 backgroundSize: 'cover',
+        //                 backgroundPosition: 'center',
+        //             }}
+        //         />
+        //         <Grid item xs={12} sm={8} md={10} component={Paper} elevation={6} square>
+        //             <Box
+        //                 sx={{
+        //                     my: 25,
+        //                     mx: 4,
+        //                     display: 'flex',
+        //                     flexDirection: 'column',
+        //                     alignItems: 'center',
+        //                 }}
+        //             >
+        //                 <Typography component="h5" variant="h2" style={{ fontFamily: 'system-ui', color: '#016EEA', fontWeight: 'bold' }}>
+        //                     Create Account
+        //                 </Typography>
+        //                 <form onSubmit={handleSubmit}>
+        //                     <Typography variant="h6" gutterBottom>
+        //                         What is your major?
+        //                     </Typography>
+        //                     <RadioGroup
+        //                         value={educationLevel}
+        //                         onChange={handleEducationLevelChange}
+        //                     >
+        //                         <FormControlLabel
+        //                             value="Business"
+        //                             control={<Radio />}
+        //                             label="Business"
+        //                         />
+        //                         <FormControlLabel
+        //                             value="Finance"
+        //                             control={<Radio />}
+        //                             label="Finance"
+        //                         />
+        //                         <FormControlLabel
+        //                             value="Law"
+        //                             control={<Radio />}
+        //                             label="Law"
+        //                         />
+        //                         <FormControlLabel
+        //                             value="Health"
+        //                             control={<Radio />}
+        //                             label="Health"
+        //                         />
+        //                         <FormControlLabel
+        //                             value="Humanities"
+        //                             control={<Radio />}
+        //                             label="Humanities"
+        //                         />
+        //                         <FormControlLabel
+        //                             value= "Computer Science / IT"
+        //                             control={<Radio />}
+        //                             label= "Computer Science / IT"
+        //                         />
+        //                         <FormControlLabel
+        //                             value="Science"
+        //                             control={<Radio />}
+        //                             label= "Science"
+        //                         />
+        //                         <FormControlLabel
+        //                             value="Engineering"
+        //                             control={<Radio />}
+        //                             label="Engineering"
+        //                         />
+        //                         <FormControlLabel
+        //                             value="Mathematics"
+        //                             control={<Radio />}
+        //                             label="Mathematics"
+        //                         />
+        //                         <FormControlLabel
+        //                             value="No major - I am a high school student"
+        //                             control={<Radio />}
+        //                             label="No major - I am a high school student"
+        //                         />
+        //                     </RadioGroup>
+        //
+        //                     <Button
+        //                         variant="contained"
+        //                         color="primary"
+        //                         fullWidth
+        //                         sx={{ marginTop: 2 }}
+        //                         type="submit"
+        //                     >
+        //                         Next
+        //                     </Button>
+        //                     <Typography
+        //                         color="primary"
+        //                         variant="subtitle1"
+        //                         align="center"
+        //                         sx={{ marginTop: 1 }}
+        //                     >
+        //                         <a href="/SignupMentee4">Skip</a>
+        //                     </Typography>
+        //                 </form>
+        //             </Box>
+        //         </Grid>
+        //     </Grid>
+        // </ThemeProvider>
         <ThemeProvider theme={defaultTheme}>
-            <Grid container component="main" sx={{ height: '100vh' }}>
+            <Grid container component="main" sx={{ height: '100vh',  backgroundColor: '#f5faff' }}>
                 <CssBaseline />
                 <Grid
                     item
@@ -58,7 +169,7 @@ export default function SignupForm() {
                         backgroundPosition: 'center',
                     }}
                 />
-                <Grid item xs={12} sm={8} md={10} component={Paper} elevation={6} square>
+                <Grid item xs={12} sm={8} md={10} square>
                     <Box
                         sx={{
                             my: 25,
@@ -66,70 +177,82 @@ export default function SignupForm() {
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
+                            backgroundColor: '#f5faff',
                         }}
                     >
-                        <Typography component="h5" variant="h2" style={{ fontFamily: 'system-ui', color: '#016EEA', fontWeight: 'bold' }}>
+                        <Typography component="h5" variant="h2" style={{ fontFamily: 'system-ui', color: '#016EEA', fontWeight: 'bold', marginBottom: '30px' }}>
                             Create Account
                         </Typography>
                         <form onSubmit={handleSubmit}>
                             <Typography variant="h6" gutterBottom>
                                 What is your major?
                             </Typography>
-                            <RadioGroup
-                                value={educationLevel}
-                                onChange={handleEducationLevelChange}
-                            >
-                                <FormControlLabel
-                                    value="Business"
-                                    control={<Radio />}
-                                    label="Business"
-                                />
-                                <FormControlLabel
-                                    value="Finance"
-                                    control={<Radio />}
-                                    label="Finance"
-                                />
-                                <FormControlLabel
-                                    value="Law"
-                                    control={<Radio />}
-                                    label="Law"
-                                />
-                                <FormControlLabel
-                                    value="Health"
-                                    control={<Radio />}
-                                    label="Health"
-                                />
-                                <FormControlLabel
-                                    value="Humanities"
-                                    control={<Radio />}
-                                    label="Humanities"
-                                />
-                                <FormControlLabel
-                                    value= "Computer Science / IT"
-                                    control={<Radio />}
-                                    label= "Computer Science / IT"
-                                />
-                                <FormControlLabel
-                                    value="Science"
-                                    control={<Radio />}
-                                    label= "Science"
-                                />
-                                <FormControlLabel
-                                    value="Engineering"
-                                    control={<Radio />}
-                                    label="Engineering"
-                                />
-                                <FormControlLabel
-                                    value="Mathematics"
-                                    control={<Radio />}
-                                    label="Mathematics"
-                                />
-                                <FormControlLabel
-                                    value="No major - I am a high school student"
-                                    control={<Radio />}
-                                    label="No major - I am a high school student"
-                                />
-                            </RadioGroup>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} md={6}>
+                                    <RadioGroup
+                                        value={educationLevel}
+                                        onChange={handleEducationLevelChange}
+                                    >
+                                        <FormControlLabel
+                                            value="Business"
+                                            control={<Radio />}
+                                            label="Business"
+                                        />
+                                        <FormControlLabel
+                                            value="Finance"
+                                            control={<Radio />}
+                                            label="Finance"
+                                        />
+                                        <FormControlLabel
+                                            value="Law"
+                                            control={<Radio />}
+                                            label="Law"
+                                        />
+                                        <FormControlLabel
+                                            value="Health"
+                                            control={<Radio />}
+                                            label="Health"
+                                        />
+                                        <FormControlLabel
+                                            value="Humanities"
+                                            control={<Radio />}
+                                            label="Humanities"
+                                        />
+                                    </RadioGroup>
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <RadioGroup
+                                        value={educationLevel}
+                                        onChange={handleEducationLevelChange}
+                                    >
+                                        <FormControlLabel
+                                            value="Computer Science / IT"
+                                            control={<Radio />}
+                                            label="Computer Science / IT"
+                                        />
+                                        <FormControlLabel
+                                            value="Science"
+                                            control={<Radio />}
+                                            label="Science"
+                                        />
+                                        <FormControlLabel
+                                            value="Engineering"
+                                            control={<Radio />}
+                                            label="Engineering"
+                                        />
+                                        <FormControlLabel
+                                            value="Mathematics"
+                                            control={<Radio />}
+                                            label="Mathematics"
+                                        />
+                                        <FormControlLabel
+                                            value="No major - I am a high school student"
+                                            control={<Radio />}
+                                            label="No major - I am a high school student"
+                                        />
+                                    </RadioGroup>
+                                </Grid>
+                            </Grid>
 
                             <Button
                                 variant="contained"

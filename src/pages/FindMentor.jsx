@@ -74,7 +74,13 @@ const MentorPage = () => {
         },
     };
 
-    const theme = createTheme();
+    const theme = createTheme({
+        palette: {
+            background: {
+                default: '#f5faff',
+            },
+        },
+    });
 
     return (
         <ThemeProvider theme={theme}>

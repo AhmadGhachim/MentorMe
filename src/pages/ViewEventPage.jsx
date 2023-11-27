@@ -16,9 +16,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
-import  CreateEventPopUp from  '../components/CreateEventPopUp.jsx'
-
-
 
 
 const EventPage = () => {
@@ -82,7 +79,13 @@ const EventPage = () => {
     };
 
 
-    const theme = createTheme();
+    const theme = createTheme({
+        palette: {
+            background: {
+                default: '#f5faff',
+            },
+        },
+    });
 
     return (
         <ThemeProvider theme={theme}>
@@ -169,7 +172,6 @@ const EventPage = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
-            <CreateEventPopUp />
             <Footer />
         </ThemeProvider>
     );

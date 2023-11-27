@@ -20,7 +20,6 @@ import { doc, updateDoc } from "firebase/firestore";
 import { useAuth } from '../AuthContext';
 
 
-const defaultTheme = createTheme();
 
 
 export default function IndustryExperience() {
@@ -63,9 +62,15 @@ export default function IndustryExperience() {
         navigate("/Home")
     }
 
-
+    const theme = createTheme({
+        palette: {
+            background: {
+                default: '#f5faff',
+            },
+        },
+    });
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
@@ -82,7 +87,7 @@ export default function IndustryExperience() {
                         backgroundPosition: 'center',
                     }}
                 />
-                <Grid item xs={12} sm={8} md={10} component={Paper} elevation={6} square>
+                <Grid item xs={12} sm={8} md={10} square>
                     <Box
                         sx={{
                             my: 25,

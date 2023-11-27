@@ -17,9 +17,13 @@ import SignInImage from '../assets/sign-in-side.jpg'
 
 
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
-const defaultTheme = createTheme();
+const theme = createTheme({
+  palette: {
+    background: {
+      default: '#f5faff',
+    },
+  },
+});
 
 export default function SignInSide() {
 
@@ -50,13 +54,11 @@ export default function SignInSide() {
     if(userCredential != null){
       navigate('/Home')
     }
-  
 
-  
   }
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid
@@ -73,7 +75,7 @@ export default function SignInSide() {
             backgroundPosition: 'center',
           }}
         />
-        <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
+        <Grid item xs={12} sm={8} md={6} square>
           <Box
             sx={{
               my: 25,

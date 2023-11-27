@@ -31,8 +31,8 @@ function App() {
     <BrowserRouter>
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<LandingMUI />}/>
-        {/* <Route path="/landing" element={<Landing />}/> */}
+        {/*<Route path="/" element={<LandingMUI />}/>*/}
+         <Route path="/landing" element={<Landing />}/>
         <Route path="/Signin" element={<SignInSide />}/>
         <Route path="/Home" element={<Home />}/>
         <Route path="/Signup" element={<Signup />}/>
@@ -49,7 +49,7 @@ function App() {
         <Route path="/EventPage" element={<EventPage />}/>
         <Route path="ViewEventPage" element={<ViewEventPage />}/>
         <Route path='/profile/:id' element={<Profile/>} />
-        <Route path='*' element={<ErrorPage />}/>
+        {/*<Route path='*' element={<ErrorPage />}/>*/}
         <Route path="/ViewEventPage" element={<ViewEventPage />}/>
         <Route path="/TestHome" element={<TestHome />}/>
         <Route path="/WebDevelopment" element={<WebDevelopment />}/>

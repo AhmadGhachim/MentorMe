@@ -6,6 +6,7 @@ import { onAuthStateChanged } from "firebase/auth"
 import NavigationBar from "../components/NavigationBar"
 import { useNavigate } from "react-router-dom"
 import Button from "@mui/material/Button"
+import {createTheme, ThemeProvider} from "@mui/material/styles";
 function Home() {
   const { currentUser } = useAuth()
   const navigate = useNavigate()
@@ -25,9 +26,17 @@ function Home() {
       navigate("/")
     }
   });
+  const theme = createTheme({
+    palette: {
+      background: {
+        default: '#f5faff',
+      },
+    },
+  });
 
   return (
 <>
+  <ThemeProvider theme={theme}>
       <NavigationBar />
       <div>
         {currentUser ? (
@@ -40,7 +49,8 @@ function Home() {
         )}
       </div>
       <Button onClick={handleSubmit}>Test</Button>
-    </>
+  </ThemeProvider>
+</>
   );
 }
 

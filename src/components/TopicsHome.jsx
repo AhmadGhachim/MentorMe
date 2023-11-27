@@ -46,7 +46,7 @@ const PopularTopics = () => {
 
     return (
         <Container style={{ marginBottom: '20px' }}>
-            <Typography variant="h4" gutterBottom>
+            <Typography variant="h4" gutterBottom style={{ fontFamily: 'system-ui', color: '#016EEA', fontWeight: 'bold' }}>
                 Popular Topics
             </Typography>
             <Stack direction="row" spacing={3}>
