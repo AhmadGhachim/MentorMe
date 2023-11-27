@@ -23,6 +23,7 @@ import { collection, getDocs, getDoc, doc, addDoc } from "firebase/firestore";
 
 
 
+
 const EventsPage = () => {
     const {currentUser} = useAuth(); // null if user is not logged in
     const [events, setEvents] = useState([]);

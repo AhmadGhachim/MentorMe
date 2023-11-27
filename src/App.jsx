@@ -15,9 +15,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./AuthContext"
 import Profile from './pages/ProfilePage'
 import EventPage from './pages/EventsPage.jsx'
-import ViewEvent from "./pages/ViewEvent.jsx";
-import LandingMUI from './pages/LandingMUI';
-import ErrorPage from './pages/Error';
+import ViewEventPage from "./pages/ViewEventPage.jsx";
+import TestHome from "./pages/TestHome.jsx";
+import WebDevelopment from './pages/WebDevelopment.jsx';
+import DataScience from './pages/TopicPages/DataScience.jsx';
+import FinTech from './pages/TopicPages/FinTech.jsx';
+import MachineLearning from './pages/TopicPages/MachineLearning.jsx';
+import UXDesign from './pages/TopicPages/UXDesign.jsx';
+import AI from './pages/TopicPages/AI.jsx';
 
 
 function App() {
@@ -45,6 +50,16 @@ function App() {
         <Route path="ViewEvent/:id" element={<ViewEvent />}/>
         <Route path='/profile/:id' element={<Profile/>} />
         <Route path='*' element={<ErrorPage />}/>
+        <Route path="/ViewEventPage" element={<ViewEventPage />}/>
+        <Route path="/TestHome" element={<TestHome />}/>
+        <Route path="/WebDevelopment" element={<WebDevelopment />}/>
+        <Route path="/DataScience" element={<DataScience />}/>
+        <Route path="/FinTech" element={<FinTech />}/>
+        <Route path="/MachineLearning" element={<MachineLearning />}/>
+        <Route path="/UXDesign" element={<UXDesign />}/>
+        <Route path="/AI" element={<AI />}/>
+
+
       </Routes>
       </AuthProvider>
     </BrowserRouter>
