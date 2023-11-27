@@ -1127,7 +1127,6 @@ function ProfilePage() {
                     ) : (
                         <Typography variant="bold_font">{profileData.firstName}'s Registered Events </Typography>
                     )}
-                    {/* TODO: Past and Present events */}
                     <FormControlLabel
                         value="start"
                         control={<Switch color="primary" checked={showPastEvents} onChange={() => {

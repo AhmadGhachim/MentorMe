@@ -29,6 +29,11 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Icon } from '@mui/material';
+import { useAuth } from '../AuthContext';
+import {auth, db} from '../../backend/Firebase'
+import { doc, updateDoc, arrayUnion, arrayRemove, getDoc, getDocs, collection } from "firebase/firestore";
+import { useState, useEffect } from 'react';
+
 
 const appBarTheme = createTheme({
   palette: {
@@ -91,12 +96,32 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 // mobile view menu drawer
 function DrawerAppBar(props) {
+  const {currentUser} = useAuth(); // null if user is not logged in
+  const [pfpURL, setPFPURL] = useState();
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+
+  // fetch user pfp
+  useEffect(() => {
+      async function fetchUserData() {
+          const docRef = doc(db, "users", currentUser.uid);
+          const docSnap = await getDoc(docRef);
+          
+          if (docSnap.exists()) {
+            console.log('pfp: '+ docSnap.data().pfp_url);
+            setPFPURL(docSnap.data().pfp_url);
+          } else {
+              // docSnap.data() will be undefined in this case
+              console.log("No such document!");
+          }
+      }
+      fetchUserData()
+    }, []);
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
@@ -159,6 +184,28 @@ function DrawerAppBar(props) {
 
   const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
 
+          // replace with blank (loading) screen until userData is set
+          if (!pfpURL) {
+            // Render a loading state
+            return (
+                <>
+                <ThemeProvider theme={appBarTheme}>
+                    <Box 
+                        sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minHeight: '0px',
+                        }}
+                    >
+                        <CssBaseline />
+                    </Box>
+                </ThemeProvider>
+                </>
+            );
+        }
+
   return (
     <Box sx={{ display: 'flex'}}>
       <CssBaseline />
@@ -217,7 +264,7 @@ function DrawerAppBar(props) {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="My Account">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar />
+                <Avatar src={pfpURL}/>
               </IconButton>
             </Tooltip>
             <Menu 
