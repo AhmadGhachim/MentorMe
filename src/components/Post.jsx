@@ -59,7 +59,7 @@ const FeaturedPosts = ({ posts }) => {
 
     return (
         <Container>
-            <Typography variant="h4" gutterBottom>
+            <Typography variant="h4" gutterBottom style={{ fontFamily: 'system-ui', color:'#016EEA',  fontWeight: 'bold' }}>
                 Featured Posts
             </Typography>
             {posts.map((post) => (

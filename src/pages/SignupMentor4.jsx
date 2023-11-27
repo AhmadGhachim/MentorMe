@@ -11,11 +11,16 @@ import {useNavigate } from 'react-router-dom'
 import SignUpImage from '../assets/sign-up-side.jpg'
 import {useState} from 'react'
 import {auth, db} from '../../backend/Firebase'
-import { doc, updateDoc } from "firebase/firestore"; 
+import { doc, updateDoc } from "firebase/firestore";
 
-// TODO remove, this demo shouldn't need to reset the theme.
 
-const defaultTheme = createTheme();
+const theme = createTheme({
+    palette: {
+        background: {
+            default: '#f5faff',
+        },
+    },
+});
 
 export default function SignupMentor4() {
   
@@ -40,7 +45,7 @@ const handleExperience = (event) => {
   }
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid
@@ -57,7 +62,7 @@ const handleExperience = (event) => {
             backgroundPosition: 'center',
           }}
         />
-        <Grid item xs={12} sm={8} md={10} component={Paper} elevation={6} square>
+        <Grid item xs={12} sm={8} md={10} square>
           <Box
             sx={{
               my: 25,
@@ -86,7 +91,7 @@ const handleExperience = (event) => {
                 variant="contained"
                 sx={{ mt: 10, mb: 2 }}
               >
-                Finish
+                Create Account
               </Button>
               
             </Box>

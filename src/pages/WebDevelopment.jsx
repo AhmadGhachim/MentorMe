@@ -260,7 +260,7 @@ const WebDevelopment = () => {
     const theme = createTheme({
         palette: {
             background: {
-                default: '#f5faff', // Set your desired background color here
+                default: '#f5faff',
             },
         },
     });

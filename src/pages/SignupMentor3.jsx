@@ -11,9 +11,15 @@ import SignUpImage from '../assets/sign-up-side.jpg'
 import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
 import {auth, db} from '../../backend/Firebase'
-import { doc, updateDoc } from "firebase/firestore"; 
+import { doc, updateDoc } from "firebase/firestore";
 
-const defaultTheme = createTheme();
+const theme = createTheme({
+    palette: {
+        background: {
+            default: '#f5faff',
+        },
+    },
+});
 
 export default function SignupMentor3() {
     const {currentUser} = useAuth();
@@ -53,7 +59,7 @@ export default function SignupMentor3() {
       };
 
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
@@ -70,7 +76,7 @@ export default function SignupMentor3() {
                         backgroundPosition: 'center',
                     }}
                 />
-                <Grid item xs={12} sm={8} md={10} component={Paper} elevation={6} square>
+                <Grid item xs={12} sm={8} md={10} square>
                     <Box
                         sx={{
                             my: 25,

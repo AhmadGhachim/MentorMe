@@ -95,7 +95,13 @@ useEffect(() => {
         setRegistrationDialogOpen(false);
     };
 
-    const theme = createTheme();
+    const theme = createTheme({
+        palette: {
+            background: {
+                default: '#f5faff',
+            },
+        },
+    });
 
     return (
         <ThemeProvider theme={theme}>
@@ -106,7 +112,7 @@ useEffect(() => {
             )}
 
             <Container>
-                <Typography variant="h4" gutterBottom style={{ color: '#016EEA', marginTop: '100px' }}>
+                <Typography variant="h4" gutterBottom style={{ fontFamily: 'system-ui', color: '#016EEA', fontWeight: 'bold', marginTop: '100px' }}>
                     Current Events
                 </Typography>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

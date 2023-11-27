@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import {auth, db} from '../../backend/Firebase'
 import { doc, updateDoc } from "firebase/firestore"; 
 
-const defaultTheme = createTheme();
+
 
 export default function SignupMentor2() {
     const [educationLevel, setEducationLevel] = useState('');
@@ -36,8 +36,17 @@ export default function SignupMentor2() {
         await updateDoc(doc(db, "users", currentUser.uid), userData);
         navigate("/SignupMentor3")
     }
+
+    const theme = createTheme({
+        palette: {
+            background: {
+                default: '#f5faff',
+            },
+        },
+    });
+
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
@@ -54,7 +63,7 @@ export default function SignupMentor2() {
                         backgroundPosition: 'center',
                     }}
                 />
-                <Grid item xs={12} sm={8} md={10} component={Paper} elevation={6} square>
+                <Grid item xs={12} sm={8} md={10} square>
                     <Box
                         sx={{
                             my: 25,
@@ -64,76 +73,34 @@ export default function SignupMentor2() {
                             alignItems: 'center',
                         }}
                     >
-                        <Typography component="h5" variant="h2" style={{ fontFamily: 'system-ui', color: '#016EEA', fontWeight: 'bold' }}>
+                        <Typography component="h5" variant="h2" sx={{ fontFamily: 'system-ui', color: '#016EEA', fontWeight: 'bold', marginBottom: '30px' }}>
                             Create Account
                         </Typography>
                         <form onSubmit={handleSubmit}>
                             <Typography variant="h6" gutterBottom>
                                 What is your current level of study or your highest completed level of study?
                             </Typography>
-                            <RadioGroup
-                                value={educationLevel}
-                                onChange={handleEducationLevelChange}
-                            >
-                                <FormControlLabel
-                                    value="No formal education"
-                                    control={<Radio />}
-                                    label="No formal education"
-                                />
-                                <FormControlLabel
-                                    value="Secondary education/high school"
-                                    control={<Radio />}
-                                    label="Secondary education/high school"
-                                />
-                                <FormControlLabel
-                                    value="Undergraduate / Bachelor’s Degree"
-                                    control={<Radio />}
-                                    label="Undergraduate / Bachelor’s Degree"
-                                />
-                                <FormControlLabel
-                                    value="Diploma"
-                                    control={<Radio />}
-                                    label="Diploma"
-                                />
-                                <FormControlLabel
-                                    value="Masters (Research)"
-                                    control={<Radio />}
-                                    label="Masters (Research)"
-                                />
-                                <FormControlLabel
-                                    value="Masters (Professional)"
-                                    control={<Radio />}
-                                    label="Masters (Professional)"
-                                />
-                                <FormControlLabel
-                                    value="Professional Doctorate"
-                                    control={<Radio />}
-                                    label="Professional Doctorate"
-                                />
-                                <FormControlLabel
-                                    value="Community Colleges / TAFE"
-                                    control={<Radio />}
-                                    label="Community Colleges / TAFE"
-                                />
-                                <FormControlLabel
-                                    value="Bootcamp"
-                                    control={<Radio />}
-                                    label="Bootcamp"
-                                />
-                                <FormControlLabel
-                                    value="Vocational qualification"
-                                    control={<Radio />}
-                                    label="Vocational qualification"
-                                />
-                            </RadioGroup>
-
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                fullWidth
-                                sx={{ marginTop: 2 }}
-                                type="submit"
-                            >
+                            <Grid container spacing={2}>
+                                <Grid item xs={6}>
+                                    <RadioGroup value={educationLevel} onChange={handleEducationLevelChange}>
+                                        <FormControlLabel value="No formal education" control={<Radio />} label="No formal education" />
+                                        <FormControlLabel value="Secondary education/high school" control={<Radio />} label="Secondary education/high school" />
+                                        <FormControlLabel value="Undergraduate / Bachelor’s Degree" control={<Radio />} label="Undergraduate / Bachelor’s Degree" />
+                                        <FormControlLabel value="Diploma" control={<Radio />} label="Diploma" />
+                                        <FormControlLabel value="Masters (Research)" control={<Radio />} label="Masters (Research)" />
+                                    </RadioGroup>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <RadioGroup value={educationLevel} onChange={handleEducationLevelChange}>
+                                        <FormControlLabel value="Masters (Professional)" control={<Radio />} label="Masters (Professional)" />
+                                        <FormControlLabel value="Professional Doctorate" control={<Radio />} label="Professional Doctorate" />
+                                        <FormControlLabel value="Community Colleges / TAFE" control={<Radio />} label="Community Colleges / TAFE" />
+                                        <FormControlLabel value="Bootcamp" control={<Radio />} label="Bootcamp" />
+                                        <FormControlLabel value="Vocational qualification" control={<Radio />} label="Vocational qualification" />
+                                    </RadioGroup>
+                                </Grid>
+                            </Grid>
+                            <Button variant="contained" color="primary" fullWidth sx={{ marginTop: 2 }} type="submit">
                                 Next
                             </Button>
                             <Typography

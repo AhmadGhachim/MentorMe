@@ -13,9 +13,7 @@ import SignUpImage from '../assets/sign-up-side.jpg'
 import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from "../../backend/Firebase"
-import { doc, setDoc } from "firebase/firestore"; 
-const defaultTheme = createTheme();
-
+import { doc, setDoc } from "firebase/firestore";
 export default function SignupForm() {
 
     
@@ -69,12 +67,17 @@ export default function SignupForm() {
         then(navigate('/SignupMentee2'));
         
       };
-      
-      
 
+    const theme = createTheme({
+        palette: {
+            background: {
+                default: '#f5faff',
+            },
+        },
+    });
 
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
@@ -85,13 +88,12 @@ export default function SignupForm() {
                     sx={{
                         backgroundImage: `url(${SignUpImage})`,
                         backgroundRepeat: 'no-repeat',
-                        backgroundColor: (t) =>
-                            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+                        backgroundColor: '#f5faff',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }}
                 />
-                <Grid item xs={12} sm={8} md={10} component={Paper} elevation={6} square>
+                <Grid item xs={12} sm={8} md={10} square>
                     <Box
                         sx={{
                             my: 25,
@@ -99,6 +101,7 @@ export default function SignupForm() {
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
+                            backgroundColor: '#f5faff',
                         }}
                     >
                         <Typography component="h5" variant="h2" style={{ fontFamily: 'system-ui', color: '#016EEA', fontWeight: 'bold' }}>

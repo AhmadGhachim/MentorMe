@@ -1,14 +1,5 @@
 import React, {useState} from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Posts from '../components/Post.jsx'
-import image from '../assets/sign-in-side.jpg'
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
 import CreatePost from '../components/CreatePost.jsx'
 import FeaturedEvents from "../components/FeaturedEvents.jsx";
 import TopicsHome from "../components/TopicsHome.jsx";

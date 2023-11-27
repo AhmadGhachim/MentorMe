@@ -14,7 +14,7 @@ import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
 import {auth, db} from '../../backend/Firebase'
 import { doc, setDoc } from "firebase/firestore"; 
-const defaultTheme = createTheme();
+
 
 export default function SignupMentor() {
     const navigate = useNavigate()
@@ -57,9 +57,16 @@ export default function SignupMentor() {
         }).then(navigate('/SignupMentor2'));
         
       };
+    const theme = createTheme({
+        palette: {
+            background: {
+                default: '#f5faff',
+            },
+        },
+    });
 
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
@@ -76,7 +83,7 @@ export default function SignupMentor() {
                         backgroundPosition: 'center',
                     }}
                 />
-                <Grid item xs={12} sm={8} md={10} component={Paper} elevation={6} square>
+                <Grid item xs={12} sm={8} md={10} square>
                     <Box
                         sx={{
                             my: 25,

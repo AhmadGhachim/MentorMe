@@ -108,7 +108,7 @@ const FeaturedEvents = () => {
     return (
         <Container style={{ marginBottom: '20px' }}>
             <Stack direction="row" justifyContent="space-between" alignItems="center">
-                <Typography variant="h4" gutterBottom>
+                <Typography variant="h4" gutterBottom style={{ fontFamily: 'system-ui', color: '#016EEA', fontWeight: 'bold' }}>
                     Featured Events
                 </Typography>
                 <Button component="a" href="/EventPage" variant="contained" color="primary">

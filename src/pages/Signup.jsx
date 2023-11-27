@@ -1,14 +1,8 @@
-import Avatar from '@mui/material/Avatar';
+
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useAuth } from '../AuthContext';
@@ -16,9 +10,16 @@ import {useNavigate } from 'react-router-dom'
 import SignUpImage from '../assets/sign-up-side.jpg'
 import {useState} from 'react'
 
-// TODO remove, this demo shouldn't need to reset the theme.
 
-const defaultTheme = createTheme();
+
+const theme = createTheme({
+    palette: {
+        background: {
+            default: '#f5faff',
+        },
+    },
+
+});
 
 export default function Signup() {
 
@@ -45,8 +46,8 @@ export default function Signup() {
   }
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
+    <ThemeProvider theme={theme}>
+      <Grid container component="main" sx={{ height: '100vh'}}>
         <CssBaseline />
         <Grid
           item
@@ -56,20 +57,21 @@ export default function Signup() {
           sx={{
             backgroundImage: `url(${SignUpImage})`,
             backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+              backgroundColor: '#f5faff',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         />
-        <Grid item xs={12} sm={8} md={10} component={Paper} elevation={6} square>
+        <Grid item xs={12} sm={8} md={10} square>
           <Box
             sx={{
               my: 25,
               mx: 4,
               display: 'flex',
               flexDirection: 'column',
+                backgroundColor: '#f5faff',
               alignItems: 'center',
+
             }}
           >
             <Typography component="h5" variant="h2" style={{ fontFamily: 'system-ui', color:'#016EEA',  fontWeight: 'bold' }}>

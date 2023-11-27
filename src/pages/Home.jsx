@@ -3,10 +3,10 @@ import { useAuth } from "../AuthContext"
 import { auth, db } from "../../backend/Firebase"
 import { doc, updateDoc } from "firebase/firestore"; 
 import { onAuthStateChanged } from "firebase/auth"
-import Navbar from "../components/NavBarHomeMentor"
+import NavigationBar from "../components/NavigationBar"
 import { useNavigate } from "react-router-dom"
 import Button from "@mui/material/Button"
-import CreateEventPopup from '../components/CreateEventPopUp'
+import {createTheme, ThemeProvider} from "@mui/material/styles";
 function Home() {
   const { currentUser } = useAuth()
   const navigate = useNavigate()
@@ -26,10 +26,18 @@ function Home() {
       navigate("/")
     }
   });
+  const theme = createTheme({
+    palette: {
+      background: {
+        default: '#f5faff',
+      },
+    },
+  });
 
   return (
 <>
-      <Navbar />
+  <ThemeProvider theme={theme}>
+      <NavigationBar />
       <div>
         {currentUser ? (
           <div>
@@ -41,7 +49,8 @@ function Home() {
         )}
       </div>
       <Button onClick={handleSubmit}>Test</Button>
-    </>
+  </ThemeProvider>
+</>
   );
 }
 
