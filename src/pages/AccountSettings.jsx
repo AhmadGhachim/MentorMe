@@ -33,6 +33,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
+import AddIcon from '@mui/icons-material/Add';
+import { styled } from '@mui/system';
 
 
 const mainTheme = createTheme({
@@ -49,9 +51,9 @@ const mainTheme = createTheme({
         bold_font: {
             //fontSize: '1.1rem',
             fontWeight: 700,
-          },
-      },
-  });
+        },
+    },
+});
 
 
 function AccountSettings() {
@@ -61,6 +63,23 @@ function AccountSettings() {
     const [userType, setUserType] = useState(); // is the user a Mentor or Mentee? used for displaying the correct navbar
     const [profileData, setProfileData] = useState(); // the data to display in profile page
     const [newPassword, setNewPassword] = useState('');
+    const [languages, setLanguages] = useState(['']); // Initial state with an empty string
+
+    const handleAddLanguage = () => {
+      setLanguages([...languages, '']);
+    };
+
+    const handleRemoveLanguage = (index) => {
+        const updatedLanguages = [...languages];
+        updatedLanguages.splice(index, 1);
+        setLanguages(updatedLanguages);
+      };
+    
+      const handleChangeLanguage = (index, value) => {
+        const updatedLanguages = [...languages];
+        updatedLanguages[index] = value;
+        setLanguages(updatedLanguages);
+      };
 
     // fetch type of user
     useEffect(() => {
@@ -208,14 +227,13 @@ function AccountSettings() {
                                 <Tooltip title="Mentor">
                                     <SchoolIcon sx={{color: '#016eea', mx: '5px'}} />
                                 </Tooltip>
-                                <Tooltip title="Verified">
-                                    <VerifiedIcon sx={{ color: '#016eea'}} />
-                                </Tooltip>
+                                {profileData.verified === true ? (
+                                    <Tooltip title="Verified">
+                                        <VerifiedIcon sx={{ color: '#016eea'}} />
+                                    </Tooltip>
+                                ) : (<></>)}
                                 </>
-                            ) : (
-                                <>
-                                </>
-                            )}
+                            ) : (<></>)}
                         </Typography>
                     </Box>
 
