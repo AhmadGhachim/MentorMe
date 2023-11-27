@@ -300,7 +300,7 @@ const WebDevelopment = () => {
             )}
             <Container style={{ paddingTop: '100px' }}>
                 <div>
-                <Posts posts={webDevelopmentPosts.concat(posts)} />;
+                <Posts posts={webDevelopmentPosts.concat(posts)} />
                 </div>
             </Container>
             <CreatePostButton/>

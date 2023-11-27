@@ -42,7 +42,7 @@ const HomePage = () => {
         <>
             <FeaturedEvents />
             <TopicsHome />
-            <Posts posts={featuredPosts} />;
+            <Posts posts={featuredPosts} />
             <CreatePost/>
         </>
     );

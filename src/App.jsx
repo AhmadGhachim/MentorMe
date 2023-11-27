@@ -18,11 +18,11 @@ import EventPage from './pages/EventsPage.jsx'
 import ViewEventPage from "./pages/ViewEventPage.jsx";
 import TestHome from "./pages/TestHome.jsx";
 import WebDevelopment from './pages/WebDevelopment.jsx';
-import DataScience from './pages/TopicPages/DataScience.jsx';
-import FinTech from './pages/TopicPages/FinTech.jsx';
-import MachineLearning from './pages/TopicPages/MachineLearning.jsx';
-import UXDesign from './pages/TopicPages/UXDesign.jsx';
-import AI from './pages/TopicPages/AI.jsx';
+import DataScience from './pages/DataScience.jsx';
+import Fintech from './pages/FinTech.jsx';
+import MachineLearning from './pages/MachineLearning.jsx';
+import UXDesign from './pages/UXDesign.jsx';
+import AI from './pages/AI.jsx';
 
 
 function App() {
@@ -54,7 +54,7 @@ function App() {
         <Route path="/TestHome" element={<TestHome />}/>
         <Route path="/WebDevelopment" element={<WebDevelopment />}/>
         <Route path="/DataScience" element={<DataScience />}/>
-        <Route path="/FinTech" element={<FinTech />}/>
+        <Route path="/Fintech" element={<Fintech />}/>
         <Route path="/MachineLearning" element={<MachineLearning />}/>
         <Route path="/UXDesign" element={<UXDesign />}/>
         <Route path="/AI" element={<AI />}/>
