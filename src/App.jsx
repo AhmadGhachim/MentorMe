@@ -9,6 +9,7 @@ import SignupMentor3 from './pages/SignupMentor3'
 import SignupMentor4 from './pages/SignupMentor4'
 import Home from './pages/Home'
 import Landing from './pages/Landing'
+import LandingMUI from './pages/LandingMUI'
 import Signup from './pages/Signup';
 import FindMentor from "./pages/FindMentor.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -23,6 +24,8 @@ import Fintech from './pages/FinTech.jsx';
 import MachineLearning from './pages/MachineLearning.jsx';
 import UXDesign from './pages/UXDesign.jsx';
 import AI from './pages/AI.jsx';
+import ErrorPage from './pages/Error';
+import SettingsPage from './pages/AccountSettings.jsx';
 
 
 function App() {
@@ -31,8 +34,8 @@ function App() {
     <BrowserRouter>
     <AuthProvider>
       <Routes>
-        {/*<Route path="/" element={<LandingMUI />}/>*/}
-         <Route path="/landing" element={<Landing />}/>
+        <Route path="/" element={<LandingMUI />}/>
+        {/* <Route path="/landing" element={<Landing />}/> */}
         <Route path="/Signin" element={<SignInSide />}/>
         <Route path="/Home" element={<Home />}/>
         <Route path="/Signup" element={<Signup />}/>
@@ -49,6 +52,7 @@ function App() {
         <Route path="/EventPage" element={<EventPage />}/>
         <Route path="ViewEventPage" element={<ViewEventPage />}/>
         <Route path='/profile/:id' element={<Profile/>} />
+        <Route path='/settings/account' element={<SettingsPage />} />
         {/*<Route path='*' element={<ErrorPage />}/>*/}
         <Route path="/ViewEventPage" element={<ViewEventPage />}/>
         <Route path="/TestHome" element={<TestHome />}/>
@@ -58,6 +62,7 @@ function App() {
         <Route path="/MachineLearning" element={<MachineLearning />}/>
         <Route path="/UXDesign" element={<UXDesign />}/>
         <Route path="/AI" element={<AI />}/>
+        <Route path='*' element={<ErrorPage />}/>
 
 
       </Routes>
