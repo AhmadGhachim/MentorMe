@@ -57,6 +57,27 @@ export default function IndustryExperience() {
             }
         }
 
+        // add the necessary fields for profile
+        userData = {
+            ...userData,
+            pfp_url: '',
+            occupation: '',
+            occupation_place: '',
+            occupation_field: '',
+            bio: '',
+            follower_ids: [],
+            following_ids: [],
+            reputation: 10,
+            social_linkedin: '',
+            social_github: '',
+            social_twitter: '',
+            languages: [],
+            tutorial: [false, false, false, false, false],
+            badge_tier: 1,
+            connection_ids: [],
+        }
+
+
         await updateDoc(doc(db, "users", currentUser.uid), userData);
 
         navigate("/Home")

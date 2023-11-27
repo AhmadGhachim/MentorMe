@@ -35,8 +35,29 @@ const handleExperience = (event) => {
 
    const handleSubmit = async (e) => {
     e.preventDefault();
-        const userData = {
+        let userData = {
           years_mentored: experience
+        }
+
+        // add the necessary fields for profile
+        userData = {
+          ...userData,
+          pfp_url: '',
+          occupation: '',
+          occupation_place: '',
+          occupation_field: '',
+          bio: '',
+          follower_ids: [],
+          following_ids: [],
+          reputation: 10,
+          social_linkedin: '',
+          social_github: '',
+          social_twitter: '',
+          languages: [],
+          tutorial: [false, false, false, false, false],
+          badge_tier: 1,
+          connection_ids: [],
+          verified: 0,
         }
 
         // Add user data to Firestore
