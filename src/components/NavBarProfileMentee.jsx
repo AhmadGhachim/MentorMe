@@ -184,7 +184,7 @@ function DrawerAppBar(props) {
   const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
 
           // replace with blank (loading) screen until userData is set
-          if (!pfpURL) {
+          if (pfpURL == null) {
             // Render a loading state
             return (
                 <>
