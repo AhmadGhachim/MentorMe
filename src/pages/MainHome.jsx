@@ -227,6 +227,8 @@ const HomePage = () => {
         );
     }
 
+    console.log(userType)
+
     return (
         <>
             <ThemeProvider theme={theme}>

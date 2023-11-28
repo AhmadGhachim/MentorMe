@@ -206,7 +206,7 @@ const EventPage = () => {
                                         </Typography>
                                         <Stack spacing={2} direction="column" mt={2}>
 
-                                            <Button variant="outlined" color="primary" fullWidth>
+                                            <Button variant="outlined" color="primary" onClick={() => navigate("/profile/" + hostData.uid)} fullWidth>
                                                 View Profile
                                             </Button>
                                         </Stack>
