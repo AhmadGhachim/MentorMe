@@ -980,7 +980,7 @@ function ProfilePage() {
                                         {/* TODO: NOT TESTED */}
                                     </ListItem>
                                     <ListItem disablePadding>
-                                        <ListItemText primary={`Number of Posts: ${userPosts ? userPosts.filter(doc => doc.data().user_id === currentUser.uid).length : 0} / ${(profileData.badge_tier*profileData.badge_tier) * 5}`} />
+                                        <ListItemText primary={`Number of Posts: ${userPosts ? userPosts.filter(doc => doc.user_id === currentUser.uid).length : 0} / ${(profileData.badge_tier*profileData.badge_tier) * 5}`} />
                                         {/* TODO: NOT TESTED */}
                                     </ListItem>
                                 </List>
@@ -1029,7 +1029,7 @@ function ProfilePage() {
                                         {/* TODO: NOT TESTED */}
                                     </ListItem>
                                     <ListItem disablePadding>
-                                        <ListItemText primary={`Number of Posts: ${userPosts ? userPosts.filter(doc => doc.data().user_id === currentUser.uid).length : 0} / ${(profileData.badge_tier*profileData.badge_tier) * 5}`} />
+                                        <ListItemText primary={`Number of Posts: ${userPosts ? userPosts.filter(doc => doc.user_id === currentUser.uid).length : 0} / ${(profileData.badge_tier*profileData.badge_tier) * 5}`} />
                                         {/* TODO: NOT TESTED */}
                                     </ListItem>
                                 </List>

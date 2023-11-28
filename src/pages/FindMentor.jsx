@@ -50,18 +50,21 @@ const MentorPage = () => {
             name: 'John Doe',
             profession: 'Software Engineer',
             image: MentorJohnDoe,
+            uid: "g1ZaLsLOU1g6bcBk78z6wLi5jjO2"
         },
         {
             id: 2,
             name: 'Jane Smith',
             profession: 'Web Developer',
             image: MentorJaneSmith,
+            uid: "slDRvQ3fJ3YLay4dj6Zdd990tQ22"
         },
         {
             id: 3,
             name: 'Bob Johnson',
             profession: 'Data Scientist',
             image: MentorBobJohnson,
+            uid: "jfpuQRbNzUNJYep62GuYYB40x6f2"
         },
     ];
 
@@ -125,7 +128,7 @@ const MentorPage = () => {
                                             >
                                                 Contact Me
                                             </Button>
-                                            <Button variant="outlined" color="secondary" fullWidth>
+                                            <Button variant="outlined" color="secondary" onClick={() => navigate("/profile/" + mentor.uid)} fullWidth>
                                                 View Profile
                                             </Button>
                                         </Stack>
