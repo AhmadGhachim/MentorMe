@@ -187,7 +187,7 @@ function DrawerAppBar(props) {
 
 
             // replace with blank (loading) screen until userData is set
-            if (!pfpURL) {
+            if (pfpURL == null) {
               // Render a loading state
               return (
                   <>
