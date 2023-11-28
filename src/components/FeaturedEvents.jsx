@@ -8,16 +8,17 @@ import CardContent from '@mui/material/CardContent';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import image from "../assets/sign-in-side.jpg";
-
+import { useNavigate } from 'react-router-dom';
 const FeaturedEvents = () => {
     const featuredEvents = [
         {
             id: 1,
             eventName: 'Tech Conference 2023',
-            hostedBy: 'John Doe, Software Engineer @Google',
-            dateTime: '2023-11-30T18:00',
-            location: 'Online',
+            hostedBy: 'Bob Johnson, Data Scientist @Google',
+            dateTime: '2023-11-29T14:30',
+            location: 'New York',
             image: image,
+            event_id: 'ViewEventPage'
         },
         {
             id: 2,
@@ -49,6 +50,7 @@ const FeaturedEvents = () => {
 
     // eslint-disable-next-line react/prop-types
     const EventCard = ({ event }) => {
+        const navigate = useNavigate();
         const [confirmationOpen, setConfirmationOpen] = useState(false);
 
         const handleRegisterClick = () => {
@@ -76,7 +78,7 @@ const FeaturedEvents = () => {
                     <Typography variant="body2">{new Date(event.dateTime).toLocaleString()}</Typography>
                     <Typography variant="body2">Location: {event.location}</Typography>
                     <Stack spacing={1} direction="column" mt={2}>
-                        <Button variant="outlined" color="secondary" fullWidth>
+                        <Button variant="outlined" color="secondary" fullWidth onClick={() => navigate("/"+event.event_id)}>
                             View Event
                         </Button>
                         <Button

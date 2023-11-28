@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
@@ -10,18 +10,40 @@ import MentorJaneSmith from '../assets/MentorJaneSmith.jpg'
 import MentorBobJohnson from '../assets/MentorBobJohnson.jpg'
 import DefaultImage from '../assets/sign-in-side.jpg'
 import Banner from '../assets/sign-in-side.jpg'
-import {createTheme, ThemeProvider} from "@mui/material/styles";
+import {createTheme, ThemeProvider, useTheme} from "@mui/material/styles";
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Footer from "../components/Footer.jsx";
 import NavBarProfileMentee from "../components/NavBarProfileMentee.jsx";
+import NavBarProfileMentor from "../components/NavBarProfileMentor.jsx";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
-import  CreateEventPopUp from  '../components/CreateEventPopUp.jsx'
+import Box from '@mui/material/Box'
+import CircularProgress from '@mui/material/CircularProgress';
+import CssBaseline from '@mui/material/CssBaseline';
 import { useParams } from 'react-router-dom';
 import {useAuth} from '../AuthContext.jsx'
 import {auth, db} from '../../backend/Firebase.js'
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import { collection, getDocs, addDoc, getDoc, doc } from "firebase/firestore";
+import { useNavigate } from 'react-router-dom';
+const mainTheme = createTheme({
+    palette: {
+        background: {
+          default: '#f5faff',
+        },
+      },
+      typography: {
+        name_font: {
+          fontSize: '1.25rem',
+          fontWeight: 700,
+        },
+        bold_font: {
+            //fontSize: '1.1rem',
+            fontWeight: 700,
+          },
+      },
+  });
 
 const EventPage = () => {
     const {currentUser} = useAuth();
@@ -66,21 +88,57 @@ const EventPage = () => {
             id: 1,
             name: 'Jane Smith',
             profession: 'Web Developer',
-            image: MentorJaneSmith
+            image: MentorJaneSmith,
+            uid: "slDRvQ3fJ3YLay4dj6Zdd990tQ22"
+            
         },
         {
             id: 2,
             name: 'Bob Johnson',
             profession: 'Data Scientist',
-            image: MentorBobJohnson
+            image: MentorBobJohnson,
+            uid: "jfpuQRbNzUNJYep62GuYYB40x6f2"
         },
     ];
 
+    const [userType, setUserType] = useState();
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!currentUser) {
+            // Redirect to the landing page if no one is logged in
+            navigate('/');
+            return;
+        }
+        async function fetchUserData() {
+            const docRef = doc(db, "users", currentUser.uid);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                setUserType(docSnap.data().user_type);
+            } else {
+                // docSnap.data() will be undefined in this case
+                console.log("No such document!");
+            }
+
+
+        }
+        fetchUserData()
+    }, []);
+
     const [registrationDialogOpen, setRegistrationDialogOpen] = React.useState(false);
 
-    const handleRegisterClick = () => {
+    const handleRegisterClick = async () => {
+
+        const docRef = await getDoc(doc(db, 'events', 'pilugbGPQUGcAln2tw7u'))
+        const selectedEvent = docRef.data()
+        const parentDocumentRef = doc(db, 'users', currentUser.uid);
+
+            // Reference to the subcollection
+            const subcollectionRef = collection(parentDocumentRef, 'events');
+
+            const addedDocRef = await addDoc(subcollectionRef, selectedEvent);
         setRegistrationDialogOpen(true);
     };
+
 
     const handleRegistrationDialogClose = () => {
         setRegistrationDialogOpen(false);
@@ -94,9 +152,38 @@ const EventPage = () => {
         },
     });
 
+    const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
+    // replace with blank (loading) screen until userData is set
+    if ( !userType) {
+        // Render a loading state
+        return (
+            <>
+            <ThemeProvider theme={mainTheme}>
+                <Box 
+                    sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    minHeight: '100vh',
+                    px: isMobile ? '10px' : '175px',
+                    }}
+                >
+                    <CssBaseline />
+                    <CircularProgress />
+                </Box>
+            </ThemeProvider>
+            </>
+        );
+    }
+
     return (
         <ThemeProvider theme={theme}>
-            <NavBarProfileMentee />
+            {userType === 'Mentor' ? (
+            <NavBarProfileMentor/>
+            ) : (
+            <NavBarProfileMentee/>
+            )}
             <Container style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {/* Banner */}
                 <Card>
@@ -145,7 +232,7 @@ const EventPage = () => {
                                         </Typography>
                                         <Stack spacing={2} direction="column" mt={2}>
 
-                                            <Button variant="outlined" color="primary" fullWidth>
+                                            <Button variant="outlined" color="primary" fullWidth onClick={() => navigate("/profile/" + mentor.uid)}>
                                                 View Profile
                                             </Button>
                                         </Stack>

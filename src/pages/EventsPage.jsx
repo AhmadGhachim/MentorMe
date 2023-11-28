@@ -113,7 +113,7 @@ useEffect(() => {
 
             <Container>
                 <Typography variant="h4" gutterBottom style={{ fontFamily: 'system-ui', color: '#016EEA', fontWeight: 'bold', marginTop: '100px' }}>
-                    Current Events
+                    Upcoming Events
                 </Typography>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     {filteredEvents.map((event) => (
@@ -127,13 +127,14 @@ useEffect(() => {
                             />
                             <CardContent style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '20px', width: '100%' }}>
                                 <div>
-                                    <Typography gutterBottom variant="h5" component="div">
+                                    <Typography gutterBottom variant="h5" component="div" style={{ fontWeight: 'bold' }}>
                                         {event.eventName}
                                     </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        Hosted By: {event.hostedBy}
+                                    <Typography variant="body2" color="text.secondary" style={{ fontWeight: 'bold' }}>
+                                    Hosted By: {event.hostedBy}
                                     </Typography>
-                                    <Typography variant="body2" color="text.secondary" style={{ marginBottom: '20px' }}>
+
+                                    <Typography variant="body2" color="text.secondary" style={{ marginBottom: '20px', marginTop:'20px' }}>
                                         About: {event.about}
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">

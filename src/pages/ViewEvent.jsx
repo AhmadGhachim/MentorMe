@@ -182,18 +182,27 @@ const EventPage = () => {
                         <Stack direction="row" spacing={5} style={{ justifyContent: 'center' }}>
 
                                 <Card style={{ width: 300, margin: 20 }}>
-                                    <CardMedia
+                                {hostData.pfp_url !== ""  ? (
+                                        <CardMedia
+                                        component="img"
+                                        alt={hostData.firstName}
+                                        height="280"
+                                        image={hostData.pfp_url}
+                                        />
+                                        ) : (
+                                        <CardMedia
                                         component="img"
                                         alt={hostData.firstName}
                                         height="280"
                                         image={Banner}
-                                    />
+                                        />
+                                        )}
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="div">
                                             {hostData.firstName + ' ' + hostData.lastName}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
-                                            {hostData.occupation}
+                                            {hostData.occupation + ' @' + hostData.employer}
                                         </Typography>
                                         <Stack spacing={2} direction="column" mt={2}>
 
