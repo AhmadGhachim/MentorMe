@@ -2,7 +2,7 @@
 # MentorMe
 **MentorMe** is a web-based social platform that hopes to facilitate meaningful and accessible mentorship, career guidance and skill development among students, professionals, and recent graduates. The platform will create an online community that connects experienced mentors with motivated mentees, allowing for career growth and knowledge sharing.
 
-# Presentationa and Demo
+# Presentation and Demo
 **Link**: https://youtu.be/olgAPVttnYs
 
 ## Features
