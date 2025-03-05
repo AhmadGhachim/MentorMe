@@ -20,7 +20,7 @@
 
 ## Tech stack
 
-**Front-end**: React, CSS-in-JS, Material UI (MUI), Vite.
+**Front-end**: React, CSS, Material UI (MUI), Vite.
 
 **Back-end**: Firebase API, Firebase Authentication, Firestore (NoSQL)
 
